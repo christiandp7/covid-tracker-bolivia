@@ -10,7 +10,7 @@ import UserProfile from "views/UserProfile.js";
 var routes = [
   {
     path: "/",
-    name: "Principal",
+    name: "Bolivia",
     //rtlName: "لوحة القيادة",
     icon: "tim-icons icon-chart-pie-36",
     component: Dashboard,

@@ -10783,14 +10783,13 @@ hr {
     .off-canvas-sidebar .logo a.logo-mini {
       opacity: 1;
       float: left;
-      width: 34px;
+      width: 40px;
       text-align: center;
       margin-left: 12px;
       margin-right: 12px; }
       .sidebar .logo a.logo-mini img,
       .off-canvas-sidebar .logo a.logo-mini img {
-        border-radius: 50%;
-        width: 30px; }
+        max-width: 100%; }
     .sidebar .logo a.logo-normal,
     .off-canvas-sidebar .logo a.logo-normal {
       display: block;
@@ -12528,5 +12527,3 @@ textarea.form-control {
 
 select.form-control option {
   color: #888; }
-
-/*# sourceMappingURL=black-dashboard-react.css.map */

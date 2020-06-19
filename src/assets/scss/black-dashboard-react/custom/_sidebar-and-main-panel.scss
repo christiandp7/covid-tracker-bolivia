@@ -277,13 +277,13 @@
     a.logo-mini{
       opacity: 1;
       float: left;
-      width: 34px;
+      width: 40px;
       text-align: center;
       margin-left: 12px;
       margin-right: 12px;
       img {
-        border-radius: 50%;
-        width: 30px;
+        //border-radius: 50%;
+        max-width: 100%;
       }
     }
 
@@ -322,7 +322,7 @@
       color: $white;
       text-decoration: none;
       font-weight: $font-weight-normal;
-      line-height: 30px;
+      line-height: 38px;
       overflow: hidden;
     }
   }

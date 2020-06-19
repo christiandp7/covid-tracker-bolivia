@@ -9,6 +9,9 @@ import PerfectScrollbar from "perfect-scrollbar";
 // reactstrap components
 import { Nav, NavLink as ReactstrapNavLink } from "reactstrap";
 
+// Styles
+import styles from './Sidebar.module.css'
+
 var ps;
 
 class Sidebar extends React.Component {
