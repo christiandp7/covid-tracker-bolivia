@@ -4,7 +4,7 @@ import classNames from "classnames";
 // react plugin used to create charts
 import { Line, Bar } from "react-chartjs-2";
 
-import { BoliviaCards, BoliviaMap } from "../components/Bolivia"
+import { BoliviaCards, BoliviaCardsData, BoliviaMap } from "../components/Bolivia"
 
 // reactstrap components
 import {
@@ -51,60 +51,8 @@ class Dashboard extends React.Component {
     return (
       <>
         <div className="content">
-          <Row>
-            <Col xs="12" md="3">
-              <Card>
-                <CardHeader>
-                  <h5>Total Infectados</h5>
-                  <CardTitle tag="h2">
-                    <i className="tim-icons icon-single-02 text-info" /> 12,100K
-                  </CardTitle>
-                </CardHeader>
-                <CardBody>
-                  
-                </CardBody>
-              </Card>
-            </Col>
-            <Col xs="12" md="3">
-              <Card>
-                <CardHeader>
-                  <h5>Total Activos</h5>
-                  <CardTitle tag="h2">
-                    <i className="tim-icons icon-single-02 text-warning" /> 12,100K
-                  </CardTitle>
-                </CardHeader>
-                <CardBody>
-                  
-                </CardBody>
-              </Card>
-            </Col>
-            <Col xs="12" md="3">
-              <Card>
-                <CardHeader>
-                  <h5>Total Recuperados</h5>
-                  <CardTitle tag="h2">
-                    <i className="tim-icons icon-single-02 text-success" /> 12,100K
-                  </CardTitle>
-                </CardHeader>
-                <CardBody>
-                  
-                </CardBody>
-              </Card>
-            </Col>
-            <Col xs="12" md="3">
-              <Card>
-                <CardHeader>
-                  <h5>Total Decesos</h5>
-                  <CardTitle tag="h2">
-                    <i className="tim-icons icon-single-02 text-danger" /> 12,100K
-                  </CardTitle>
-                </CardHeader>
-                <CardBody>
-                  
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
+          
+          <BoliviaCards />
 
           <Row>
             <Col xs="12" md="8">
@@ -113,9 +61,7 @@ class Dashboard extends React.Component {
               </Card>
             </Col>
             <Col xs="12" md="4">
-              <Card>
-                <BoliviaCards />
-              </Card>
+              <BoliviaCardsData />
             </Col>
           </Row>
 
