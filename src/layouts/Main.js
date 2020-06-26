@@ -9,8 +9,11 @@ import Footer from "components/Footer/Footer.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
 import FixedPlugin from "components/FixedPlugin/FixedPlugin.js";
 
+// Routes
 import routes from "routes.js";
+import NotFound from "../views/NotFound.js"
 
+// Assets
 import logo from "assets/img/covid-logo.png";
 
 var ps;
@@ -115,7 +118,8 @@ class Admin extends React.Component {
             />
             <Switch>
               {this.getRoutes(routes)}
-              {/*<Redirect from="*" to="/admin/dashboard"/>*/}
+              <Route exact path="/404" component={NotFound} />
+              <Redirect from="*" to="/404" />
             </Switch>
             {// we don't want the Footer to be rendered on map page
             this.props.location.pathname.indexOf("maps") !== -1 ? null : (
@@ -123,10 +127,12 @@ class Admin extends React.Component {
             )}
           </div>
         </div>
-        <FixedPlugin
+        
+        {/*<FixedPlugin
           bgColor={this.state.backgroundColor}
           handleBgClick={this.handleBgClick}
-        />
+        />*/}
+
       </>
     );
   }

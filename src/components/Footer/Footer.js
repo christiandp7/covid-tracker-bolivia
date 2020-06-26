@@ -40,15 +40,15 @@ class Footer extends React.Component {
             </NavItem>
           </Nav>
           <div className="copyright">
-            © {new Date().getFullYear()} made with{" "}
-            <i className="tim-icons icon-heart-2" /> by{" "}
+            © {new Date().getFullYear()} | Desarrollado por{" "}
             <a
-              href="https://www.creative-tim.com/?ref=bdr-user-archive-footer"
+              href="https://diazportela.com"
               target="_blank"
+              className="text-info"
             >
-              Creative Tim
+              Christian Diaz Portela
             </a>{" "}
-            for a better web.
+            .
           </div>
         </Container>
       </footer>

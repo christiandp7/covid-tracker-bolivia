@@ -5,7 +5,7 @@ import { Line, Bar } from "react-chartjs-2";
 
 import { fetchBOGeneralData, fetchBOData } from '../api'
 
-import { BoliviaCards, BoliviaCardsData, BoliviaMap } from "../components/Bolivia"
+import { BoliviaCards, BoliviaCardsData, BoliviaMap, BoliviaChart } from "../components/Bolivia"
 
 // reactstrap components
 import {
@@ -27,6 +27,7 @@ import {
   Col,
   UncontrolledTooltip
 } from "reactstrap";
+
 
 export class Bolivia extends Component {
 
@@ -53,12 +54,12 @@ export class Bolivia extends Component {
           <BoliviaCards data={this.state.genData} />
 
           <Row>
-            <Col xs="12" md="8">
+            <Col xs="12" md="6">
               <Card>
                 <BoliviaMap />
               </Card>
             </Col>
-            <Col xs="12" md="4">
+            <Col xs="12" md="6">
               <BoliviaCardsData data={this.state.genData} />
             </Col>
           </Row>
@@ -66,7 +67,7 @@ export class Bolivia extends Component {
 
           <Row>
             <Col xs="12">
-              <Card className="card-chart"></Card>
+              <BoliviaChart />
             </Col>
           </Row>
 

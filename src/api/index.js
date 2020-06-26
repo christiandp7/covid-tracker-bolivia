@@ -3,16 +3,17 @@
 import axios from 'axios'
 
 const url = 'https://covid19.mathdro.id/api/countries/BO'
-
 const url2 = 'https://mauforonda.github.io/covid19-bolivia/data.json'
 
 export const fetchBOGeneralData = async () => {
-   try {
+  try {
     const  { data: { confirmed, recovered, deaths, lastUpdate } } = await axios.get(url);
 
     let actives = confirmed.value - (recovered.value + deaths.value);
-    let lethalityPercent = confirmed.value / (deaths.value * 100);
-    let recoveredPercent = confirmed.value / (recovered.value * 100);
+    let lethalityPercent = roundNumber((deaths.value * 100) / confirmed.value );
+    let recoveredPercent = roundNumber((recovered.value * 100) / confirmed.value);
+
+    console.log(confirmed.value +"/"+recovered.value)
 
     return { confirmed, recovered, deaths, actives, lethalityPercent, recoveredPercent, lastUpdate  }
   } catch (error) {
@@ -39,3 +40,27 @@ const fetchAllData = async () => {
     }
     
 */
+
+// Sudamerica Data
+
+/*const sudamericaURL = 'https://corona.lmao.ninja/v2/continents/South%20America'
+
+export const fetchContinentData = async () => {
+  try {
+   const  { data: { confirmed, recovered, deaths, lastUpdate } } = await axios.get(sudamericaURL);
+
+   let actives = confirmed.value - (recovered.value + deaths.value);
+   let lethalityPercent = confirmed.value / (deaths.value * 100);
+   let recoveredPercent = confirmed.value / (recovered.value * 100);
+
+   return { confirmed, recovered, deaths, actives, lethalityPercent, recoveredPercent, lastUpdate  }
+ } catch (error) {
+   console.log(error);
+   return error;
+ }
+}*/
+
+
+function roundNumber(num) {
+  return (Math.round(num * 100) / 100).toFixed(2);
+}

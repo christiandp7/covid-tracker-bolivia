@@ -4,7 +4,7 @@ import classNames from "classnames";
 // react plugin used to create charts
 import { Line, Bar } from "react-chartjs-2";
 
-import { BoliviaCards, BoliviaCardsData, BoliviaMap } from "../components/Bolivia"
+//import { BoliviaCards, BoliviaCardsData, BoliviaMap } from "../components/Bolivia"
 
 // reactstrap components
 import {
@@ -51,19 +51,8 @@ class Dashboard extends React.Component {
     return (
       <>
         <div className="content">
-          
-          <BoliviaCards />
 
-          <Row>
-            <Col xs="12" md="8">
-              <Card>
-                <BoliviaMap />
-              </Card>
-            </Col>
-            <Col xs="12" md="4">
-              <BoliviaCardsData />
-            </Col>
-          </Row>
+          
 
           <Row>
             <Col xs="12">

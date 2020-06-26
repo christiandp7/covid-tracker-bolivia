@@ -182,11 +182,21 @@
         color: $white;
       }
 
+      &:hover:not(.active) > a svg,
+      &:focus:not(.active) > a svg{
+        color: $white;
+        opacity: 1;
+      }
+
       &.active > a:not([data-toggle="collapse"]){
         background: transparent;
 
         i,p{
           color: white;
+        }
+
+        svg {
+          opacity: 1;
         }
 
         &:before{
@@ -252,16 +262,24 @@
       @extend .animation-transition-general;
     }
 
-    i{
+    i, svg{
       font-size: 20px;
       float: left;
       margin-right: 12px;
+      margin-left: 6px;
       line-height: 30px;
-      width: 34px;
+      //width: 34px;
+      width: 24px;
+      height: 24px;
       text-align: center;
       color: $opacity-8;
       position: relative;
     }
+    svg {
+      display: inline-block;
+      opacity: 0.8;
+    }
+
   }
 
   .logo{

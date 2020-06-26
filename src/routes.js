@@ -1,5 +1,6 @@
 import Dashboard from "views/Dashboard.js";
 import Bolivia from "views/Bolivia.js";
+import Sudamerica from "views/Sudamerica.js";
 import Icons from "views/Icons.js";
 import Map from "views/Map.js";
 import Notifications from "views/Notifications.js";
@@ -7,6 +8,8 @@ import Notifications from "views/Notifications.js";
 import TableList from "views/TableList.js";
 import Typography from "views/Typography.js";
 import UserProfile from "views/UserProfile.js";
+
+
 
 var routes = [
   {
@@ -20,9 +23,17 @@ var routes = [
   {
     path: "/bolivia",
     name: "Bolivia",
-    //rtlName: "لوحة القيادة",
-    icon: "tim-icons icon-chart-pie-36",
+    icon: "tim-icons icon-chart-bar-32",
+    customIcon: "BO",
     component: Bolivia,
+    layout: "/admin"
+  },
+  {
+    path: "/sudamerica",
+    name: "Sudamérica",
+    icon: "tim-icons icon-chart-pie-36",
+    customIcon: "SU",
+    component: Sudamerica,
     layout: "/admin"
   },
   {

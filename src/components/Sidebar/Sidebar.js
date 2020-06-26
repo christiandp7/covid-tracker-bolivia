@@ -10,6 +10,10 @@ import PerfectScrollbar from "perfect-scrollbar";
 import { Nav, NavLink as ReactstrapNavLink } from "reactstrap";
 
 
+//Icons
+import BoliviaIcon from '../CustomIcons/BoliviaIcon'
+import SudamericaIcon from '../CustomIcons/SudamericaIcon'
+
 var ps;
 
 class Sidebar extends React.Component {
@@ -100,6 +104,14 @@ class Sidebar extends React.Component {
           <Nav>
             {routes.map((prop, key) => {
               if (prop.redirect) return null;
+              
+              let linkIcon = (<i className={prop.icon} />); 
+              if(prop.customIcon == 'BO') {
+                linkIcon = (<BoliviaIcon />) 
+              } else if (prop.customIcon == 'SU') {
+                linkIcon = (<SudamericaIcon />) 
+              }
+
               return (
                 <li
                   className={
@@ -115,7 +127,9 @@ class Sidebar extends React.Component {
                     activeClassName="active"
                     onClick={this.props.toggleSidebar}
                   >
-                    <i className={prop.icon} />
+                    
+                    {linkIcon}
+
                     <p>{prop.name}</p>
                   </NavLink>
                 </li>
