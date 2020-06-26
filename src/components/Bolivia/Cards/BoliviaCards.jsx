@@ -1,4 +1,6 @@
 import React from 'react'
+import CardLoader from '../../Loaders/CardsLoaderBo'
+
 import {
   Row,
   Col,
@@ -10,10 +12,10 @@ import {
 } from "reactstrap";
 
 
-function BoliviaCards({ data: { confirmed, recovered, deaths, actives, lastUpdate }}) {
+function BoliviaCards({ data: { cases, todayCases, deaths, todayDeaths, recovered, todayRecovered, active }}) {
 
-  if(!confirmed) {
-    return ( <h4>Loading</h4> )
+  if(!cases) {
+    return ( <CardLoader /> )
   }
 
   return (
@@ -23,7 +25,7 @@ function BoliviaCards({ data: { confirmed, recovered, deaths, actives, lastUpdat
                 <CardHeader>
                   <h4>Total Infectados</h4>
                   <CardTitle tag="h2">
-                    <i className="tim-icons icon-single-02 text-info" /> {confirmed.value}
+                    <i className="tim-icons icon-single-02 text-info" /> {cases}
                   </CardTitle>
                 </CardHeader>
                 <CardBody>
@@ -36,7 +38,7 @@ function BoliviaCards({ data: { confirmed, recovered, deaths, actives, lastUpdat
                 <CardHeader>
                   <h4>Total Activos</h4>
                   <CardTitle tag="h2">
-                    <i className="tim-icons icon-single-02 text-warning" /> {actives}
+                    <i className="tim-icons icon-single-02 text-warning" /> {active}
                   </CardTitle>
                 </CardHeader>
                 <CardBody>
@@ -49,7 +51,7 @@ function BoliviaCards({ data: { confirmed, recovered, deaths, actives, lastUpdat
                 <CardHeader>
                   <h4>Total Recuperados</h4>
                   <CardTitle tag="h2">
-                    <i className="tim-icons icon-single-02 text-success" /> {recovered.value}
+                    <i className="tim-icons icon-single-02 text-success" /> {recovered}
                   </CardTitle>
                 </CardHeader>
                 <CardBody>
@@ -62,7 +64,7 @@ function BoliviaCards({ data: { confirmed, recovered, deaths, actives, lastUpdat
                 <CardHeader>
                   <h4>Total Decesos</h4>
                   <CardTitle tag="h2">
-                    <i className="tim-icons icon-single-02 text-danger" /> {deaths.value}
+                    <i className="tim-icons icon-single-02 text-danger" /> {deaths}
                   </CardTitle>
                 </CardHeader>
                 <CardBody>

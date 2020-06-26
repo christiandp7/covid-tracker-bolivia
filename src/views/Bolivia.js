@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import classNames from "classnames";
 import { Line, Bar } from "react-chartjs-2";
+import { SkeletonTheme } from "react-loading-skeleton";
 
 import { fetchBOGeneralData, fetchBOData } from '../api'
 
@@ -38,6 +39,7 @@ export class Bolivia extends Component {
   async componentDidMount() {
     const fetchedBOGeneralData = await fetchBOGeneralData();
     this.setState({ genData: fetchedBOGeneralData })
+    //console.log(genData)
   }
 
   
@@ -50,6 +52,7 @@ export class Bolivia extends Component {
     return (
       <>
         <div className="content">
+        <SkeletonTheme color="#1e1e2f" highlightColor="#BFBFC5">
 
           <BoliviaCards data={this.state.genData} />
 
@@ -71,6 +74,8 @@ export class Bolivia extends Component {
             </Col>
           </Row>
 
+
+        </SkeletonTheme>
         </div>
       </>
     )

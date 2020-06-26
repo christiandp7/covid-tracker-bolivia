@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 
 import classNames from "classnames";
 import { Line, Bar } from "react-chartjs-2";
+import { SkeletonTheme } from "react-loading-skeleton";
 
-//import { fetchContinentData } from '../api'
+import { fetchSudCountriesData } from '../api'
 
 import { SudamericaMap, SudamericaTable } from "../components/Sudamerica"
 
@@ -32,14 +33,17 @@ import {
 export class Sudamerica extends Component {
 
   state = {
-    continetData: {},
+    countriesData: [],
   }
 
-  /*async componentDidMount() {
-    const fetchedContinentData = await fetchContinentData();
-    this.setState({ continetData: fetchedContinentData })
-  }*/
+  async componentDidMount() {
+    const fetchedSudCountriesData = await fetchSudCountriesData();
+    this.setState({ countriesData: fetchedSudCountriesData })
+    //console.log(this.state.countriesData)
+  }
 
+
+  
 
   
 
@@ -47,15 +51,15 @@ export class Sudamerica extends Component {
     //const { continetData } = this.state;
     
     return (
-      <>
-        <div className="content">
-
+      
+      <div className="content">
+        <SkeletonTheme color="#1e1e2f" highlightColor="#BFBFC5">
           
 
           <Row>
             <Col xs="12" md="6">
               <Card>
-                <SudamericaMap />
+                {/*<SudamericaMap />*/}
               </Card>
             </Col>
             <Col xs="12" md="6">
@@ -72,12 +76,14 @@ export class Sudamerica extends Component {
 
           <Row>
             <Col xs="12">
-              <SudamericaTable />
+              <SudamericaTable data={this.state.countriesData} />
             </Col>
           </Row>
 
-        </div>
-      </>
+
+        </SkeletonTheme>
+      </div>
+      
     )
   }
 }

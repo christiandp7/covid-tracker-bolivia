@@ -99,7 +99,7 @@ class Admin extends React.Component {
             routes={routes}
             bgColor={this.state.backgroundColor}
             logo={{
-              outterLink: "https://www.creative-tim.com/",
+              innerLink: "/",
               text: "Covid-19",
               imgSrc: logo
             }}
@@ -116,6 +116,7 @@ class Admin extends React.Component {
               toggleSidebar={this.toggleSidebar}
               sidebarOpened={this.state.sidebarOpened}
             />
+
             <Switch>
               {this.getRoutes(routes)}
               <Route exact path="/404" component={NotFound} />

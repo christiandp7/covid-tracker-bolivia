@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import TableLoader from '../../Loaders/TableLoader'
+
 
 import {
   Card,
@@ -11,65 +13,62 @@ import {
 } from "reactstrap";
 
 
-function SudamericaTable() {
+function SudamericaTable({ data }) {
+
+  const [countriesData, setCountriesData] = useState([]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {   
+      setCountriesData(data.sort((a,b) => (a.cases < b.cases) ? 1 : -1))
+      console.log(countriesData);
+    }, 100);
+    
+  })
+
+  /*if(!countriesData.length){
+    return ( <h4>Loading...</h4> )
+  }*/
+
   return (
     <Card>
       <CardHeader>
-        <CardTitle tag="h4">Simple Table</CardTitle>
+        <CardTitle tag="h2">Sudamerica Total</CardTitle>
       </CardHeader>
       <CardBody>
         <Table className="tablesorter" responsive>
           <thead className="text-primary">
             <tr>
-              <th>Name</th>
-              <th>Country</th>
-              <th>City</th>
-              <th className="text-center">Salary</th>
+              <th>País</th>
+              <th>Confirmados</th>
+              <th>Activos</th>
+              <th>Recuperados</th>
+              <th>Decesos</th>
+              <th>Nro. Tests</th>
+              <th>Estado Crítico</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Dakota Rice</td>
-              <td>Niger</td>
-              <td>Oud-Turnhout</td>
-              <td className="text-center">$36,738</td>
-            </tr>
-            <tr>
-              <td>Minerva Hooper</td>
-              <td>Curaçao</td>
-              <td>Sinaai-Waas</td>
-              <td className="text-center">$23,789</td>
-            </tr>
-            <tr>
-              <td>Sage Rodriguez</td>
-              <td>Netherlands</td>
-              <td>Baileux</td>
-              <td className="text-center">$56,142</td>
-            </tr>
-            <tr>
-              <td>Philip Chaney</td>
-              <td>Korea, South</td>
-              <td>Overland Park</td>
-              <td className="text-center">$38,735</td>
-            </tr>
-            <tr>
-              <td>Doris Greene</td>
-              <td>Malawi</td>
-              <td>Feldkirchen in Kärnten</td>
-              <td className="text-center">$63,542</td>
-            </tr>
-            <tr>
-              <td>Mason Porter</td>
-              <td>Chile</td>
-              <td>Gloucester</td>
-              <td className="text-center">$78,615</td>
-            </tr>
-            <tr>
-              <td>Jon Porter</td>
-              <td>Portugal</td>
-              <td>Gloucester</td>
-              <td className="text-center">$98,615</td>
-            </tr>
+
+            {countriesData.length? countriesData.map((country, i) => (
+                <tr key={i}>
+                  <td>
+                    <img className="avatar flag" src={country.countryInfo.flag} />
+                    {country.country}
+                  </td>
+                  <td>{country.cases}</td>
+                  <td>{country.active}</td>
+                  <td>{country.recovered}</td>
+                  <td>{country.deaths}</td>
+                  <td>{country.tests}</td>
+                  <td>{country.critical}</td>
+                </tr>
+              )) :
+              ( 
+                <TableLoader cols={3} />         
+                
+              )
+            }
+            
           </tbody>
         </Table>
       </CardBody>
