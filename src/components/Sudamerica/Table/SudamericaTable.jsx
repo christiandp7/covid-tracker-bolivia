@@ -10,6 +10,7 @@ import {
   Col
 } from "reactstrap";
 
+
 function SudamericaTable() {
   return (
     <Card>

@@ -7,6 +7,7 @@ import { Line, Bar } from "react-chartjs-2";
 
 import { SudamericaMap, SudamericaTable } from "../components/Sudamerica"
 
+
 // reactstrap components
 import {
   Button,
@@ -39,7 +40,6 @@ export class Sudamerica extends Component {
     this.setState({ continetData: fetchedContinentData })
   }*/
 
-  
 
   
 
