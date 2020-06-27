@@ -28,6 +28,8 @@ class Footer extends React.Component {
     return (
       <footer className="footer">
         <Container fluid>
+
+          {/*
           <Nav>
             <NavItem>
               <NavLink href="https://www.creative-tim.com/?ref=bdr-user-archive-footer">Creative Tim</NavLink>
@@ -39,6 +41,8 @@ class Footer extends React.Component {
               <NavLink href="https://www.creative-tim.com/blog?ref=bdr-user-archive-footer">Blog</NavLink>
             </NavItem>
           </Nav>
+          */}
+          
           <div className="copyright">
             © {new Date().getFullYear()} | Desarrollado por{" "}
             <a

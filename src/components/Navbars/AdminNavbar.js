@@ -109,10 +109,25 @@ class AdminNavbar extends React.Component {
                   <span className="navbar-toggler-bar bar3" />
                 </button>
               </div>
-              <NavbarBrand href="#pablo" onClick={e => e.preventDefault()}>
-                {this.props.brandText} Bolivia
+
+            
+
+              <NavbarBrand href="#" onClick={e => e.preventDefault()}>
+                {/*this.props.brandText*/} 
+                <h3 className="quedate_en_casa">
+                  <span className="text-info" >#</span>QUEDATE EN CASA
+                  </h3>
               </NavbarBrand>
             </div>
+
+            
+
+            </Container> {/* Remover esto para incluir lo comentado */}
+          </Navbar>
+
+
+
+            {/*
             <button
               aria-expanded={false}
               aria-label="Toggle navigation"
@@ -230,6 +245,7 @@ class AdminNavbar extends React.Component {
             </button>
           </div>
         </Modal>
+            */}
       </>
     );
   }

@@ -20,7 +20,7 @@ function SudamericaTable({ data }) {
   useEffect(() => {
     const timer = setTimeout(() => {   
       setCountriesData(data.sort((a,b) => (a.cases < b.cases) ? 1 : -1))
-      console.log(countriesData);
+      //console.log(countriesData);
     }, 100);
     
   })

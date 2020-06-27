@@ -12,16 +12,16 @@ import UserProfile from "views/UserProfile.js";
 
 
 var routes = [
-  {
+  /*{
     path: "/",
     name: "Dashboard",
     //rtlName: "لوحة القيادة",
     icon: "tim-icons icon-chart-pie-36",
     component: Dashboard,
     layout: "/admin"
-  },
+  },*/
   {
-    path: "/bolivia",
+    path: "/",
     name: "Bolivia",
     icon: "tim-icons icon-chart-bar-32",
     customIcon: "BO",
@@ -36,7 +36,7 @@ var routes = [
     component: Sudamerica,
     layout: "/admin"
   },
-  {
+ /*{
     path: "/icons",
     name: "Icons",
     //rtlName: "الرموز",
@@ -83,6 +83,6 @@ var routes = [
     icon: "tim-icons icon-align-center",
     component: Typography,
     layout: "/admin"
-  }
+  }*/
 ];
 export default routes;

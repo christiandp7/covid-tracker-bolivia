@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import cx from 'classnames'
 
+import { fetchSudCountriesHitoryData } from '../../../api'
+
 import { Line, Bar } from "react-chartjs-2";
 // reactstrap components
 import {
@@ -23,35 +25,33 @@ import {
   UncontrolledTooltip
 } from "reactstrap";
 
-
 import {
   chartExample1,
   chartExample2,
   chartExample3,
   chartExample4
 } from "../../../variables/charts.js";
+import { chartBlueStroke } from "../../../variables/chartOptions";
 
-import { chartBlueStroke,  } from "../../../variables/chartOptions";
-import  ConfirmedDataset  from './ConfirmedDataset'
-
-function BoliviaChart({ data: { timeline } }) {
+function BoliviaChart({ data }) {
 
   const [chartData, setChartData] = useState('data1')
-  const [title, setTitle] = useState('Infectados')
+  const [historyData, setHistoryData] = useState(data)
 
-  /*function getTimeline (fetchedData) {
+  console.log(data) //Datos Obtenidos Correctamente
 
-  }*/
+  /*useEffect(() => {
+    const fetchApi = async () => {
+      setHistoryData(await fetchSudCountriesHistoryData())
+    }
+    fetchApi()
+    console.log(historyData);
+  }, [setHistoryData])*/
 
+  function ChangeDataSet(datasetNum){
+    setChartData(datasetNum)
+  }
 
-
-  const fechas = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
-  const casos = [100, 70, 90, 70, 85, 60, 75, 60, 90, 80, 110, 100];
-
-  if(!timeline){
-    //console.log(timeline.cases); // Datos obtenidos correctamente
-    return ( <h4>Loading...</h4> )
-  }  
 
   return (
     <Card className="card-chart">
@@ -60,7 +60,7 @@ function BoliviaChart({ data: { timeline } }) {
           <Col className="text-left" sm="6">
             <h5>Últimos 30 días</h5>
             <CardTitle tag="h2">
-              <i className="tim-icons icon-chart-bar-32 text-info" />  Total {title}
+              <i className="tim-icons icon-chart-bar-32 text-info" /> Comparativa
             </CardTitle>
           </Col>
           <Col sm="6">
@@ -76,7 +76,7 @@ function BoliviaChart({ data: { timeline } }) {
                 color="info"
                 id="0"
                 size="sm"
-                onClick={() => setChartData("data1") }
+                onClick={() => setChartData("data1")}
               >
                 <input
                   defaultChecked
@@ -141,13 +141,10 @@ function BoliviaChart({ data: { timeline } }) {
       </CardHeader>
       <CardBody>
         <div className="chart-area">
-          {/*<Line
-            data={boliviaChartDataset}
+          <Line
+            data={chartExample1[chartData]}
             options={chartBlueStroke}
-          />*/}
-
-          <ConfirmedDataset timeline={timeline.cases} />
-
+          />
         </div>
       </CardBody>
     </Card>

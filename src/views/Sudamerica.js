@@ -4,9 +4,9 @@ import classNames from "classnames";
 import { Line, Bar } from "react-chartjs-2";
 import { SkeletonTheme } from "react-loading-skeleton";
 
-import { fetchSudCountriesData } from '../api'
+import { fetchSudCountriesData, fetchCountriesHistoryData } from '../api'
 
-import { SudamericaMap, SudamericaTable } from "../components/Sudamerica"
+import { SudamericaMap, SudamericaTable, SudamericaChart } from "../components/Sudamerica"
 
 
 // reactstrap components
@@ -30,15 +30,24 @@ import {
   UncontrolledTooltip
 } from "reactstrap";
 
+
+
 export class Sudamerica extends Component {
 
   state = {
     countriesData: [],
+    historyData: []
   }
 
+  
+
   async componentDidMount() {
-    const fetchedSudCountriesData = await fetchSudCountriesData();
-    this.setState({ countriesData: fetchedSudCountriesData })
+    const fetchedCountries = await fetchSudCountriesData();
+    const fetchedHistory = await fetchCountriesHistoryData()
+    this.setState({ 
+      countriesData: fetchedCountries,
+      historyData: fetchedHistory
+    })
     //console.log(this.state.countriesData)
   }
 
@@ -70,7 +79,7 @@ export class Sudamerica extends Component {
 
           <Row>
             <Col xs="12">
-              <Card className="card-chart"></Card>
+                <SudamericaChart data={this.state.historyData} />
             </Col>
           </Row>
 

@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { Line, Bar } from "react-chartjs-2";
 import { SkeletonTheme } from "react-loading-skeleton";
 
-import { fetchBOGeneralData, fetchBOData } from '../api'
+import { fetchBOGeneralData, fetchCountriesHistoryData } from '../api'
 
 import { BoliviaCards, BoliviaCardsData, BoliviaMap, BoliviaChart } from "../components/Bolivia"
 
@@ -34,11 +34,16 @@ export class Bolivia extends Component {
 
   state = {
     genData: {},
+    historyData: [],
   }
 
   async componentDidMount() {
-    const fetchedBOGeneralData = await fetchBOGeneralData();
-    this.setState({ genData: fetchedBOGeneralData })
+    const fetchedGenData = await fetchBOGeneralData();
+    const fetchedHistory = await fetchCountriesHistoryData('Bolivia')
+    this.setState({ 
+      genData: fetchedGenData ,
+      historyData: fetchedHistory
+    })
     //console.log(genData)
   }
 
@@ -70,7 +75,7 @@ export class Bolivia extends Component {
 
           <Row>
             <Col xs="12">
-              <BoliviaChart />
+              <BoliviaChart data={this.state.historyData} />
             </Col>
           </Row>
 

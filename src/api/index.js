@@ -69,7 +69,7 @@ const fetchAllData = async () => {
     
 */
 
-const countries = [
+const selCountries = [
   "Argentina",
   "Bolivia",
   "Brazil",
@@ -89,11 +89,34 @@ const countries = [
 //const countries = 'bolivia,chile,brazil'
 
 // Sudamerica Data
-const url4 = `https://corona.lmao.ninja/v2/countries/${countries.toString()}`
+const url4 = `https://corona.lmao.ninja/v2/countries/${selCountries.toString()}`
 
 export const fetchSudCountriesData = async () => {
   try {
     const { data }  = await axios.get(url4);
+    return data;
+
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const fetchCountriesHistoryData = async (countries) => {
+
+  if(!countries) {
+    countries = [
+      "Argentina",
+      "Bolivia",
+      "Brazil",
+      "Chile",
+      "Peru",
+    ];
+  }
+
+  const historyUrl = `https://corona.lmao.ninja/v2/historical/${countries.toString()}?lastdays=30`;
+  try {
+    const { data }  = await axios.get(historyUrl);
+    //console.log(data)
     return data;
 
   } catch (error) {

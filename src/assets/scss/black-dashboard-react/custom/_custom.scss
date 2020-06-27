@@ -9,3 +9,14 @@
   margin-bottom: 0;
   margin-right: 15px;
 }
+
+.quedate_en_casa {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 768px){
+  .quedate_en_casa {
+    margin-left:.5em;
+  }
+}
