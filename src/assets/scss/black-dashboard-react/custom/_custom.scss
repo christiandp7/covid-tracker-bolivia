@@ -15,6 +15,19 @@
   margin-bottom: 12px;
 }
 
+.map_loader_container {
+  text-align:center;
+  padding: 28px 0;
+}
+
+.card-chart.sud-chart .chart-area {
+  height: 350px;
+}
+.card-chart.bol-chart .chart-area {
+  height: 280px;
+}
+
+
 @media (max-width: 768px){
   .quedate_en_casa {
     margin-left:.5em;

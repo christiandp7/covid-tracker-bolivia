@@ -21,20 +21,9 @@ import classNames from "classnames";
 
 // reactstrap components
 import {
-  Button,
-  Collapse,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
-  Input,
-  InputGroup,
   NavbarBrand,
   Navbar,
-  NavLink,
-  Nav,
-  Container,
-  Modal
+  Container
 } from "reactstrap";
 
 class AdminNavbar extends React.Component {

@@ -1,33 +1,17 @@
 import React, { Component } from 'react'
 
-import classNames from "classnames";
-import { Line, Bar } from "react-chartjs-2";
 import { SkeletonTheme } from "react-loading-skeleton";
 
-import { fetchSudCountriesData, fetchCountriesHistoryData } from '../api'
+import { fetchSudGeneralData, fetchSudCountriesData, fetchCountriesHistoryData } from '../api'
 
-import { SudamericaMap, SudamericaTable, SudamericaChart } from "../components/Sudamerica"
+import { SudamericaMap, SudamericaTable, SudamericaChart, SudamericaCard } from "../components/Sudamerica"
 
 
 // reactstrap components
 import {
-  Button,
-  ButtonGroup,
   Card,
-  CardHeader,
-  CardBody,
-  CardTitle,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
-  Label,
-  FormGroup,
-  Input,
-  Table,
   Row,
-  Col,
-  UncontrolledTooltip
+  Col
 } from "reactstrap";
 
 
@@ -35,6 +19,7 @@ import {
 export class Sudamerica extends Component {
 
   state = {
+    continentData: {},
     countriesData: [],
     historyData: []
   }
@@ -42,18 +27,20 @@ export class Sudamerica extends Component {
   
 
   async componentDidMount() {
+    const fetchedContinent = await fetchSudGeneralData();
     const fetchedCountries = await fetchSudCountriesData();
-    const fetchedHistory = await fetchCountriesHistoryData()
+    const fetchedHistory = await fetchCountriesHistoryData();
     this.setState({ 
+      continentData: fetchedContinent,
       countriesData: fetchedCountries,
       historyData: fetchedHistory
     })
     //console.log(this.state.countriesData)
+    //console.log(this.state.historyData)
   }
 
 
   
-
   
 
   render() {
@@ -68,11 +55,11 @@ export class Sudamerica extends Component {
           <Row>
             <Col xs="12" md="6">
               <Card>
-                {/*<SudamericaMap />*/}
+                <SudamericaMap data={this.state.countriesData} />
               </Card>
             </Col>
             <Col xs="12" md="6">
-              
+              <SudamericaCard data={this.state.continentData} />
             </Col>
           </Row>
 

@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 
-import classNames from "classnames";
-import { Line, Bar } from "react-chartjs-2";
 import { SkeletonTheme } from "react-loading-skeleton";
 
 import { fetchBOGeneralData, fetchCountriesHistoryData } from '../api'
@@ -10,23 +8,9 @@ import { BoliviaCards, BoliviaCardsData, BoliviaMap, BoliviaChart } from "../com
 
 // reactstrap components
 import {
-  Button,
-  ButtonGroup,
   Card,
-  CardHeader,
-  CardBody,
-  CardTitle,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
-  Label,
-  FormGroup,
-  Input,
-  Table,
   Row,
-  Col,
-  UncontrolledTooltip
+  Col
 } from "reactstrap";
 
 
@@ -38,12 +22,15 @@ export class Bolivia extends Component {
   }
 
   async componentDidMount() {
+  
     const fetchedGenData = await fetchBOGeneralData();
     const fetchedHistory = await fetchCountriesHistoryData('Bolivia')
+  //setTimeout(() => {
     this.setState({ 
       genData: fetchedGenData ,
       historyData: fetchedHistory
     })
+  //}, 5000);
     //console.log(genData)
   }
 
@@ -64,7 +51,7 @@ export class Bolivia extends Component {
           <Row>
             <Col xs="12" md="6">
               <Card>
-                <BoliviaMap />
+                <BoliviaMap data={this.state.genData} />
               </Card>
             </Col>
             <Col xs="12" md="6">

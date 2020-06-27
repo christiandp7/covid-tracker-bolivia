@@ -268,7 +268,7 @@ let chartExample3 = {
       labels: ["SCZ", "LPZ", "CBBA", "TJA", "POT", "PAN", "CHU", "BEN", "ORU"],
       datasets: [
         {
-          label: "Countries",
+          label: "Confirmados",
           fill: true,
           backgroundColor: gradientStroke,
           hoverBackgroundColor: gradientStroke,

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Line, Bar } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 import CardLoader from '../../Loaders/CardsDataLoaderBo'
 
 import {
@@ -14,20 +14,13 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { 
   faSkullCrossbones,
-  faExclamationTriangle,
   faProcedures,
   faMicroscope,
   faHandHoldingMedical,
-  faLungsVirus
 } from '@fortawesome/free-solid-svg-icons'
 
 
-import {
-  chartExample1,
-  chartExample2,
-  chartExample3,
-  chartExample4
-} from "variables/charts.js";
+import { chartExample3 } from "variables/charts.js";
 
 function BoliviaCardsData({ data: { critical, tests, lethalityPercent, recoveredPercent }}) {
   if(!lethalityPercent) {

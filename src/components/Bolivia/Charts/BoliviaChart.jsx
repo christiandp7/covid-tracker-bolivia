@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import cx from 'classnames'
 
-import { Line, Bar } from "react-chartjs-2";
+import ChartLoader from '../../Loaders/ChartLoader'
+
 // reactstrap components
 import {
   Button,
@@ -10,60 +11,44 @@ import {
   CardHeader,
   CardBody,
   CardTitle,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
-  Label,
-  FormGroup,
-  Input,
-  Table,
   Row,
   Col,
-  UncontrolledTooltip
 } from "reactstrap";
 
-
-import {
-  chartExample1,
-  chartExample2,
-  chartExample3,
-  chartExample4
-} from "../../../variables/charts.js";
-
-import { chartBlueStroke,  } from "../../../variables/chartOptions";
-import  ConfirmedDataset  from './ConfirmedDataset'
+import  BoliviaChartDataset  from './BoliviaChartDataset'
 
 function BoliviaChart({ data: { timeline } }) {
 
-  const [chartData, setChartData] = useState('data1')
-  const [title, setTitle] = useState('Infectados')
+  const [chartDataType, setChartDataType] = useState('Confirmados')
+  const [iconColor, setIconColor] = useState('text-info')
 
-  /*function getTimeline (fetchedData) {
+  const changeIconColor = () => {
+    if(chartDataType === "Confirmados") setIconColor("text-info");
+    if(chartDataType === "Recuperados") setIconColor("text-success");
+    if(chartDataType === "Decesos") setIconColor("text-danger");
+  }
 
-  }*/
-
-
-
-  const fechas = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
-  const casos = [100, 70, 90, 70, 85, 60, 75, 60, 90, 80, 110, 100];
+  useEffect(() => {
+    changeIconColor()
+  }, [chartDataType])
 
   if(!timeline){
     //console.log(timeline.cases); // Datos obtenidos correctamente
-    return ( <h4>Loading...</h4> )
+    return ( <ChartLoader /> )
   }  
 
   return (
-    <Card className="card-chart">
+    <Card className="card-chart bol-chart">
       <CardHeader>
         <Row>
-          <Col className="text-left" sm="6">
+          <Col className="text-left" sm="6" xs="8">
+            {/*<h5>Últimos 30 días | Última actualización: {}</h5>*/}
             <h5>Últimos 30 días</h5>
             <CardTitle tag="h2">
-              <i className="tim-icons icon-chart-bar-32 text-info" />  Total {title}
+              <i className={cx("tim-icons icon-chart-bar-32",iconColor)} /> {chartDataType}
             </CardTitle>
           </Col>
-          <Col sm="6">
+          <Col sm="6" xs="4">
             <ButtonGroup
               className="btn-group-toggle float-right"
               data-toggle="buttons"
@@ -71,12 +56,12 @@ function BoliviaChart({ data: { timeline } }) {
               <Button
                 tag="label"
                 className={cx("btn-simple", {
-                  active: chartData === "data1"
+                  active: chartDataType === "Confirmados"
                 })}
                 color="info"
                 id="0"
                 size="sm"
-                onClick={() => setChartData("data1") }
+                onClick={() => setChartDataType("Confirmados") }
               >
                 <input
                   defaultChecked
@@ -85,10 +70,10 @@ function BoliviaChart({ data: { timeline } }) {
                   type="radio"
                 />
                 <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
-                  Infectados
+                  Confirmados
                 </span>
                 <span className="d-block d-sm-none">
-                  <i className="tim-icons icon-single-02" />
+                  <i className="tim-icons icon-single-02 text-info" />
                 </span>
               </Button>
               <Button
@@ -97,9 +82,9 @@ function BoliviaChart({ data: { timeline } }) {
                 size="sm"
                 tag="label"
                 className={cx("btn-simple", {
-                  active: chartData === "data2"
+                  active: chartDataType === "Recuperados"
                 })}
-                onClick={() => setChartData("data2")}
+                onClick={() => setChartDataType("Recuperados")}
               >
                 <input
                   className="d-none"
@@ -110,7 +95,7 @@ function BoliviaChart({ data: { timeline } }) {
                   Recuperados
                 </span>
                 <span className="d-block d-sm-none">
-                  <i className="tim-icons icon-single-02" />
+                  <i className="tim-icons icon-single-02 text-success" />
                 </span>
               </Button>
               <Button
@@ -119,9 +104,9 @@ function BoliviaChart({ data: { timeline } }) {
                 size="sm"
                 tag="label"
                 className={cx("btn-simple", {
-                  active: chartData === "data3"
+                  active: chartDataType === "Decesos"
                 })}
-                onClick={() => setChartData("data3")}
+                onClick={() => setChartDataType("Decesos")}
               >
                 <input
                   className="d-none"
@@ -132,7 +117,7 @@ function BoliviaChart({ data: { timeline } }) {
                   Decesos
                 </span>
                 <span className="d-block d-sm-none">
-                  <i className="tim-icons icon-tap-02" />
+                  <i className="tim-icons icon-single-02 text-danger" />
                 </span>
               </Button>
             </ButtonGroup>
@@ -141,12 +126,9 @@ function BoliviaChart({ data: { timeline } }) {
       </CardHeader>
       <CardBody>
         <div className="chart-area">
-          {/*<Line
-            data={boliviaChartDataset}
-            options={chartBlueStroke}
-          />*/}
+          
 
-          <ConfirmedDataset timeline={timeline.cases} />
+          <BoliviaChartDataset dataType={chartDataType} timeline={timeline} />
 
         </div>
       </CardBody>

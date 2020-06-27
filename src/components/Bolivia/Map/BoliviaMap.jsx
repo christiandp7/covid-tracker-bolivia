@@ -5,9 +5,10 @@ import cx from 'classnames'
 import bolivia from '../../../assets/maps/bolivia.json';
 import styles from './Map.module.css'
 
-//export const BoliviaMap = () => <VectorMap {...bolivia} />;
+import MapLoader from '../../Loaders/MapLoader'
 
-function BoliviaMap() {
+
+function BoliviaMap({ data: { cases } }) {
 
   const style = { margin: '1rem auto', width: '350px' };
 
@@ -19,6 +20,11 @@ function BoliviaMap() {
     onMouseLeave: ({ target }) => setHovered('None'),
     onClick: ({ target }) => setClicked(target.attributes.name.value)
   };
+
+  
+  if(!cases){
+    return ( <MapLoader /> )
+  }
 
   return (
     <div className={cx(styles.bolivia_map)} style={style}>

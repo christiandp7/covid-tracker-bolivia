@@ -3,12 +3,9 @@ import React from 'react'
 import Skeleton from 'react-loading-skeleton'
 
 import {
-  Row,
-  Col,
   Card,
   CardHeader,
   CardBody,
-  CardTitle,
 } from "reactstrap";
 
 export default function CardLoader () {

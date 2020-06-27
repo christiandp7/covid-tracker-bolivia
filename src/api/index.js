@@ -2,7 +2,7 @@
 //https://covid19.mathdro.id/api/countries/BO/confirmed
 import axios from 'axios'
 
-const url = 'https://covid19.mathdro.id/api/countries/BO'
+//const url = 'https://covid19.mathdro.id/api/countries/BO'
 const url2 = 'https://mauforonda.github.io/covid19-bolivia/data.json'
 
 // Bolivia
@@ -89,11 +89,44 @@ const selCountries = [
 //const countries = 'bolivia,chile,brazil'
 
 // Sudamerica Data
-const url4 = `https://corona.lmao.ninja/v2/countries/${selCountries.toString()}`
 
+const url4 = 'https://corona.lmao.ninja/v2/continents/South%20America'
+export const fetchSudGeneralData = async () => {
+  try {
+    const  { 
+      data: {
+      cases,
+      deaths,
+      recovered,
+      active,
+      critical,
+      tests
+    } 
+  }  = await axios.get(url4);
+
+  let lethalityPercent = roundNumber((deaths * 100) / cases );
+  let recoveredPercent = roundNumber((recovered * 100) / cases);
+
+    return { 
+      cases ,
+      deaths, 
+      recovered, 
+      active, 
+      critical,
+      tests,
+      lethalityPercent,
+      recoveredPercent
+    }
+
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const url5 = `https://corona.lmao.ninja/v2/countries/${selCountries.toString()}`
 export const fetchSudCountriesData = async () => {
   try {
-    const { data }  = await axios.get(url4);
+    const { data }  = await axios.get(url5);
     return data;
 
   } catch (error) {

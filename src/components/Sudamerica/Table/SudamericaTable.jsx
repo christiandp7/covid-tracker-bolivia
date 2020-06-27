@@ -8,8 +8,6 @@ import {
   CardBody,
   CardTitle,
   Table,
-  Row,
-  Col
 } from "reactstrap";
 
 
@@ -18,10 +16,10 @@ function SudamericaTable({ data }) {
   const [countriesData, setCountriesData] = useState([]);
 
   useEffect(() => {
-    const timer = setTimeout(() => {   
+    //const timer = setTimeout(() => {   
       setCountriesData(data.sort((a,b) => (a.cases < b.cases) ? 1 : -1))
       //console.log(countriesData);
-    }, 100);
+    //}, 100);
     
   })
 
@@ -32,7 +30,8 @@ function SudamericaTable({ data }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle tag="h2">Sudamerica Total</CardTitle>
+        <p>Total</p>
+        <CardTitle tag="h2">Sudamerica</CardTitle>
       </CardHeader>
       <CardBody>
         <Table className="tablesorter" responsive>
