@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import TableLoader from '../../Loaders/TableLoader'
-
+import CountUp from 'react-countup'
 
 import {
   Card,
@@ -44,6 +44,7 @@ function SudamericaTable({ data }) {
               <th>Decesos</th>
               <th>Nro. Tests</th>
               <th>Estado Crítico</th>
+              <th>Población</th>
             </tr>
           </thead>
           <tbody>
@@ -54,12 +55,13 @@ function SudamericaTable({ data }) {
                     <img className="avatar flag" src={country.countryInfo.flag} />
                     {country.country}
                   </td>
-                  <td>{country.cases}</td>
-                  <td>{country.active}</td>
-                  <td>{country.recovered}</td>
-                  <td>{country.deaths}</td>
-                  <td>{country.tests}</td>
-                  <td>{country.critical}</td>
+                  <td><CountUp start={0} end={country.cases} duration={2} separator="," /></td>
+                  <td><CountUp start={0} end={country.active} duration={2} separator="," /></td>
+                  <td><CountUp start={0} end={country.recovered} duration={2} separator="," /></td>
+                  <td><CountUp start={0} end={country.deaths} duration={2} separator="," /></td>
+                  <td><CountUp start={0} end={country.tests} duration={2} separator="," /></td>
+                  <td><CountUp start={0} end={country.critical} duration={2} separator="," /></td>
+                  <td><CountUp start={0} end={country.population} duration={2} separator="," /></td>
                 </tr>
               )) :
               ( 

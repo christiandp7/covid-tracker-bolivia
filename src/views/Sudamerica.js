@@ -66,7 +66,7 @@ export class Sudamerica extends Component {
 
           <Row>
             <Col xs="12">
-                <SudamericaChart data={this.state.historyData} />
+                <SudamericaChart timeline={this.state.historyData} data={this.state.countriesData} />
             </Col>
           </Row>
 

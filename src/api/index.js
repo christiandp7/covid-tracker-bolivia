@@ -1,6 +1,7 @@
 //https://covid19.mathdro.id/api/countries/BO
 //https://covid19.mathdro.id/api/countries/BO/confirmed
 import axios from 'axios'
+import { roundNumber } from '../variables/math'
 
 //const url = 'https://covid19.mathdro.id/api/countries/BO'
 const url2 = 'https://mauforonda.github.io/covid19-bolivia/data.json'
@@ -26,8 +27,8 @@ export const fetchBOGeneralData = async () => {
       } 
     } = await axios.get(url3);
 
-    let lethalityPercent = roundNumber((deaths * 100) / cases );
-    let recoveredPercent = roundNumber((recovered * 100) / cases);
+    let lethalityPercent = roundNumber(((deaths * 100) / cases ), 2);
+    let recoveredPercent = roundNumber(((recovered * 100) / cases), 2);
 
     //console.log(confirmed.value +"/"+recovered.value)
 
@@ -104,8 +105,8 @@ export const fetchSudGeneralData = async () => {
     } 
   }  = await axios.get(url4);
 
-  let lethalityPercent = roundNumber((deaths * 100) / cases );
-  let recoveredPercent = roundNumber((recovered * 100) / cases);
+  let lethalityPercent = roundNumber(((deaths * 100) / cases ), 2);
+  let recoveredPercent = roundNumber(((recovered * 100) / cases), 2);
 
     return { 
       cases ,
@@ -174,7 +175,8 @@ export const fetchContinentData = async () => {
  }
 }*/
 
-
+/*
 function roundNumber(num) {
   return (Math.round(num * 100) / 100).toFixed(2);
 }
+*/

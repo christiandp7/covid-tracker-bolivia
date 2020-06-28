@@ -4,8 +4,10 @@ import { Line } from 'react-chartjs-2';
 
 import { chartBlueBgSud } from "../../../variables/chartOptions";
 
+import { roundNumber } from '../../../variables/math'
 
-function SudChartDatated({ timeline }) {
+
+function SudChartDatated({ timeline, data }) {
 
   //console.log(timeline[0])
 
@@ -15,12 +17,22 @@ function SudChartDatated({ timeline }) {
     })
     return fechas;
   }
-  const getValueTimeline = (timelineDataType) => {
+  const getValueTimeline = (timelineDataType, countryPopulation) => {
     let casos = Object.values(timelineDataType).map((value) => {
-      return value;
+      //return value;
+      //console.log(roundNumber((100000 * Number(value)) / countryPopulation))
+      return roundNumber((100000 * Number(value)) / countryPopulation);
     })
+    //console.log(casos)
     return casos
   }
+
+  const getPopulation = countryName => {
+    let pop = data.find(obj => obj.country.toLowerCase() == countryName.toLowerCase());
+    //console.log(pop.population)
+    return pop.population
+  }  
+
 
   const boliviaData = (canvas) => {
     let ctx = canvas.getContext("2d");
@@ -73,7 +85,7 @@ function SudChartDatated({ timeline }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline(timeline[0].timeline.cases)
+          data: getValueTimeline(timeline[0].timeline.cases, getPopulation("Argentina"))
         },
         {
           label: "Bolivia",
@@ -90,7 +102,7 @@ function SudChartDatated({ timeline }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline(timeline[1].timeline.cases)
+          data: getValueTimeline(timeline[1].timeline.cases, getPopulation("Bolivia"))
         },
        {
           label: "Brazil",
@@ -107,7 +119,7 @@ function SudChartDatated({ timeline }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline(timeline[2].timeline.cases)
+          data: getValueTimeline(timeline[2].timeline.cases, getPopulation("Brazil"))
         },
         {
           label: "Chile",
@@ -124,7 +136,7 @@ function SudChartDatated({ timeline }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline(timeline[3].timeline.cases)
+          data: getValueTimeline(timeline[3].timeline.cases, getPopulation("Chile"))
         },
         {
           label: "Perú",
@@ -141,7 +153,7 @@ function SudChartDatated({ timeline }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline(timeline[4].timeline.cases)
+          data: getValueTimeline(timeline[4].timeline.cases, getPopulation("Peru"))
         }
 
       ]
