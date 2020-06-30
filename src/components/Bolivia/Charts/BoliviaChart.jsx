@@ -22,14 +22,11 @@ function BoliviaChart({ data: { timeline } }) {
   const [chartDataType, setChartDataType] = useState('Confirmados')
   const [iconColor, setIconColor] = useState('text-info')
 
-  const changeIconColor = () => {
+
+  useEffect(() => {
     if(chartDataType === "Confirmados") setIconColor("text-info");
     if(chartDataType === "Recuperados") setIconColor("text-success");
     if(chartDataType === "Decesos") setIconColor("text-danger");
-  }
-
-  useEffect(() => {
-    changeIconColor()
   }, [chartDataType])
 
   if(!timeline){

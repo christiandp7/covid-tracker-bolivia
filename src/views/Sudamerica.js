@@ -30,11 +30,14 @@ export class Sudamerica extends Component {
     const fetchedContinent = await fetchSudGeneralData();
     const fetchedCountries = await fetchSudCountriesData();
     const fetchedHistory = await fetchCountriesHistoryData();
-    this.setState({ 
-      continentData: fetchedContinent,
-      countriesData: fetchedCountries,
-      historyData: fetchedHistory
-    })
+    //setInterval(() => {
+      this.setState({ 
+        continentData: fetchedContinent,
+        countriesData: fetchedCountries,
+        historyData: fetchedHistory
+      })
+    //}, 60000);
+    
     //console.log(this.state.countriesData)
     //console.log(this.state.historyData)
   }

@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import { VectorMap } from '@south-paw/react-vector-maps';
-import cx from 'classnames'
 
 import sudamerica from '../../../assets/maps/sudamerica.json';
-import styles from './Map.module.css'
 
 import MapLoader from '../../Loaders/MapLoader'
 
@@ -29,7 +27,7 @@ function SudamericaMap({ data }) {
   }
 
   return (
-    <div className={cx(styles.sudamerica_map)} style={style}>
+    <div className="vector_map sudamerica_map" style={style}>
       <VectorMap {...sudamerica} layerProps={layerProps} />
       {/*<hr />
       <p>Hovered: {hovered && <code>{hovered}</code>}</p>

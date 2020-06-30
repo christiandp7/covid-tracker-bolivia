@@ -122,6 +122,7 @@ class Admin extends React.Component {
               <Route exact path="/404" component={NotFound} />
               <Redirect from="*" to="/404" />
             </Switch>
+
             {// we don't want the Footer to be rendered on map page
             this.props.location.pathname.indexOf("maps") !== -1 ? null : (
               <Footer fluid />

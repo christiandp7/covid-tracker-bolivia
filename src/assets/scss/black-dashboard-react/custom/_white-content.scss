@@ -296,4 +296,16 @@
 
      }
    }
+
+
+   // Custom
+   .vector_map svg {
+    stroke: #ffffff;
+  }
+
+  .css-19x3l1x-SkeletonTheme .react-loading-skeleton {
+    background-color: #eee;
+    background-image: linear-gradient( 90deg,#eee,#fff,#eee );
+  } //#f5f6fa
+
 }

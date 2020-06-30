@@ -135,7 +135,7 @@ export const fetchSudCountriesData = async () => {
   }
 }
 
-export const fetchCountriesHistoryData = async (countries) => {
+export const fetchCountriesHistoryData = async (countries, lastDays=30) => {
 
   if(!countries) {
     countries = [
@@ -147,7 +147,7 @@ export const fetchCountriesHistoryData = async (countries) => {
     ];
   }
 
-  const historyUrl = `https://corona.lmao.ninja/v2/historical/${countries.toString()}?lastdays=30`;
+  const historyUrl = `https://corona.lmao.ninja/v2/historical/${countries.toString()}?lastdays=${lastDays}`;
   try {
     const { data }  = await axios.get(historyUrl);
     //console.log(data)

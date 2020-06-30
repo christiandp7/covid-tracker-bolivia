@@ -1,0 +1,40 @@
+.vector_map svg {
+  stroke: #212529;
+}
+.vector_map svg path {
+  fill: #1d8cf8;
+  cursor: pointer;
+  outline: none;
+  transition: 0.2s all ease-in-out;
+}
+.vector_map svg path:hover {
+  fill: #fd5d93;
+  /*transform: translateY(-2px);
+  z-index: 10;*/
+}
+
+// Custom Map Styles
+.bolivia_map svg {
+  stroke-width: 2px;
+}
+.sudamerica_map svg {
+  stroke-width: 0.03em;
+}
+
+
+@media (max-width: 390px){
+  .bolivia_map {
+    width:300px !important;
+  }
+}
+
+@media (max-width: 390px){
+  .bolivia_map {
+    width:280px !important;
+  }
+}
+@media (max-width: 350px){
+  .bolivia_map {
+    width:260px !important;
+  }
+}

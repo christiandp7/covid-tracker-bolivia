@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import { VectorMap } from '@south-paw/react-vector-maps';
-import cx from 'classnames'
 
 import bolivia from '../../../assets/maps/bolivia.json';
-import styles from './Map.module.css'
 
 import MapLoader from '../../Loaders/MapLoader'
 
@@ -27,7 +25,7 @@ function BoliviaMap({ data: { cases } }) {
   }
 
   return (
-    <div className={cx(styles.bolivia_map)} style={style}>
+    <div className="vector_map bolivia_map" style={style}>
       <VectorMap {...bolivia} layerProps={layerProps} />
       {/*<p>Hovered: {hovered && <code>{hovered}</code>}</p>
       <p>Clicked: {clicked && <code>{clicked}</code>}</p>*/}

@@ -21,10 +21,24 @@ import classNames from "classnames";
 
 // reactstrap components
 import {
+  Collapse,
+  Nav,
+  InputGroup,
+  Button,
+  DropdownToggle,
+  UncontrolledDropdown,
+  DropdownMenu,
+  NavLink,
+  DropdownItem,
+  Modal,
+  Input,
+
   NavbarBrand,
   Navbar,
   Container
 } from "reactstrap";
+
+import DarkMode from '../ToggleSwitch/DarkMode'
 
 class AdminNavbar extends React.Component {
   constructor(props) {
@@ -32,7 +46,8 @@ class AdminNavbar extends React.Component {
     this.state = {
       collapseOpen: false,
       modalSearch: false,
-      color: "navbar-transparent"
+      color: "navbar-transparent",
+      darkMode: false
     };
   }
   componentDidMount() {
@@ -41,6 +56,7 @@ class AdminNavbar extends React.Component {
   componentWillUnmount() {
     window.removeEventListener("resize", this.updateColor);
   }
+
   // function that adds color white/transparent to the navbar on resize (this is for the collapse)
   updateColor = () => {
     if (window.innerWidth < 993 && this.state.collapseOpen) {
@@ -74,6 +90,7 @@ class AdminNavbar extends React.Component {
       modalSearch: !this.state.modalSearch
     });
   };
+
   render() {
     return (
       <>
@@ -109,9 +126,30 @@ class AdminNavbar extends React.Component {
               </NavbarBrand>
             </div>
 
-            
+              
+              <button
+                aria-expanded={false}
+                aria-label="Toggle navigation"
+                className="navbar-toggler"
+                data-target="#navigation"
+                data-toggle="collapse"
+                id="navigation"
+                type="button"
+                onClick={this.toggleCollapse}
+              >
+                <span className="navbar-toggler-bar navbar-kebab" />
+                <span className="navbar-toggler-bar navbar-kebab" />
+                <span className="navbar-toggler-bar navbar-kebab" />
+              </button>
+              <Collapse navbar isOpen={this.state.collapseOpen}>
+                <Nav className="ml-auto" navbar>
+                  <NavLink tag="li">
+                    <DarkMode />
+                  </NavLink>
+                </Nav>
+              </Collapse>
 
-            </Container> {/* Remover esto para incluir lo comentado */}
+            </Container>   {/* Remover esto para incluir lo comentado */}
           </Navbar>
 
 

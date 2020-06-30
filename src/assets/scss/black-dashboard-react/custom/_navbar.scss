@@ -101,11 +101,11 @@
 
   .navbar-brand {
     position: fixed;
-    padding-top: 3.7em;
+    //padding-top: 3.7em;
     padding-bottom: .3125rem;
     color: $white;
     margin-left: 0;
-    margin-top: 3px;
+    margin-top: 0;
     text-transform: uppercase;
     font-size: $font-paragraph;
   }
@@ -426,14 +426,14 @@
       transition: all 1s;
     }
   }
-  .rtl {
-    .navbar .navbar-wrapper {
-      .navbar-toggle.toggled{
-        right: -35px;
-        position: relative;
-        left: unset;
-        transition: all 1s;
-      }
+  .navbar-brand {
+    margin-left: 0;
+    margin-right: 0;
+    .quedate_en_casa {
+      margin-left: 0;
+      font-size: 1.2em;
     }
   }
 }
+
+

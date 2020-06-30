@@ -13,9 +13,15 @@ import {
   Col,
 } from "reactstrap";
 
-import  SudChartDataset  from './SudChartDatated'
+import { fetchCountriesHistoryData } from '../../../api'
+
+import  SudChartDataset  from './SudChartDataset'
 
 function SudChart({ timeline, data }) {
+
+
+  
+
 
   if(!timeline[0]){
     //console.log(timeline.cases); // Datos obtenidos correctamente

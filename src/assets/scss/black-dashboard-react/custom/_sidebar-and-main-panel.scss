@@ -760,3 +760,20 @@
   }
 
 }
+
+
+@media (max-width: 576px){
+  .sidebar  {
+    .nav p, .off-canvas-sidebar .nav p {
+      font-size: 1.3em;
+    }
+    .nav i, .nav svg, .off-canvas-sidebar .nav i, .off-canvas-sidebar .nav svg {
+      width: 28px;
+      height: 28px;
+    }
+    .logo .simple-text, .off-canvas-sidebar .logo .simple-text {
+      font-size: 1.4em;
+    }
+  }
+  
+}
