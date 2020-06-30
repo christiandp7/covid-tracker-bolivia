@@ -7,3 +7,9 @@ export const roundNumber = (num, decimals=0) => {
 export const to100milPersons = (population, data) => {
 
 }
+
+
+export const formatDate = (date) => {
+  console.log(date.split("/"))
+  return date;
+}

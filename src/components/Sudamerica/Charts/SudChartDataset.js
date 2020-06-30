@@ -5,6 +5,7 @@ import { Line } from 'react-chartjs-2';
 import { chartBlueBgSud } from "../../../variables/chartOptions";
 
 import { roundNumber } from '../../../variables/math'
+import moment from 'moment'
 
 
 function SudChartDatated({ timeline, data }) {
@@ -13,7 +14,8 @@ function SudChartDatated({ timeline, data }) {
 
   const getKeyTimeline = (timelineDataType) => {
     let fechas = Object.keys(timelineDataType).map((key) => {
-      return key;
+      //var d = new Date(key);
+      return moment(key).format("DD/MM/YYYY");
     })
     return fechas;
   }
