@@ -20,6 +20,7 @@ import {
 } from "reactstrap";
 
 import { fetchCountriesHistoryData } from '../../../api'
+import { moveEjeToDays } from '../../../variables/math'
 
 import  SudChartDataset  from './SudChartDataset'
 
@@ -35,14 +36,23 @@ function SudChart({ timeline, data }) {
   const toggle1 = () => setTooltipEjeOpen(!tooltipEjeOpen);
   const toggle2 = () => setTooltipDiasOpen(!tooltipDiasOpen);
 
-  
 
   useEffect(() => {
     const fetchAPI = async () => {
       setHistorical(await fetchCountriesHistoryData(null, recordsNumber))
     }
     fetchAPI();
+    //console.log('shot')
   }, [recordsNumber])
+
+  useEffect(() => {
+    if(eje === "dias") {
+      setHistorical(moveEjeToDays(historical))
+      console.log("days!!!")
+    } else {
+      //setHistorical(timeline) // Da ERROR Arreglat Fix IT!!!
+    }
+  }, [eje])
 
   //return console.log(recordsNumber);
   //return console.log(historical);
@@ -76,11 +86,13 @@ function SudChart({ timeline, data }) {
                   </Tooltip>
                   <Input 
                     type="select" 
-                    id="select1" 
+                    id="select1"
                     className=""
+                    defaultValue={eje}
+                    onChange={(e) => setEje(e.target.value)}
                   >
-                    <option value="fechas" selected="selected">Fechas</option>
-                    <option value="100">Cantidad de días</option>
+                    <option value="fechas">Fechas</option>
+                    <option value="dias">Cantidad de días</option>
                   </Input>
                 </FormGroup>
               </Col>
@@ -93,12 +105,13 @@ function SudChart({ timeline, data }) {
                   <Input 
                     type="select" 
                     id="recordsNumerSelect" 
+                    defaultValue={recordsNumber}
                     className=""
                     onChange={(e) => setRecordsNumber(e.target.value)}
                   >
                     <option value="7">últimos 7 días</option>
                     <option value="14">últimos 14 días</option>
-                    <option value="30" selected="selected">últimos 30 días</option>
+                    <option value="30">últimos 30 días</option>
                     <option value="50">últimos 50 días</option>
                     <option value="100">últimos 100 días</option>
                   </Input>
@@ -112,7 +125,7 @@ function SudChart({ timeline, data }) {
         <div className="chart-area">
 
           {/*<SudChartDataset timeline={timeline} data={data} />*/}
-          <SudChartDataset timeline={historical} data={data} />
+          <SudChartDataset timeline={historical} data={data} eje={eje} />
 
         </div>
       </CardBody>

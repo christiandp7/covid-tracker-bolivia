@@ -8,8 +8,9 @@ import { roundNumber } from '../../../variables/math'
 import moment from 'moment'
 
 
-function SudChartDatated({ timeline, data }) {
+function SudChartDatated({ timeline, data, eje }) {
 
+  //console.log(eje) // AQUI ME QUEDE -------------------------------------
   //console.log(timeline[0])
 
   const getKeyTimeline = (timelineDataType) => {
@@ -30,9 +31,9 @@ function SudChartDatated({ timeline, data }) {
   }
 
   const getPopulation = countryName => {
-    let pop = data.find(obj => obj.country.toLowerCase() == countryName.toLowerCase());
+    let popu = data.find(obj => obj.country.toLowerCase() == countryName.toLowerCase());
     //console.log(pop.population)
-    return pop.population
+    return popu.population
   }  
 
 
@@ -70,7 +71,7 @@ function SudChartDatated({ timeline, data }) {
     primaryGradientStroke.addColorStop(0, "rgba(119,52,169,0)"); //purple colors
     
     return {
-      labels: getKeyTimeline(timeline[0].timeline.cases),
+      labels: getKeyTimeline(timeline[2].timeline.cases),
       datasets: [
         {
           label: "Argentina",
@@ -105,6 +106,7 @@ function SudChartDatated({ timeline, data }) {
           pointHoverBorderWidth: 15,
           pointRadius: 4,
           data: getValueTimeline(timeline[1].timeline.cases, getPopulation("Bolivia"))
+          //data: [600,210,350,40,50,90]
         },
        {
           label: "Brazil",
@@ -122,6 +124,7 @@ function SudChartDatated({ timeline, data }) {
           pointHoverBorderWidth: 15,
           pointRadius: 4,
           data: getValueTimeline(timeline[2].timeline.cases, getPopulation("Brazil"))
+          //data: [40,50,90,210,350,500,650,680,920]
         },
         {
           label: "Chile",
