@@ -71,7 +71,7 @@ export function moveEjeToDays (timeline) {
     const newTimeline = timeline.map((countryItem, i) => {
       let countryName = countryItem.country; // Nombre del pais
       let daysDiff = daysDifference(countryFC.Brazil, countryFC[countryName]); // Obteniendo los días de referencia
-      console.log(daysDiff)
+      //console.log(daysDiff)
       if(daysDiff > 0) {
 
         let counter = 0;
@@ -119,7 +119,7 @@ export function moveEjeToDays (timeline) {
   //return newTimeline;
   //console.log(newTimeline);
   //return timeline;
-  console.log(newTimeline)
+  //console.log(newTimeline)
   return newTimeline;
 
 

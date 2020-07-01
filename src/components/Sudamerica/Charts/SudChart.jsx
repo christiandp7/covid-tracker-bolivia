@@ -40,6 +40,7 @@ function SudChart({ timeline, data }) {
 
   const fetchAPI = async () => {
     let histTemp = await fetchCountriesHistoryData(null, recordsNumber)
+    //console.log("changed!")
     if(eje === "dias"){
       setHistorical(moveEjeToDays(histTemp))
     } else {
@@ -54,7 +55,7 @@ function SudChart({ timeline, data }) {
   useEffect(() => {
     if(eje === "dias"){
       setHistorical(moveEjeToDays(historical))
-      console.log("days!!!")
+      //console.log("days!!!")
     } else {
       fetchAPI();
     }
