@@ -28,6 +28,7 @@ function SudChart({ timeline, data }) {
 
   const [historical, setHistorical] = useState(timeline)
   const [recordsNumber, setRecordsNumber] = useState(30)
+  const [habNumber, setHabNumber] = useState(100000)
   const [eje, setEje] = useState('fechas')
 
   // Tooltips
@@ -37,20 +38,25 @@ function SudChart({ timeline, data }) {
   const toggle2 = () => setTooltipDiasOpen(!tooltipDiasOpen);
 
 
-  useEffect(() => {
-    const fetchAPI = async () => {
-      setHistorical(await fetchCountriesHistoryData(null, recordsNumber))
+  const fetchAPI = async () => {
+    let histTemp = await fetchCountriesHistoryData(null, recordsNumber)
+    if(eje === "dias"){
+      setHistorical(moveEjeToDays(histTemp))
+    } else {
+      setHistorical(histTemp)
     }
+  }
+
+  useEffect(() => {
     fetchAPI();
-    //console.log('shot')
-  }, [recordsNumber])
+  }, [recordsNumber, habNumber])
 
   useEffect(() => {
     if(eje === "dias"){
       setHistorical(moveEjeToDays(historical))
       console.log("days!!!")
     } else {
-      //setHistorical(timeline) // Da ERROR Arreglat Fix IT!!!
+      fetchAPI();
     }
   }, [eje])
 
@@ -74,7 +80,22 @@ function SudChart({ timeline, data }) {
             <CardTitle tag="h2">
               <i className="tim-icons icon-chart-bar-32 text-Info" /> Casos Confirmados
             </CardTitle>
-            <h5>Por cada 100.000 habitantes</h5>
+            {/*<h5>Por cada 100.000 habitantes</h5>*/}
+            <FormGroup>
+              <Input 
+                type="select" 
+                id="recordsNumerSelect" 
+                defaultValue={habNumber}
+                className="width-auto"
+                onChange={(e) => setHabNumber(e.target.value)}
+              >
+                <option value="5000">Por cada 5,000 habitantes</option>
+                <option value="50000">Por cada 50,000 habitantes</option>
+                <option value="100000">Por cada 100,000 habitantes</option>
+                <option value="1000000">Por cada 1,000,000 habitantes</option>
+                <option value="total">Valores Totales</option>
+              </Input> 
+            </FormGroup>
           </Col>
           <Col sm="6" xs="4">
             <Row>
@@ -111,9 +132,12 @@ function SudChart({ timeline, data }) {
                   >
                     <option value="7">últimos 7 días</option>
                     <option value="14">últimos 14 días</option>
+                    <option value="21">últimos 21 días</option>
                     <option value="30">últimos 30 días</option>
-                    <option value="50">últimos 50 días</option>
-                    <option value="100">últimos 100 días</option>
+                    <option value="45">últimos 45 días</option>
+                    <option value="60">últimos 60 días</option>
+                    <option value="90">últimos 90 días</option>
+                    <option value="110">últimos 110 días</option>
                   </Input>
                 </FormGroup>
               </Col>
@@ -125,7 +149,7 @@ function SudChart({ timeline, data }) {
         <div className="chart-area">
 
           {/*<SudChartDataset timeline={timeline} data={data} />*/}
-          <SudChartDataset timeline={historical} data={data} eje={eje} />
+          <SudChartDataset timeline={historical} data={data} eje={eje} hab={habNumber} />
 
         </div>
       </CardBody>

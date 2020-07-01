@@ -8,7 +8,7 @@ import { roundNumber } from '../../../variables/math'
 import moment from 'moment'
 
 
-function SudChartDatated({ timeline, data, eje }) {
+function SudChartDatated({ timeline, data, eje, hab }) {
 
   //console.log(eje) // AQUI ME QUEDE -------------------------------------
   //console.log(timeline[0])
@@ -24,7 +24,10 @@ function SudChartDatated({ timeline, data, eje }) {
     let casos = Object.values(timelineDataType).map((value) => {
       //return value;
       //console.log(roundNumber((100000 * Number(value)) / countryPopulation))
-      return roundNumber((100000 * Number(value)) / countryPopulation);
+      if(hab === "total"){
+        return value;
+      }
+      return roundNumber((hab * Number(value)) / countryPopulation);
     })
     //console.log(casos)
     return casos
