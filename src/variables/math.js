@@ -111,7 +111,7 @@ export function moveEjeToDays (timeline) {
         let counter = 0;
         let casesTemp = {};
         for (const [key, value] of Object.entries(countryItem.timeline.cases)) {
-          if(counter > daysDiff) { // Error CAMBIAR LA CONDICION (INVERTIR) ERROR en el ELSE
+          if(counter > daysDiff) { 
             //console.log(`Deleted: ${key}: ${value}`);
             casesTemp[key] = value;
           } 
