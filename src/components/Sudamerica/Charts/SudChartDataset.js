@@ -4,11 +4,11 @@ import { Line } from 'react-chartjs-2';
 
 import { chartBlueBgSud } from "../../../variables/chartOptions";
 
-import { roundNumber } from '../../../variables/math'
+import { roundNumber, valuePerHab, generateDaysEje } from '../../../variables/math'
 import moment from 'moment'
 
 
-function SudChartDatated({ timeline, data, eje, hab }) {
+function SudChartDatated({ timeline, data, eje, hab, recordsNum }) {
 
   //console.log(eje) // AQUI ME QUEDE -------------------------------------
   //console.log(timeline[0])
@@ -27,7 +27,7 @@ function SudChartDatated({ timeline, data, eje, hab }) {
       if(hab === "total"){
         return value;
       }
-      return roundNumber((hab * Number(value)) / countryPopulation);
+      return roundNumber(valuePerHab(hab, value, countryPopulation));
     })
     //console.log(casos)
     return casos
@@ -38,6 +38,13 @@ function SudChartDatated({ timeline, data, eje, hab }) {
     //console.log(pop.population)
     return popu.population
   }  
+
+  const setHorizontalEje = () => {
+    if(eje === "dias") {
+      return generateDaysEje(getKeyTimeline(timeline[2].timeline.cases), recordsNum);
+    }
+    return getKeyTimeline(timeline[2].timeline.cases); // Fechas Brazil
+  }
 
 
   const boliviaData = (canvas) => {
@@ -74,7 +81,7 @@ function SudChartDatated({ timeline, data, eje, hab }) {
     primaryGradientStroke.addColorStop(0, "rgba(119,52,169,0)"); //purple colors
     
     return {
-      labels: getKeyTimeline(timeline[2].timeline.cases),
+      labels: setHorizontalEje(),
       datasets: [
         {
           label: "Argentina",

@@ -137,7 +137,6 @@ function SudChart({ timeline, data }) {
                     <option value="45">últimos 45 días</option>
                     <option value="60">últimos 60 días</option>
                     <option value="90">últimos 90 días</option>
-                    <option value="110">últimos 110 días</option>
                   </Input>
                 </FormGroup>
               </Col>
@@ -149,7 +148,13 @@ function SudChart({ timeline, data }) {
         <div className="chart-area">
 
           {/*<SudChartDataset timeline={timeline} data={data} />*/}
-          <SudChartDataset timeline={historical} data={data} eje={eje} hab={habNumber} />
+          <SudChartDataset 
+            timeline={historical} 
+            data={data} 
+            eje={eje} 
+            hab={habNumber} 
+            recordsNum={recordsNumber}
+          />
 
         </div>
       </CardBody>

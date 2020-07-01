@@ -1,24 +1,29 @@
 import moment from 'moment'
 
 
-
 export const roundNumber = (num, decimals=0) => {
   return (Math.round(num * 100) / 100).toFixed(decimals);
 }
 
 
-export const to100milPersons = (population, data) => {
-
+export const valuePerHab = (numHab, value, population) => {
+  return (numHab * Number(value)) / population
 }
 
 
-const generateDaysEje = (desde, hasta) => {
-  var list = [];
-  for (var i = desde; i <= hasta; i++) {
+export const generateDaysEje = (keyArray, recordsNum) => {
+  let lastDay = keyArray[keyArray.length - 1]
+  let final = daysDifference(lastDay, firstCaseDate['Brazil'])
+  let inicio = final - recordsNum;
+  let list = [];
+  for (var i = inicio; i < final; i++) {
       list.push(i);
   }
   return list;
 }
+
+
+
 
 
 const firstCaseDate = { // DD/MM/YYYY
@@ -37,8 +42,6 @@ const firstCaseDate = { // DD/MM/YYYY
 
 
 
-
-
 const getMaxDatesCountry = (country) => {
   //country.map(())
 
@@ -53,19 +56,9 @@ const daysDifference = (date1, date2) => {
 }
 
 
-export const remove2last = (array) => {
-
-}
-
-export const daysToZero = () => {
-
-}
-
 
 export function moveEjeToDays (timeline) {
   
-
-
   const countryFC = { // DD/MM/YYYY
     "Argentina": "03/03/2020",
     "Bolivia": "11/03/2020",
@@ -74,34 +67,7 @@ export function moveEjeToDays (timeline) {
     "Peru": "06/03/20"
   }
 
-  /*for (var i in projects) {
-    if (projects[i].value == value) {
-       projects[i].desc = desc;
-       break; //Stop this loop, we found it!
-    }
-  }*/
 
-  let argentina = daysDifference(countryFC.Brazil, countryFC.Argentina);
-  let bolivia = daysDifference(countryFC.Brazil, countryFC.Bolivia);
-  let brazil = daysDifference(countryFC.Brazil, countryFC.Brazil);
-  let chile = daysDifference(countryFC.Brazil, countryFC.Chile);
-  let peru = daysDifference(countryFC.Brazil, countryFC.Peru);
-
-  let argentinaTimeline = timeline[0];
-  let boliviaTimeline = timeline[1];
-  let brazilTimeline = timeline[2];
-  let chileTimeline = timeline[3];
-  let peruTimeline = timeline[4];
-
-
-    /*for (let i = 0; i < timeline.length; i++) { // Recorriendo todos los países (timelines)
-      const casesArray = timeline[i].timeline.cases; //obteniendo solo las fechas de los confirmados
-      for (let j = 0; j < casesArray.length; j++) { //
-        const caseDate = casesArray[j];
-        console.log(caseDate);
-      }
-    }*/
-  
     const newTimeline = timeline.map((countryItem, i) => {
       let countryName = countryItem.country; // Nombre del pais
       let daysDiff = daysDifference(countryFC.Brazil, countryFC[countryName]); // Obteniendo los días de referencia
