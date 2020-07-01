@@ -46,7 +46,7 @@ function SudChart({ timeline, data }) {
   }, [recordsNumber])
 
   useEffect(() => {
-    if(eje === "dias") {
+    if(eje === "dias"){
       setHistorical(moveEjeToDays(historical))
       console.log("days!!!")
     } else {
