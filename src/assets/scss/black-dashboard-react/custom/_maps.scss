@@ -7,11 +7,12 @@
   outline: none;
   transition: 0.2s all ease-in-out;
 }
-.vector_map svg path:hover {
+.vector_map svg path:hover , .vector_map svg path:focus {
   fill: #fd5d93;
   /*transform: translateY(-2px);
   z-index: 10;*/
 }
+
 
 // Custom Map Styles
 .bolivia_map svg {

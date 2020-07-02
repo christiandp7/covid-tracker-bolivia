@@ -10,7 +10,6 @@ import {
   Input,
   ButtonGroup,
   Button,
-  Tooltip,
   Card,
   CardHeader,
   CardBody,
@@ -18,6 +17,8 @@ import {
   Row,
   Col,
 } from "reactstrap";
+
+import CustomTooltip from '../../Tooltip/CustomTooltip'
 
 import { fetchCountriesHistoryData } from '../../../api'
 import { moveEjeToDays } from '../../../variables/math'
@@ -103,9 +104,9 @@ function SudChart({ timeline, data }) {
               <Col sm="6" xs="12">
               <FormGroup>
                   <Label for="select1">Eje de muestreo</Label> &nbsp; <i className="tim-icons icon-alert-circle-exc" id="tooltipEje"></i> 
-                  <Tooltip placement="top" isOpen={tooltipEjeOpen} target="tooltipEje" toggle={toggle1}>
+                  <CustomTooltip placement="top" target="tooltipEje">
                     Cambia el eje horizontal de muestreo, entre fechas (registros por día) y cantidad de días desde el paciente 1 para cada país (comparando la cantidad de días de cada país desde el día 0).
-                  </Tooltip>
+                  </CustomTooltip>
                   <Input 
                     type="select" 
                     id="select1"
@@ -121,9 +122,9 @@ function SudChart({ timeline, data }) {
               <Col sm="6" xs="12">
                 <FormGroup>
                   <Label for="recordsNumerSelect">Nro. de días</Label> &nbsp; <i className="tim-icons icon-alert-circle-exc" id="tooltipDias"></i>
-                  <Tooltip placement="top" isOpen={tooltipDiasOpen} target="tooltipDias" toggle={toggle2}>
-                    Selecciona la cantidad de días hasta el último regitro.
-                  </Tooltip>
+                  <CustomTooltip placement="top" target="tooltipDias">
+                  Selecciona la cantidad de días hasta el último regitro.
+                  </CustomTooltip>
                   <Input 
                     type="select" 
                     id="recordsNumerSelect" 
