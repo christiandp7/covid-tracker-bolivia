@@ -16,7 +16,7 @@ function SudChartDatated({ timeline, data, eje, hab, recordsNum }) {
   const getKeyTimeline = (timelineDataType) => {
     let fechas = Object.keys(timelineDataType).map((key) => {
       //var d = new Date(key);
-      return moment(key).format("DD/MM/YYYY");
+      return moment(key).format("DD/MM/YY");
     })
     return fechas;
   }

@@ -2,6 +2,8 @@ import React from 'react'
 import { Bar } from "react-chartjs-2";
 import CardLoader from '../../Loaders/CardsDataLoaderBo'
 
+import { numberWithCommas } from '../../../variables/math'
+
 import {
   Row,
   Col,
@@ -43,14 +45,14 @@ function BoliviaCardsData({ data: { critical, tests, lethalityPercent, recovered
             <h3><FontAwesomeIcon className="text-danger" icon={faSkullCrossbones} /> { lethalityPercent }%</h3>
             
             <h5>Estado Critico</h5>
-            <h3><FontAwesomeIcon className="text-warning" icon={faProcedures} /> { critical } </h3>
+            <h3><FontAwesomeIcon className="text-warning" icon={faProcedures} /> { numberWithCommas(critical) } </h3>
           </Col>
           <Col xs="12" md="6">
             <h5>Tasa de Recuperacion</h5>
             <h3><FontAwesomeIcon className="text-success" icon={faHandHoldingMedical} /> { recoveredPercent }%</h3>
             
             <h5>Nro. Tests</h5>
-            <h3><FontAwesomeIcon className="text-info" icon={faMicroscope} /> { tests }</h3>
+            <h3><FontAwesomeIcon className="text-info" icon={faMicroscope} /> { numberWithCommas(tests) }</h3>
           </Col>
           <Col xs="12">
             <div className="chart-area">

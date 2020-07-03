@@ -2,6 +2,8 @@ import React from 'react'
 import CardLoader from '../../Loaders/CardsDataLoaderBo'
 import CountUp from 'react-countup'
 
+import { numberWithCommas } from '../../../variables/math'
+
 import {
   Row,
   Col,
@@ -87,7 +89,7 @@ function SudCardData({ data: { cases, active, deaths, recovered, critical, tests
               </h4>
               <h5>Estado Critico</h5>
               <h4>
-                <FontAwesomeIcon className="text-warning" icon={faProcedures} /> { critical } 
+                <FontAwesomeIcon className="text-warning" icon={faProcedures} /> { numberWithCommas(critical) } 
               </h4>
             </Col>
             <Col xs="12" md="6">
@@ -97,7 +99,7 @@ function SudCardData({ data: { cases, active, deaths, recovered, critical, tests
             </h4>
               <h5>Nro. Tests</h5>
               <h4>
-                <FontAwesomeIcon className="text-info" icon={faMicroscope} /> { tests }
+                <FontAwesomeIcon className="text-info" icon={faMicroscope} /> { numberWithCommas(tests) }
               </h4>
             </Col>
           </Row>

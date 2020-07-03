@@ -1,0 +1,16 @@
+
+
+.popover-inner {
+	background-color: #1e1e2f;
+}
+.popover-header {
+  background-color: #1e1e2f;
+  color: rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid #32325d;
+}
+.popover-body {
+  color: rgba(255, 255, 255, 0.8);
+}
+.bs-popover-right .arrow::after, .bs-popover-auto[x-placement^="right"] .arrow::after {
+  border-right-color: #1e1e2f;
+}

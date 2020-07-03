@@ -5,6 +5,10 @@ export const roundNumber = (num, decimals=0) => {
   return (Math.round(num * 100) / 100).toFixed(decimals);
 }
 
+export const numberWithCommas = (xnum) => {
+  return xnum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 
 export const valuePerHab = (numHab, value, population) => {
   return (numHab * Number(value)) / population
