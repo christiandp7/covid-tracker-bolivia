@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import TableLoader from '../../Loaders/TableLoader'
-import CountUp from 'react-countup'
+import moment from 'moment'
 
 import { numberWithCommas } from '../../../variables/math'
 
@@ -32,7 +32,7 @@ function SudamericaTable({ data }) {
   return (
     <Card>
       <CardHeader>
-        <p>Total</p>
+        <p>Valores Totales | Última Actualización: { moment(data.lastUpdate).format("DD/MM/YY") }</p>
         <CardTitle tag="h2">Sudamerica</CardTitle>
       </CardHeader>
       <CardBody>

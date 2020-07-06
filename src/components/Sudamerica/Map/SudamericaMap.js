@@ -6,7 +6,6 @@ import sudamerica from '../../../assets/maps/sudamerica.json';
 import MapLoader from '../../Loaders/MapLoader'
 
 import SudPopOver from '../PopOvers/SudPopOver'
-import { Popover, UncontrolledPopover, PopoverHeader, PopoverBody } from 'reactstrap';
 
 //export const BoliviaMap = () => <VectorMap {...bolivia} />;
 
@@ -28,6 +27,12 @@ function SudamericaMap({ data }) {
         countryData.deaths = co.deaths;
         countryData.recovered = co.recovered;
         countryData.active = co.active;
+        
+        countryData.todayCases = co.todayCases;
+        countryData.todayDeaths = co.todayDeaths;
+        countryData.todayRecovered = co.todayRecovered;
+
+        countryData.lastUpdate = co.updated;
       }
     })
     return countryData;
@@ -38,6 +43,7 @@ function SudamericaMap({ data }) {
   }
 
   const layerProps = {
+    className: "sudcountry",
     //onMouseEnter: ({ target }) => setHovered(target.attributes.name.value),
     //onMouseLeave: ({ target }) => setHovered('None'),
     //onClick: ({ target }) => setCountry(target.attributes.id.value)
@@ -54,9 +60,9 @@ function SudamericaMap({ data }) {
     <>
     <div className="vector_map sudamerica_map" id="sudmap" style={style}>
       <VectorMap {...sudamerica} layerProps={layerProps} />
-      <hr />
-  {/*<p>Hovered: {hovered && <code>{hovered}</code>}</p>*/}
-      <p>Clicked: <code>{country}</code></p>
+      {/*<hr />
+      <p>Hovered: {hovered && <code>{hovered}</code>}</p>
+      <p>Clicked: <code>{country}</code></p>*/}
       
 
       {/*<Popover 
