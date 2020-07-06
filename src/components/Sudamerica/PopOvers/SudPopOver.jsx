@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import cx from 'classnames';
 import { numberWithCommas } from '../../../variables/math'
 
@@ -9,7 +9,6 @@ import {
   Col,
   TabContent, TabPane, Nav, NavItem, NavLink,
   Popover,
-  UncontrolledPopover, 
   PopoverHeader, 
   PopoverBody
  } from 'reactstrap';
@@ -31,20 +30,45 @@ const SudPopOver = ({ countryTarget, data, mapa }) => {
   //console.log('target ' + countryTarget)
   //console.log(data)
 
+
+
+  const [popovertrigger, setpopovertrigger] = useState(mapa)
+
   const [popoverOpen, setPopoverOpen] = useState(false);
   const togglePopover = (e) => {
     //console.log(e);    
     //console.log(e.target.parentNode.parentNode.id);
     //setPopoverOpen(!popoverOpen);
 
-    if(e.target.parentNode.parentNode.id === mapa){
-      if(!popoverOpen) {
+    
+
+    if(e.target.parentNode.parentNode.id === mapa){ // si se hace click en un pais
+      handleActiveCountry(countryTarget)
+      setpopovertrigger(countryTarget) // Setea el país como target
+      if(!popoverOpen) { // si el popover estaba cerrado
         setPopoverOpen(!popoverOpen);
-      } 
-    } else {
-      setPopoverOpen(!popoverOpen);
+      }
+    } else { // si se hace click afuera del mapa
+      setpopovertrigger(mapa) //setea el mapa 
+      setPopoverOpen(!popoverOpen); // cierra el mapa
+      handleActiveCountry(countryTarget, true)
     }
 
+    
+  }
+
+
+  function handleActiveCountry  (countryId, clear) {
+    let allCountries = document.querySelectorAll(".sudcountry");
+
+    [].forEach.call(allCountries, function(el) { // Remueve la clase active de todos los paises
+        el.classList.remove("active");
+    });
+
+    if(!clear) { // Si se hace click fuera del mapa
+      let activeCountry = document.getElementById(countryId); 
+      activeCountry.classList.add("active") // No es necesario comparar si esta activo
+    }
     
   }
 
@@ -60,7 +84,7 @@ const SudPopOver = ({ countryTarget, data, mapa }) => {
         trigger="legacy" //focus
         placement="right-start" 
         isOpen={popoverOpen} 
-        target={mapa}
+        target={popovertrigger}
         toggle={togglePopover}
         className="countryPopover"
         //offset={100}

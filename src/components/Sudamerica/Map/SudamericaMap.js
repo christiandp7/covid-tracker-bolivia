@@ -38,7 +38,10 @@ function SudamericaMap({ data }) {
     return countryData;
   }
 
+
+
   const handleCountryClick = (eltarget) => {
+    
     setCountry(eltarget.attributes.id.value) // Iso2 Value
   }
 
