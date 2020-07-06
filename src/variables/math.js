@@ -1,17 +1,42 @@
 import moment from 'moment'
 
-
+// NUMBER FUNCTIONS
 export const roundNumber = (num, decimals=0) => {
   return (Math.round(num * 100) / 100).toFixed(decimals);
 }
 
 export const numberWithCommas = (xnum) => {
+  if(xnum === 0) return 0;
   if(xnum) return xnum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-
 export const valuePerHab = (numHab, value, population) => {
   return (numHab * Number(value)) / population
+}
+
+
+
+// ESTADISTICS DATA FUNCTIONS
+
+export const getLethalityRate = (deaths, cases) => { // Percents
+  return roundNumber(((deaths * 100) / cases ), 2)
+}
+
+export const getRecoveredRate = (recovered, cases) => { // Percents
+  return roundNumber(((recovered * 100) / cases), 2)
+}
+
+
+
+
+// SUDAMERICA FUNCTIONS
+
+const firstCaseDate = { // DD/MM/YYYY
+  "Argentina": "03/03/2020",
+  "Bolivia": "11/03/2020",
+  "Brazil": "26/02/20",
+  "Chile": "03/03/20",
+  "Peru": "06/03/20"
 }
 
 
@@ -30,26 +55,10 @@ export const generateDaysEje = (keyArray, recordsNum) => {
 
 
 
-const firstCaseDate = { // DD/MM/YYYY
-  "Argentina": "03/03/2020",
-  "Bolivia": "11/03/2020",
-  "Brazil": "26/02/20",
-  "Chile": "03/03/20",
-  "Peru": "06/03/20"
-}
-
-
 
 // Ver que país tiene mas registros desde el día 1
 // obtener la diferencia del numero de registros de todos los países con respecto al país que mas registros tiene
 // quitar la cantidad (diferencia) de items del array de cada país
-
-
-
-const getMaxDatesCountry = (country) => {
-  //country.map(())
-
-}
 
 
 const daysDifference = (date1, date2) => {
@@ -60,21 +69,11 @@ const daysDifference = (date1, date2) => {
 }
 
 
-
 export function moveEjeToDays (timeline) {
-  
-  const countryFC = { // DD/MM/YYYY
-    "Argentina": "03/03/2020",
-    "Bolivia": "11/03/2020",
-    "Brazil": "26/02/20",
-    "Chile": "03/03/20",
-    "Peru": "06/03/20"
-  }
-
 
     const newTimeline = timeline.map((countryItem, i) => {
       let countryName = countryItem.country; // Nombre del pais
-      let daysDiff = daysDifference(countryFC.Brazil, countryFC[countryName]); // Obteniendo los días de referencia
+      let daysDiff = daysDifference(firstCaseDate.Brazil, firstCaseDate[countryName]); // Obteniendo los días de referencia
       //console.log(daysDiff)
       if(daysDiff > 0) {
 
@@ -128,14 +127,3 @@ export function moveEjeToDays (timeline) {
 
 
 }
-
-
-
-
-
-
-
-/*export const formatDate = (date) => {
-  console.log(date.split("/"))
-  return date;
-}*/

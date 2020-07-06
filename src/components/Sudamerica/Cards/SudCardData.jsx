@@ -83,7 +83,7 @@ function SudCardData({ data: { cases, active, deaths, recovered, critical, tests
         <CardBody>
           <Row>
             <Col xs="12" md="6">
-              <h5>Tasa de Mortalidad</h5>
+              <h5>Tasa de Letalidad</h5>
               <h4>
                 <FontAwesomeIcon className="text-danger" icon={faSkullCrossbones} /> { lethalityPercent }%
               </h4>

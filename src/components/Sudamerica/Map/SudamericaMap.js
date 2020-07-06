@@ -32,6 +32,9 @@ function SudamericaMap({ data }) {
         countryData.todayDeaths = co.todayDeaths;
         countryData.todayRecovered = co.todayRecovered;
 
+        countryData.critical = co.critical;
+        countryData.tests = co.tests;
+
         countryData.lastUpdate = co.updated;
       }
     })

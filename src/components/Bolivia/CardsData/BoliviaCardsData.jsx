@@ -41,7 +41,7 @@ function BoliviaCardsData({ data: { critical, tests, lethalityPercent, recovered
 
         <Row>
           <Col xs="12" md="6">
-            <h5>Tasa de Mortalidad</h5>
+            <h5>Tasa de Letalidad</h5>
             <h3><FontAwesomeIcon className="text-danger" icon={faSkullCrossbones} /> { lethalityPercent }%</h3>
             
             <h5>Estado Critico</h5>

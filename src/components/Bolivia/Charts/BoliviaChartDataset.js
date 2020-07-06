@@ -1,5 +1,6 @@
 import React from 'react'
 import { Line } from 'react-chartjs-2';
+import moment from 'moment'
 
 import { chartBlueBg, chartGreenBg, chartDangerBg  } from "../../../variables/chartOptions";
 
@@ -18,7 +19,8 @@ function BoliviaChartDataset({ timeline, dataType }) {
 
   const getKeyTimeline = (timelineDataType) => {
     let fechas = Object.keys(timelineDataType).map((key) => {
-      return key;
+      //return key;
+      return moment(key).format("DD/MM/YY")
     })
     return fechas;
   }

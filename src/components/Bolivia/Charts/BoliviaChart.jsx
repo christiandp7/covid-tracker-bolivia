@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import cx from 'classnames'
+import moment from 'moment'
 
 import ChartLoader from '../../Loaders/ChartLoader'
 
@@ -40,7 +41,7 @@ function BoliviaChart({ data: { timeline } }) {
         <Row>
           <Col className="text-left" sm="6" xs="8">
             {/*<h5>Últimos 30 días | Última actualización: {}</h5>*/}
-            <h5>Últimos 30 días</h5>
+            <h5>Últimos 30 días | Última Actualización: { moment(timeline.lastUpdate).format("DD/MM/YY - HH:MM:SS") } </h5>
             <CardTitle tag="h2">
               <i className={cx("tim-icons icon-chart-bar-32",iconColor)} /> {chartDataType}
             </CardTitle>

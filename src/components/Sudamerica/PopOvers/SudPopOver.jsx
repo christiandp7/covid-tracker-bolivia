@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import cx from 'classnames';
-import { numberWithCommas } from '../../../variables/math'
+import { numberWithCommas, getLethalityRate, getRecoveredRate } from '../../../variables/math'
 
 import moment from 'moment'
 
@@ -77,6 +77,7 @@ const SudPopOver = ({ countryTarget, data, mapa }) => {
     if(activeTab !== tab) setActiveTab(tab);
   }
 
+
   
   return (
     <div>
@@ -95,7 +96,7 @@ const SudPopOver = ({ countryTarget, data, mapa }) => {
         </PopoverHeader>
         <PopoverBody>
 
-        <h5>Última Actualización: { moment(data.lastUpdate).format("DD/MM/YY") }</h5>
+        <h5>Última Actualización: { moment(data.lastUpdate).format("DD/MM/YY - HH:MM:SS") }</h5>
 
           <Nav tabs>
             <NavItem>
@@ -112,6 +113,14 @@ const SudPopOver = ({ countryTarget, data, mapa }) => {
                 onClick={() => { toggleTab('poptoday'); }}
               >
                 <h5>Hoy</h5>
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink
+                className={cx({ active: activeTab === 'popestadistics' })}
+                onClick={() => { toggleTab('popestadistics'); }}
+              >
+                <h5>Estadísticas</h5>
               </NavLink>
             </NavItem>
           </Nav>
@@ -164,6 +173,30 @@ const SudPopOver = ({ countryTarget, data, mapa }) => {
                   <h5>Decesos</h5>
                   <h5 className="mb15">
                   <FontAwesomeIcon className="text-danger" icon={faUserTimes} /> {numberWithCommas(data.todayDeaths)}
+                  </h5>
+                </Col>
+              </Row>
+            </TabPane>
+            <TabPane tabId="popestadistics">
+              <Row>
+                <Col xs="12" md="6">
+                  <h5>Tasa de Letalidad</h5>
+                  <h5>
+                    <FontAwesomeIcon className="text-danger" icon={faSkullCrossbones} /> { getLethalityRate(data.deaths, data.cases) }%
+                  </h5>
+                  <h5>Estado Critico</h5>
+                  <h5>
+                    <FontAwesomeIcon className="text-warning" icon={faProcedures} /> { numberWithCommas(data.critical) } 
+                  </h5>
+                </Col>
+                <Col xs="12" md="6">
+                  <h5>Tasa de Recuperacion</h5>
+                  <h5>
+                    <FontAwesomeIcon className="text-success" icon={faHandHoldingMedical} /> { getRecoveredRate(data.recovered, data.cases) }%
+                  </h5>
+                  <h5>Nro. Tests</h5>
+                  <h5>
+                    <FontAwesomeIcon className="text-info" icon={faMicroscope} /> { numberWithCommas(data.tests) }
                   </h5>
                 </Col>
               </Row>

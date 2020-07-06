@@ -43,8 +43,6 @@ export class Sudamerica extends Component {
   }
 
 
-  
-  
 
   render() {
     //const { continetData } = this.state;

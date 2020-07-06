@@ -46,13 +46,19 @@ class Footer extends React.Component {
           <div className="copyright">
             © {new Date().getFullYear()} | Desarrollado por{" "}
             <a
+              href="https://www.facebook.com/flaviohdp"
+              target="_blank"
+              className="text-info"
+            >
+              Flavio Diaz Portela
+            </a> y {" "}
+             <a
               href="https://diazportela.com"
               target="_blank"
               className="text-info"
             >
               Christian Diaz Portela
-            </a>{" "}
-            .
+            </a>.
           </div>
         </Container>
       </footer>
