@@ -21,13 +21,36 @@ import React from "react";
 import PropTypes from "prop-types";
 
 // reactstrap components
-import { Container, Row, Nav, NavItem, NavLink } from "reactstrap";
+import { Container, Row, Col, Nav, NavItem, NavLink } from "reactstrap";
+
+import jhuLogo from '../../assets/img/JHU-white.png'
+import worddometersLogo from '../../assets/img/worldometers.jpg'
+import bolsegLogo from '../../assets/img/bolseg.png'
 
 class Footer extends React.Component {
   render() {
     return (
       <footer className="footer">
         <Container fluid>
+
+          
+
+
+          <div className="fuentes">
+            <a target="_blank" href="https://www.worldometers.info/">
+              <img className="img-responsive wordometers-logo" src={worddometersLogo} />
+            </a>
+            <a target="_blank" href="https://www.boliviasegura.gob.bo/">
+              <img className="img-responsive bolseg-logo" src={bolsegLogo} />
+            </a>
+            <br />
+            <a target="_blank" href="https://systems.jhu.edu/">
+              <img className="img-responsive jhu-logo" src={jhuLogo} />
+            </a>
+          </div>
+          
+
+
 
           {/*
           <Nav>
@@ -45,19 +68,19 @@ class Footer extends React.Component {
           
           <div className="copyright">
             © {new Date().getFullYear()} | Desarrollado por{" "}
-            <a
-              href="https://www.facebook.com/flaviohdp"
-              target="_blank"
-              className="text-info"
-            >
-              Flavio Diaz Portela
-            </a> y {" "}
              <a
               href="https://diazportela.com"
               target="_blank"
               className="text-info"
             >
               Christian Diaz Portela
+            </a> y asesorado por {" "}
+            <a
+              href="https://www.facebook.com/flaviohdp"
+              target="_blank"
+              className="text-info"
+            >
+              Flavio Diaz Portela
             </a>.
           </div>
         </Container>

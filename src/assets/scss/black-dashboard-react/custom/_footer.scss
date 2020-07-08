@@ -7,7 +7,6 @@
 
     .nav{
         display: inline-block;
-        float: left;
         margin-bottom: 0;
         padding-left: 30px;
         list-style: none;
@@ -33,12 +32,32 @@
       }
     }
 
+    .fuentes {
+      margin-top: 30px;
+      text-align: center;
+
+      .wordometers-logo, .bolseg-logo {
+        margin: 10px 15px;
+        //margin-bottom: 20px;
+        
+      }
+  
+      .jhu-logo {
+        margin: 10px 15px;
+        margin-top: 15px;
+      }
+    }
+    
 
 
     .copyright{
         font-size: $font-size-sm;
         line-height: 1.8;
         color: $white;
+        width: 100%;
+        text-align: center;
+        margin-top: 20px;
+        padding: 0 15px;
     }
 
     &:after{
@@ -52,21 +71,11 @@
 @media screen and (max-width: 991px){
   .footer {
     padding-left: 0px;
-
-    .copyright {
-      text-align: right;
-      margin-right: 15px;
-    }
   }
 }
 
 @media screen and (min-width: 992px){
-  .footer {
-    .copyright {
-      float: right;
-      padding-right: 30px;
-    }
-  }
+
 }
 
 @media screen and (max-width: 768px){
