@@ -95,7 +95,8 @@ function SudChart({ timeline, data }) {
                 <option value="50000">Por cada 50,000 habitantes</option>
                 <option value="100000">Por cada 100,000 habitantes</option>
                 <option value="1000000">Por cada 1,000,000 habitantes</option>
-                <option value="total">Valores Totales</option>
+                <option value="acumulados">Total Acumulados</option>
+                <option value="diarios">Total Diarios</option>
               </Input> 
             </FormGroup>
           </Col>

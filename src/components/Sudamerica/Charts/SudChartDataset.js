@@ -4,7 +4,7 @@ import { Line } from 'react-chartjs-2';
 
 import { chartBlueBgSud } from "../../../variables/chartOptions";
 
-import { roundNumber, valuePerHab, generateDaysEje } from '../../../variables/math'
+import { roundNumber, valuePerHab, generateDaysEje, generateDailyRecords } from '../../../variables/math'
 import moment from 'moment'
 
 
@@ -12,6 +12,8 @@ function SudChartDatated({ timeline, data, eje, hab, recordsNum }) {
 
   //console.log(eje) // AQUI ME QUEDE -------------------------------------
   //console.log(timeline[0])
+
+  const dailyRecords = false;
 
   const getKeyTimeline = (timelineDataType) => {
     let fechas = Object.keys(timelineDataType).map((key) => {
@@ -24,13 +26,20 @@ function SudChartDatated({ timeline, data, eje, hab, recordsNum }) {
     let casos = Object.values(timelineDataType).map((value) => {
       //return value;
       //console.log(roundNumber((100000 * Number(value)) / countryPopulation))
-      if(hab === "total"){
+      
+      //if(hab === "total"){
+      if(hab === "acumulados" || hab == "diarios"){
         return value;
       }
       return roundNumber(valuePerHab(hab, value, countryPopulation));
     })
     //console.log(casos)
-    return casos
+
+    if(hab == "diarios"){
+      return generateDailyRecords(casos);
+    }
+    return casos;
+
   }
 
   const getPopulation = countryName => {

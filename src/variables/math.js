@@ -40,6 +40,56 @@ const firstCaseDate = { // DD/MM/YYYY
 }
 
 
+
+
+export const generateDailyRecords = (valueArray) => { // genera los registros Diarios
+
+  let backArray = [];
+
+  for(let i = valueArray.length - 1; i >= 0 ; i--) {
+
+    if(i != 0){
+      if(valueArray[i] === valueArray[i - 1]){ // Coloca el mismo valor por que es igual
+        backArray[i] = valueArray[i - 1] - valueArray[i - 2];
+      } else {                                 // Hace la resta y coloca el valor que es
+        backArray[i] = (valueArray[i] - valueArray[i - 1]);
+      }
+      //console.log(backArray[j])
+    } else { // El primer valor del array
+      
+      backArray[i] = null;
+    }
+
+  }
+
+  /*backArray.slice().reverse().forEach(function(value, i){
+    //backArray[i] = valueArray[i];
+    //console.log(value + " ---- " + i);
+    backArray[]
+    k++;
+  });*/
+
+  //console.log(backArray.length);
+
+  return backArray;
+}
+
+
+
+
+
+const daysDifference = (date1, date2) => {
+  var a = moment(date1, 'DD/MM/YYYY');
+  var b = moment(date2, 'DD/MM/YYYY');
+  return Math.abs(a.diff(b, 'days')); // 1
+  //return moment(date1.diff(date2, 'days');
+}
+
+
+// Ver que país tiene mas registros desde el día 1
+// obtener la diferencia del numero de registros de todos los países con respecto al país que mas registros tiene
+// quitar la cantidad (diferencia) de items del array de cada país
+
 export const generateDaysEje = (keyArray, recordsNum) => {
   let lastDay = keyArray[keyArray.length - 1]
   let final = daysDifference(lastDay, firstCaseDate['Brazil'])
@@ -50,24 +100,6 @@ export const generateDaysEje = (keyArray, recordsNum) => {
   }
   return list;
 }
-
-
-
-
-
-
-// Ver que país tiene mas registros desde el día 1
-// obtener la diferencia del numero de registros de todos los países con respecto al país que mas registros tiene
-// quitar la cantidad (diferencia) de items del array de cada país
-
-
-const daysDifference = (date1, date2) => {
-  var a = moment(date1, 'DD/MM/YYYY');
-  var b = moment(date2, 'DD/MM/YYYY');
-  return Math.abs(a.diff(b, 'days')); // 1
-  //return moment(date1.diff(date2, 'days');
-}
-
 
 export function moveEjeToDays (timeline) {
 
@@ -88,28 +120,7 @@ export function moveEjeToDays (timeline) {
         }
         //console.log(casesTemp);
         countryItem.timeline.cases = casesTemp;
-        //console.log
 
-        for (let k = 0; k < daysDiff; k++) {
-          //const element = array[k];
-          
-          //delete countryItem.timeline.cases[Object.keys(countryItem.timeline.cases)[k]]
-
-          //delete countryItem.timeline.cases[(Object.keys(countryItem.timeline.cases)[k]).toString]
-
-          //delete countryItem.timeline.cases[Object.keys(countryItem.timeline.cases)[k]];
-
-          //Object.keys(countryItem.timeline.cases)[k].delete(k)
-
-          //console.log(Object.keys(countryItem.timeline.cases)[k])
-          //console.log(countryItem.timeline.cases[Object.keys(countryItem.timeline.cases)])
-          //console.log(countryItem.timeline.cases);
-          //console.log(" --------" + k + "-------- ")
-          
-           //delete countryItem.timeline.cases[k];
-          //dateToRemove.slice(1); //Quitar el primer elemento
-          //const casesArray = countryItem.timeline.cases;
-        }
         return countryItem; 
       }
       return countryItem; //Brazil
@@ -117,10 +128,6 @@ export function moveEjeToDays (timeline) {
 
     })
 
-//console.log(argentina, bolivia, brazil, chile, peru)
-//console.log(timeline)
-  //return newTimeline;
-  //console.log(newTimeline);
   //return timeline;
   //console.log(newTimeline)
   return newTimeline;
