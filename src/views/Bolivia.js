@@ -2,7 +2,11 @@ import React, { Component } from 'react'
 
 import { SkeletonTheme } from "react-loading-skeleton";
 
-import { fetchBOGeneralData, fetchCountriesHistoryData } from '../api'
+import { 
+  fetchBOGeneralData,
+  fetchCountriesHistoryData,
+  fetchDepartmentsLastUpdate 
+} from '../api'
 
 import { BoliviaCards, BoliviaCardsData, BoliviaMap, BoliviaChart } from "../components/Bolivia"
 
@@ -18,16 +22,19 @@ export class Bolivia extends Component {
 
   state = {
     genData: {},
+    depLastUpdate : {},
     historyData: [],
   }
 
   async componentDidMount() {
   
     const fetchedGenData = await fetchBOGeneralData();
-    const fetchedHistory = await fetchCountriesHistoryData('Bolivia')
+    const fetchedHistory = await fetchCountriesHistoryData('Bolivia');
+    const fetchedDepLastUpdate = await fetchDepartmentsLastUpdate();
   //setTimeout(() => {
     this.setState({ 
       genData: fetchedGenData ,
+      depLastUpdate: fetchedDepLastUpdate,
       historyData: fetchedHistory
     })
   //}, 5000);
@@ -51,7 +58,7 @@ export class Bolivia extends Component {
           <Row>
             <Col xs="12" md="6">
               <Card>
-                <BoliviaMap data={this.state.genData} />
+                <BoliviaMap data={this.state.depLastUpdate} />
               </Card>
             </Col>
             <Col xs="12" md="6">

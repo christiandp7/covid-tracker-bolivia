@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import cx from 'classnames';
-import { numberWithCommas, getLethalityRate, getRecoveredRate } from '../../../variables/math'
+import { numberWithCommas, formatDate1, getLethalityRate, getRecoveredRate } from '../../../variables/math'
 
 import moment from 'moment'
 
@@ -25,51 +25,45 @@ import {
   faUserTag,
 } from '@fortawesome/free-solid-svg-icons'
 
-const SudPopOver = ({ countryTarget, data, mapa }) => {
+const BolPopOver = ({ depTarget, data, mapa }) => {
+
   
-  //console.log('target ' + countryTarget)
   //console.log(data)
-
-
 
   const [popovertrigger, setpopovertrigger] = useState(mapa)
 
   const [popoverOpen, setPopoverOpen] = useState(false);
   const togglePopover = (e) => {
-    //console.log(e);    
-    //console.log(e.target.parentNode.parentNode.id);
-    //setPopoverOpen(!popoverOpen);
 
     if(Object.keys(data).length != 0){ //check if object is empty
 
       if(e.target.parentNode.parentNode.id === mapa){ // si se hace click en un pais
-        handleActiveCountry(countryTarget)
-        setpopovertrigger(countryTarget) // Setea el país como target
+        handleActiveDep(depTarget)
+        setpopovertrigger(depTarget) // Setea el país como target
         if(!popoverOpen) { // si el popover estaba cerrado
           setPopoverOpen(!popoverOpen);
         }
       } else { // si se hace click afuera del mapa
         setpopovertrigger(mapa) //setea el mapa 
         setPopoverOpen(!popoverOpen); // cierra el mapa
-        handleActiveCountry(countryTarget, true)
+        handleActiveDep(depTarget, true)
       }
 
     }
-
     
   }
 
 
-  function handleActiveCountry  (countryId, clear) {
-    let allCountries = document.querySelectorAll(".sudcountry");
+  function handleActiveDep  (depId, clear) {
+    let AllDeps = document.querySelectorAll(".boldep");
 
-    [].forEach.call(allCountries, function(el) { // Remueve la clase active de todos los paises
+    [].forEach.call(AllDeps, function(el) { // Remueve la clase active de todos los paises
         el.classList.remove("active");
     });
 
     if(!clear) { // Si se hace click fuera del mapa
-      let activeCountry = document.getElementById(countryId); 
-      activeCountry.classList.add("active") // No es necesario comparar si esta activo
+      let activeDep = document.getElementById(depId); 
+      activeDep.classList.add("active") // No es necesario comparar si esta activo
     }
     
   }
@@ -80,12 +74,12 @@ const SudPopOver = ({ countryTarget, data, mapa }) => {
   }
 
 
-  
+
   return (
     <div>
       <Popover 
         trigger="legacy" //focus
-        placement="right-start" 
+        placement="right-start" //right-star
         isOpen={popoverOpen} 
         target={popovertrigger}
         toggle={togglePopover}
@@ -98,7 +92,7 @@ const SudPopOver = ({ countryTarget, data, mapa }) => {
         </PopoverHeader>
         <PopoverBody>
 
-        <h5>Última Actualización: { moment(data.lastUpdate).format("DD/MM/YY - HH:MM:SS") }</h5>
+        <h5>Última Actualización: { data.lastUpdate }</h5>
 
           <Nav tabs>
             <NavItem>
@@ -212,4 +206,4 @@ const SudPopOver = ({ countryTarget, data, mapa }) => {
   )
 }
 
-export default SudPopOver
+export default BolPopOver

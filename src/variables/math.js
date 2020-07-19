@@ -16,6 +16,13 @@ export const valuePerHab = (numHab, value, population) => {
 
 
 
+// FORMATING FUNCTIONS
+export const formatDate1 = (str) => {
+  let strArr = Array.from(str);
+  return strArr.split('-').join('/');
+}
+
+
 // ESTADISTICS DATA FUNCTIONS
 
 export const getLethalityRate = (deaths, cases) => { // Percents
