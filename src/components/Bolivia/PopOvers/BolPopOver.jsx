@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import cx from 'classnames';
-import { numberWithCommas, formatDate1, getLethalityRate, getRecoveredRate } from '../../../variables/math'
+import { 
+  numberWithCommas,
+  formatDate1,
+  getLethalityRate,
+  getRecoveredRate,
+  getMortalityRate,
+  getEffectiveLethalityRate
+ } from '../../../variables/math'
 
 import moment from 'moment'
 
@@ -16,13 +23,14 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { 
   faSkullCrossbones,
-  faProcedures,
+  faExclamationTriangle,
   faMicroscope,
   faHandHoldingMedical,
   faUser,
   faUserCheck,
   faUserTimes,
   faUserTag,
+  faSkull,
 } from '@fortawesome/free-solid-svg-icons'
 
 const BolPopOver = ({ depTarget, data, mapa }) => {
@@ -123,7 +131,7 @@ const BolPopOver = ({ depTarget, data, mapa }) => {
           <TabContent activeTab={activeTab}>
             <TabPane tabId="poptotal">
               <Row>
-                <Col md="6">
+                <Col xs="6">
                   <h5>Confirmados</h5>
                   <h5 className="mb15">
                     <FontAwesomeIcon className="text-info" icon={faUser} /> {numberWithCommas(data.cases)}
@@ -134,7 +142,7 @@ const BolPopOver = ({ depTarget, data, mapa }) => {
                   <FontAwesomeIcon className="text-success" icon={faUserCheck} /> {numberWithCommas(data.recovered)}
                   </h5>
                 </Col>
-                <Col md="6">
+                <Col xs="6">
                   <h5>Activos</h5>
                   <h5 className="mb15">
                   <FontAwesomeIcon className="text-warning" icon={faUserTag} /> {numberWithCommas(data.active)}
@@ -149,7 +157,7 @@ const BolPopOver = ({ depTarget, data, mapa }) => {
             </TabPane>
             <TabPane tabId="poptoday">
               <Row>
-                <Col md="6">
+                <Col xs="6">
                   <h5>Confirmados</h5>
                   <h5 className="mb15">
                     <FontAwesomeIcon className="text-info" icon={faUser} /> {numberWithCommas(data.todayCases)}
@@ -160,7 +168,7 @@ const BolPopOver = ({ depTarget, data, mapa }) => {
                   <FontAwesomeIcon className="text-success" icon={faUserCheck} /> {numberWithCommas(data.todayRecovered)}
                   </h5>
                 </Col>
-                <Col md="6">
+                <Col xs="6">
                   <h5>Activos</h5>
                   <h5 className="mb15">
                   <FontAwesomeIcon className="text-warning" icon={faUserTag} /> {numberWithCommas(data.active)}
@@ -175,24 +183,24 @@ const BolPopOver = ({ depTarget, data, mapa }) => {
             </TabPane>
             <TabPane tabId="popestadistics">
               <Row>
-                <Col xs="12" md="6">
-                  <h5>Tasa de Letalidad</h5>
+                <Col xs="6">
+                  <h5>T. de Letalidad</h5>
                   <h5>
                     <FontAwesomeIcon className="text-danger" icon={faSkullCrossbones} /> { getLethalityRate(data.deaths, data.cases) }%
                   </h5>
-                  <h5>Estado Critico</h5>
+                  <h5>T. de Letalidad Efectiva</h5>
                   <h5>
-                    <FontAwesomeIcon className="text-warning" icon={faProcedures} /> { numberWithCommas(data.critical) } 
+                    <FontAwesomeIcon className="text-tertiary" icon={faSkull} /> { getEffectiveLethalityRate(data.cases, data.deaths, data.active) }%
                   </h5>
                 </Col>
-                <Col xs="12" md="6">
-                  <h5>Tasa de Recuperacion</h5>
+                <Col xs="6">
+                  <h5>T. de Mortalidad</h5>
+                  <h5>
+                    <FontAwesomeIcon className="text-warning" icon={faExclamationTriangle} /> { getMortalityRate(data.deaths, data.population) }%
+                  </h5>
+                  <h5>T. de Recuperacion</h5>
                   <h5>
                     <FontAwesomeIcon className="text-success" icon={faHandHoldingMedical} /> { getRecoveredRate(data.recovered, data.cases) }%
-                  </h5>
-                  <h5>Nro. Tests</h5>
-                  <h5>
-                    <FontAwesomeIcon className="text-info" icon={faMicroscope} /> { numberWithCommas(data.tests) }
                   </h5>
                 </Col>
               </Row>

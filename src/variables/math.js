@@ -33,7 +33,15 @@ export const getRecoveredRate = (recovered, cases) => { // Percents
   return roundNumber(((recovered * 100) / cases), 2)
 }
 
+// Mortality Rate
+export const getMortalityRate = (deaths, population) => { // Percents
+  return roundNumber(((deaths * 100000) / population ), 2)
+}
 
+// Effective Effective Lethality Rate
+export const getEffectiveLethalityRate = (cases, deaths, active) => { // Percents
+  return roundNumber(((deaths * 100) / (cases - active)), 2)
+}
 
 
 // SUDAMERICA FUNCTIONS

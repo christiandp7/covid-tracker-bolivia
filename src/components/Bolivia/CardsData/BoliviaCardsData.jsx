@@ -40,14 +40,14 @@ function BoliviaCardsData({ data: { critical, tests, lethalityPercent, recovered
         <CardBody>
 
         <Row>
-          <Col xs="12" md="6">
+          <Col xs="6" md="6">
             <h5>Tasa de Letalidad</h5>
             <h3><FontAwesomeIcon className="text-danger" icon={faSkullCrossbones} /> { lethalityPercent }%</h3>
             
             <h5>Estado Critico</h5>
             <h3><FontAwesomeIcon className="text-warning" icon={faProcedures} /> { numberWithCommas(critical) } </h3>
           </Col>
-          <Col xs="12" md="6">
+          <Col xs="6" md="6">
             <h5>Tasa de Recuperacion</h5>
             <h3><FontAwesomeIcon className="text-success" icon={faHandHoldingMedical} /> { recoveredPercent }%</h3>
             

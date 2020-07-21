@@ -41,7 +41,7 @@ function SudCardData({ data: { cases, active, deaths, recovered, critical, tests
         <CardBody>
 
         <Row>
-          <Col xs="12" md="6">
+          <Col xs="6" md="6">
             <h5>Total Confirmados</h5>
             <h4>
               <FontAwesomeIcon className="text-info" icon={faUser} /> <CountUp start={0} end={cases} duration={2} separator="," />
@@ -54,7 +54,7 @@ function SudCardData({ data: { cases, active, deaths, recovered, critical, tests
             
            
           </Col>
-          <Col xs="12" md="6">
+          <Col xs="6" md="6">
             <h5>Total Activos</h5>
             <h4>
             <FontAwesomeIcon className="text-warning" icon={faUserTag} /> <CountUp start={0} end={active} duration={2} separator="," />
@@ -82,7 +82,7 @@ function SudCardData({ data: { cases, active, deaths, recovered, critical, tests
         </CardHeader>
         <CardBody>
           <Row>
-            <Col xs="12" md="6">
+            <Col xs="6" md="6">
               <h5>Tasa de Letalidad</h5>
               <h4>
                 <FontAwesomeIcon className="text-danger" icon={faSkullCrossbones} /> { lethalityPercent }%
@@ -92,7 +92,7 @@ function SudCardData({ data: { cases, active, deaths, recovered, critical, tests
                 <FontAwesomeIcon className="text-warning" icon={faProcedures} /> { numberWithCommas(critical) } 
               </h4>
             </Col>
-            <Col xs="12" md="6">
+            <Col xs="6" md="6">
             <h5>Tasa de Recuperacion</h5>
             <h4>
               <FontAwesomeIcon className="text-success" icon={faHandHoldingMedical} /> { recoveredPercent }%

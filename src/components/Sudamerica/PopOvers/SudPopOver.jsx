@@ -129,7 +129,7 @@ const SudPopOver = ({ countryTarget, data, mapa }) => {
           <TabContent activeTab={activeTab}>
             <TabPane tabId="poptotal">
               <Row>
-                <Col md="6">
+                <Col xs="6">
                   <h5>Confirmados</h5>
                   <h5 className="mb15">
                     <FontAwesomeIcon className="text-info" icon={faUser} /> {numberWithCommas(data.cases)}
@@ -140,7 +140,7 @@ const SudPopOver = ({ countryTarget, data, mapa }) => {
                   <FontAwesomeIcon className="text-success" icon={faUserCheck} /> {numberWithCommas(data.recovered)}
                   </h5>
                 </Col>
-                <Col md="6">
+                <Col xs="6">
                   <h5>Activos</h5>
                   <h5 className="mb15">
                   <FontAwesomeIcon className="text-warning" icon={faUserTag} /> {numberWithCommas(data.active)}
@@ -155,7 +155,7 @@ const SudPopOver = ({ countryTarget, data, mapa }) => {
             </TabPane>
             <TabPane tabId="poptoday">
               <Row>
-                <Col md="6">
+                <Col xs="6">
                   <h5>Confirmados</h5>
                   <h5 className="mb15">
                     <FontAwesomeIcon className="text-info" icon={faUser} /> {numberWithCommas(data.todayCases)}
@@ -166,7 +166,7 @@ const SudPopOver = ({ countryTarget, data, mapa }) => {
                   <FontAwesomeIcon className="text-success" icon={faUserCheck} /> {numberWithCommas(data.todayRecovered)}
                   </h5>
                 </Col>
-                <Col md="6">
+                <Col xs="6">
                   <h5>Activos</h5>
                   <h5 className="mb15">
                   <FontAwesomeIcon className="text-warning" icon={faUserTag} /> {numberWithCommas(data.active)}
@@ -181,7 +181,7 @@ const SudPopOver = ({ countryTarget, data, mapa }) => {
             </TabPane>
             <TabPane tabId="popestadistics">
               <Row>
-                <Col xs="12" md="6">
+                <Col xs="6">
                   <h5>Tasa de Letalidad</h5>
                   <h5>
                     <FontAwesomeIcon className="text-danger" icon={faSkullCrossbones} /> { getLethalityRate(data.deaths, data.cases) }%
@@ -191,7 +191,7 @@ const SudPopOver = ({ countryTarget, data, mapa }) => {
                     <FontAwesomeIcon className="text-warning" icon={faProcedures} /> { numberWithCommas(data.critical) } 
                   </h5>
                 </Col>
-                <Col xs="12" md="6">
+                <Col xs="6">
                   <h5>Tasa de Recuperacion</h5>
                   <h5>
                     <FontAwesomeIcon className="text-success" icon={faHandHoldingMedical} /> { getRecoveredRate(data.recovered, data.cases) }%
