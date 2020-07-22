@@ -81,7 +81,7 @@ class Footer extends React.Component {
               Christian Diaz Portela
             </a> y asesorado por {" "}
             <a
-              href="https://www.facebook.com/flaviohdp"
+              href="https://www.linkedin.com/in/flavio-h-d%C3%ADaz-portela-6473814/"
               target="_blank"
               className="text-info"
             >
