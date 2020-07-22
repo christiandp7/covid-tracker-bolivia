@@ -34,7 +34,7 @@ export const getRecoveredRate = (recovered, cases) => { // Percents
 }
 
 // Mortality Rate
-export const getMortalityRate = (deaths, population) => { // Percents
+export const getMortalityRate = (deaths, population) => { // per 100mil hab
   return roundNumber(((deaths * 100000) / population ), 2)
 }
 

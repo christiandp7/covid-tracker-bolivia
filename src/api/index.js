@@ -15,7 +15,7 @@ import { roundNumber, getLethalityRate, getRecoveredRate } from '../variables/ma
 
 // Bolivia
 const url1 = 'https://covid19bo.herokuapp.com/departments'
-const url2 = ''
+//const url2 = ''
 const url3 = 'https://corona.lmao.ninja/v2/countries/Bolivia'
 
 export const fetchBOGeneralData = async () => {
@@ -63,6 +63,29 @@ export const fetchBOGeneralData = async () => {
 export const fetchDepartmentsLastUpdate = async () => {
   try {
     const { data }  = await axios.get(url1);
+    //console.log(data)
+    return data;
+
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const fetchDepartmentsStatus = async (status='cases', lastDays=30) => {
+  try {
+    const { data }  = await axios.get(`${url1}/status/${status}?lastdays=${lastDays}`);
+    //console.log(data)
+    return data;
+
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+
+export const fetchDepartmentsDailyStatus = async (status='cases', lastDays=30) => {
+  try {
+    const { data }  = await axios.get(`${url1}/status/daily/${status}?lastdays=${lastDays}`);
     //console.log(data)
     return data;
 

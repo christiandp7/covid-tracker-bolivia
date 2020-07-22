@@ -5,10 +5,17 @@ import { SkeletonTheme } from "react-loading-skeleton";
 import { 
   fetchBOGeneralData,
   fetchCountriesHistoryData,
-  fetchDepartmentsLastUpdate 
+  fetchDepartmentsLastUpdate,
+  fetchDepartmentsStatus
 } from '../api'
 
-import { BoliviaCards, BoliviaCardsData, BoliviaMap, BoliviaChart } from "../components/Bolivia"
+import { 
+  BoliviaCards,
+  BoliviaCardsData,
+  BoliviaMap,
+  BoliviaChart,
+  DepartmenstChart
+} from "../components/Bolivia"
 
 // reactstrap components
 import {
@@ -23,19 +30,22 @@ export class Bolivia extends Component {
   state = {
     genData: {},
     depLastUpdate : {},
-    historyData: [],
+    depStatus: [],
+    //historyData: [],
   }
 
   async componentDidMount() {
   
     const fetchedGenData = await fetchBOGeneralData();
-    const fetchedHistory = await fetchCountriesHistoryData('Bolivia');
+    //const fetchedHistory = await fetchCountriesHistoryData('Bolivia');
     const fetchedDepLastUpdate = await fetchDepartmentsLastUpdate();
+    const fetchedDepStatus = await fetchDepartmentsStatus();
   //setTimeout(() => {
     this.setState({ 
       genData: fetchedGenData ,
       depLastUpdate: fetchedDepLastUpdate,
-      historyData: fetchedHistory
+      depStatus: fetchedDepStatus,
+      //historyData: fetchedHistory
     })
   //}, 5000);
     //console.log(genData)
@@ -67,12 +77,17 @@ export class Bolivia extends Component {
           </Row>
 
 
-          <Row>
+          {/*<Row>
             <Col xs="12">
               <BoliviaChart data={this.state.historyData} />
             </Col>
-          </Row>
+          </Row>*/}
 
+          <Row>
+            <Col xs="12">
+              <DepartmenstChart timeline={this.state.depStatus} data={this.state.depLastUpdate} />
+            </Col>
+          </Row>
 
         </SkeletonTheme>
         </div>
