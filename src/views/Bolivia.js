@@ -14,7 +14,8 @@ import {
   BoliviaCardsData,
   BoliviaMap,
   BoliviaChart,
-  DepartmenstChart
+  DepartmentsChart,
+  DepartmentsTable
 } from "../components/Bolivia"
 
 // reactstrap components
@@ -29,7 +30,7 @@ export class Bolivia extends Component {
 
   state = {
     genData: {},
-    depLastUpdate : {},
+    depLastUpdate : [],
     depStatus: [],
     //historyData: [],
   }
@@ -85,7 +86,13 @@ export class Bolivia extends Component {
 
           <Row>
             <Col xs="12">
-              <DepartmenstChart timeline={this.state.depStatus} data={this.state.depLastUpdate} />
+              <DepartmentsChart timeline={this.state.depStatus} data={this.state.depLastUpdate} />
+            </Col>
+          </Row>
+
+          <Row>
+            <Col xs="12">
+              <DepartmentsTable data={this.state.depLastUpdate} />
             </Col>
           </Row>
 

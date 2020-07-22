@@ -16,6 +16,9 @@ function BoliviaMap({ data }) {
 
   const [dep, setDep] = useState('');
 
+  
+
+
   const getDepSelectedData = (allDeps) => {
     let departmentData = {};
     allDeps.map((department) => {
@@ -54,6 +57,7 @@ function BoliviaMap({ data }) {
     className: "boldep",
     onClick: ({ target }) => handleDepClick(target)
   }
+
 
 
   

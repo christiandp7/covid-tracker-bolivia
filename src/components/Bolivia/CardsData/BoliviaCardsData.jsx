@@ -5,6 +5,7 @@ import CardLoader from '../../Loaders/CardsDataLoaderBo'
 import { numberWithCommas } from '../../../variables/math'
 
 import {
+  Alert,
   Row,
   Col,
   Card,
@@ -15,6 +16,8 @@ import {
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { 
+  faSkull,
+  faExclamationTriangle,
   faSkullCrossbones,
   faProcedures,
   faMicroscope,
@@ -24,7 +27,7 @@ import {
 
 import { chartExample3 } from "variables/charts.js";
 
-function BoliviaCardsData({ data: { critical, tests, lethalityPercent, recoveredPercent }}) {
+function BoliviaCardsData({ data: { critical, tests, lethalityPercent, recoveredPercent, mortalityRate, effectiveLethalityRate }}) {
   if(!lethalityPercent) {
     return (<CardLoader />)
   }
@@ -44,24 +47,40 @@ function BoliviaCardsData({ data: { critical, tests, lethalityPercent, recovered
             <h5>Tasa de Letalidad</h5>
             <h3><FontAwesomeIcon className="text-danger" icon={faSkullCrossbones} /> { lethalityPercent }%</h3>
             
-            <h5>Estado Critico</h5>
-            <h3><FontAwesomeIcon className="text-warning" icon={faProcedures} /> { numberWithCommas(critical) } </h3>
+            <h5>Tasa de Mortalidad</h5>
+            <h3>
+              <FontAwesomeIcon className="text-warning" icon={faExclamationTriangle} /> { mortalityRate }<span>/100mil hab.</span>
+            </h3>
+
+            <h5>Nro. Tests</h5>
+            <h3><FontAwesomeIcon className="text-info" icon={faMicroscope} /> { numberWithCommas(tests) }</h3>
           </Col>
           <Col xs="6" md="6">
             <h5>Tasa de Recuperacion</h5>
             <h3><FontAwesomeIcon className="text-success" icon={faHandHoldingMedical} /> { recoveredPercent }%</h3>
             
-            <h5>Nro. Tests</h5>
-            <h3><FontAwesomeIcon className="text-info" icon={faMicroscope} /> { numberWithCommas(tests) }</h3>
+            <h5>T. de Letalidad Efectiva</h5>
+            <h3>
+              <FontAwesomeIcon className="text-tertiary" icon={faSkull} /> { effectiveLethalityRate }%
+            </h3>
+
+            <h5>Estado Crítico</h5>
+            <h3><FontAwesomeIcon className="text-purple" icon={faProcedures} /> { numberWithCommas(critical) } </h3>
           </Col>
-          <Col xs="12">
+          {/*<Col xs="12">
             <div className="chart-area">
               <Bar
                 data={chartExample3.data}
                 options={chartExample3.options}
               />
             </div>
+  </Col>*/}
+
+          <Col xs="12">
+            <p style={{marginBottom: '9px'}}><strong>Nota:</strong> Los datos de <b>Nro. de Test</b> y <b>Estado Crítico</b> no se actualizan diariamente.</p>
           </Col>
+          
+
         </Row>
 
         </CardBody>

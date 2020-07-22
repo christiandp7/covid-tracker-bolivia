@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import cx from 'classnames'
+import moment from 'moment'
 
 import ChartLoader from '../../Loaders/ChartLoader'
 
@@ -29,7 +30,7 @@ function SudChart({ timeline, data }) {
 
   const [historical, setHistorical] = useState(timeline)
   const [recordsNumber, setRecordsNumber] = useState(30)
-  const [habNumber, setHabNumber] = useState(100000)
+  const [habNumber, setHabNumber] = useState(1000000)
   const [eje, setEje] = useState('fechas')
 
   // Tooltips
@@ -78,7 +79,7 @@ function SudChart({ timeline, data }) {
           <Col className="text-left" sm="6" xs="8">
             {/*<h5>Últimos 30 días | Última actualización: {}</h5>*/}
             {/*<p>Últimos {recordsNumber} días</p>*/}
-            <p>En valor Absoluto</p>
+            <h5>Últimos { recordsNumber } días | Última actualización: { moment(timeline[0].lastUpdate).format('DD/MM/YYYY') }</h5>
             <CardTitle tag="h2">
               <i className="tim-icons icon-chart-bar-32 text-Info" /> Casos Confirmados
             </CardTitle>
@@ -91,10 +92,10 @@ function SudChart({ timeline, data }) {
                 className="width-auto"
                 onChange={(e) => setHabNumber(e.target.value)}
               >
-                <option value="5000">Por cada 5,000 habitantes</option>
-                <option value="50000">Por cada 50,000 habitantes</option>
-                <option value="100000">Por cada 100,000 habitantes</option>
-                <option value="1000000">Por cada 1,000,000 habitantes</option>
+                <option value="5000">Por cada 5.000 habitantes</option>
+                <option value="50000">Por cada 50.000 habitantes</option>
+                <option value="100000">Por cada 100.000 habitantes</option>
+                <option value="1000000">Por cada 1.000.000 habitantes</option>
                 <option value="acumulados">Total Acumulados</option>
                 <option value="diarios">Total Diarios</option>
               </Input> 
@@ -122,9 +123,9 @@ function SudChart({ timeline, data }) {
               </Col>
               <Col sm="6" xs="12">
                 <FormGroup>
-                  <Label for="recordsNumerSelect">Nro. de días</Label> &nbsp; <i className="tim-icons icon-alert-circle-exc" id="tooltipDias"></i>
+                  <Label for="recordsNumerSelect">Rango</Label> &nbsp; <i className="tim-icons icon-alert-circle-exc" id="tooltipDias"></i>
                   <CustomTooltip placement="top" target="tooltipDias">
-                  Selecciona la cantidad de días hasta el último regitro.
+                    Selecciona el rango de días para la serie de dato.
                   </CustomTooltip>
                   <Input 
                     type="select" 

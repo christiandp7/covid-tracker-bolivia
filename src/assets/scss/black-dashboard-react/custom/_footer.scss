@@ -57,7 +57,14 @@
         width: 100%;
         text-align: center;
         margin-top: 20px;
+        margin-bottom: 30px;
         padding: 0 15px;
+
+        .dp-logo {
+          max-width: 200px;
+          margin-top: 25px;
+          margin-bottom: 10px;
+        }
     }
 
     &:after{

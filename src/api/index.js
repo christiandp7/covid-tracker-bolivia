@@ -1,7 +1,7 @@
 //https://covid19.mathdro.id/api/countries/BO
 //https://covid19.mathdro.id/api/countries/BO/confirmed
 import axios from 'axios'
-import { roundNumber, getLethalityRate, getRecoveredRate } from '../variables/math'
+import { roundNumber, getLethalityRate, getRecoveredRate, getMortalityRate, getEffectiveLethalityRate } from '../variables/math'
 
 
 
@@ -30,12 +30,17 @@ export const fetchBOGeneralData = async () => {
         todayRecovered,
         active,
         critical,
-        tests
+        tests,
+        population
       } 
     } = await axios.get(url3);
 
     let lethalityPercent = getLethalityRate(deaths, cases);
     let recoveredPercent = getRecoveredRate(recovered, cases);
+    
+    let mortalityRate = getMortalityRate(deaths, population);
+    let effectiveLethalityRate = getEffectiveLethalityRate(cases, deaths, active);
+
 
 
     //console.log(confirmed.value +"/"+recovered.value)
@@ -51,7 +56,9 @@ export const fetchBOGeneralData = async () => {
       critical,
       tests,
       lethalityPercent,
-      recoveredPercent
+      recoveredPercent,
+      mortalityRate,
+      effectiveLethalityRate
     }
   } catch (error) {
     console.log(error);
@@ -106,7 +113,7 @@ const selCountries = [
   "Chile",
   "Colombia",
   "Ecuador",
-  "Falkland Islands (Malvinas)",
+  //"Falkland Islands (Malvinas)",
   "French Guiana",
   "Guyana",
   "Paraguay",

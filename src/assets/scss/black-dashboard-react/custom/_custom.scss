@@ -5,6 +5,13 @@
 .text-tertiary {
   color: $tertiary;
 }
+.text-purple {
+  color: $purple;
+}
+.alert-primary.strong-color{
+  background-color: #2dce89 !important;
+} 
+
 
 .toggle-switch {
 
@@ -45,7 +52,7 @@
   }
   
   input:checked + label {
-    background: #1d8cf8;
+    background: #2dce89; // #1d8cf8;
   }
   
   input:checked + label:after {
@@ -59,6 +66,15 @@
 }
 
 
+.hits-counter {
+  //padding-top: 8px;
+  padding-left: 10px;
+  padding-right: 20px;
+  .alert {
+    margin-top: .6rem;
+    padding: 0.5rem 1.25rem;
+  }
+}
 
 
 .not_found_img {
@@ -91,7 +107,72 @@
 
 .card-chart {
   .btn-group {
-    margin-bottom: 22px;
+    //margin-bottom: 22px;
+    margin-bottom: .75rem;
+  }
+}
+
+
+.card {
+  .card-body {
+    h3 {
+      span {
+        font-size: .5em;
+      }
+    }
+
+  }
+}
+
+// SOCIAL SHARE BUTTONS
+
+.social-share-buttons {
+  position: absolute;
+  bottom: 35px;
+  text-align: center;
+  display: block;
+  width: 100%;
+  button {
+    margin: 0 5px;
+    outline: none;
+    -webkit-transition: ease 300ms all;
+    transition: ease 300ms all;
+    &:hover {
+      -moz-transform: translateY(-4px);
+      -webkit-transform: translateY(-4px);
+      -o-transform: translateY(-4px);
+      -ms-transform: translateY(-4px);
+      transform: translateY(-4px);
+    }
+  }
+}
+
+
+/* New logos Styles */
+.qec_logo {
+  text-align: center;
+  text-transform: none !important;
+  margin-bottom: 0;
+  font-size: 1.4em;
+}
+.navbar-brand {
+  .logo {
+    .logo-img{
+      max-width: 55px;
+    }
+    .logo-text {
+      display: inline;
+      font-size: 1.2em;
+      padding-left: 8px;
+    }
+  }
+}
+
+.navbar.bg-white {
+  .logo {
+    .logo-text {
+      color: $default;
+    }
   }
 }
 
@@ -103,6 +184,41 @@
 
 
 /* Sidebar retrac */
+@media (max-width: 992px){
+  .toggle-switch {
+    display: block;
+    float: right;
+  }
+  .hits-counter {
+    float: right;
+    padding: 15px 0;
+    .alert {
+      display: inline;
+    }
+  }
+  .navbar.bg-white .navbar-brand {
+    .quedate_en_casa {
+      color: $default;
+    }
+  }
+  .social-share-buttons {
+    position: static;
+    margin-top: 50px;
+  }
+
+  .navbar-brand {
+    .logo {
+      .logo-img{
+        max-width: 40px;
+      }
+      .logo-text {
+        font-size: 1em;
+      }
+    }
+  }
+
+}
+
 
 @media (max-width: 768px){
   .quedate_en_casa {
@@ -111,10 +227,16 @@
   .navbar .navbar-brand {
     padding-top: 0px !important;
   }
-  .toggle-switch {
-    display: block;
-    float: right;
+  .navbar-brand {
+    .logo {
+      .logo-img{
+        max-width: 36px;
+      }
+      .logo-text {
+      }
+    }
   }
+  
 }
 
 

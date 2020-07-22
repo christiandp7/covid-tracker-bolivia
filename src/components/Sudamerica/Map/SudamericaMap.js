@@ -17,6 +17,7 @@ function SudamericaMap({ data }) {
   //const [hovered, setHovered] = useState('None');
   const [country, setCountry] = useState('');
 
+  
   const getCountrySelectedData = (allData) => {
     allData.map((co) => {
       if(co.countryInfo.iso2.toLowerCase() === country){

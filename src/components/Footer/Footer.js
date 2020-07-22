@@ -27,6 +27,9 @@ import jhuLogo from '../../assets/img/JHU-white.png'
 import worddometersLogo from '../../assets/img/worldometers.jpg'
 import bolsegLogo from '../../assets/img/bolseg.png'
 
+import dpLogo from '../../assets/img/dp1.png'
+
+
 class Footer extends React.Component {
   render() {
     return (
@@ -67,9 +70,11 @@ class Footer extends React.Component {
           */}
           
           <div className="copyright">
+            <img className="img-responsive dp-logo" src={dpLogo} />
+            <br />
             © {new Date().getFullYear()} | Desarrollado por{" "}
              <a
-              href="https://diazportela.com"
+              href="https://www.linkedin.com/in/christiandp7/"
               target="_blank"
               className="text-info"
             >

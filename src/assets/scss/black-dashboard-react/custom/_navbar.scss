@@ -106,7 +106,7 @@
     color: $white;
     margin-left: 0;
     margin-top: 0;
-    text-transform: uppercase;
+    //text-transform: uppercase;
     font-size: $font-paragraph;
   }
 
@@ -437,11 +437,7 @@
       font-size: 1.2em;
     }
   }
-  .navbar.bg-white .navbar-brand {
-    .quedate_en_casa {
-      color: $default;
-    }
-  }
+  
 }
 
 

@@ -7,7 +7,7 @@ export const roundNumber = (num, decimals=0) => {
 
 export const numberWithCommas = (xnum) => {
   if(xnum === 0) return 0;
-  if(xnum) return xnum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  if(xnum) return xnum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
 export const valuePerHab = (numHab, value, population) => {

@@ -20,11 +20,9 @@ import {
 
 import CustomTooltip from '../../Tooltip/CustomTooltip'
 
-import { fetchDepartmentsStatus, fetchDepartmentsDailyStatus } from '../../../api'
-
 import DepartmentsChartDataset from './DepartmentsChartDataset'
 
-function DepartmensChart({ timeline, data }) {
+function StadisticsDepChart({ data }) {
 
   const [historical, setHistorical] = useState(timeline)
   const [status, setStatus] = useState('cases')
@@ -70,7 +68,7 @@ function DepartmensChart({ timeline, data }) {
       <CardHeader>
         <Row>
           <Col className="text-left" sm="6" xs="12">
-            <h5>Últimos 30 días | Última actualización: {data[0].date}</h5>
+            <h5>Últimos { recordsNumber } días | Última actualización: {data[0].date}</h5>
             {/*<p>Últimos {recordsNumber} días</p>*/}
             <CardTitle tag="h2">
               <i className="tim-icons icon-chart-bar-32 text-Info" /> { statusName }
@@ -84,10 +82,10 @@ function DepartmensChart({ timeline, data }) {
                 className="width-auto"
                 onChange={(e) => setHabNumber(e.target.value)}
               >
-                <option value="5000">Por cada 5,000 habitantes</option>
-                <option value="50000">Por cada 50,000 habitantes</option>
-                <option value="100000">Por cada 100,000 habitantes</option>
-                <option value="1000000">Por cada 1,000,000 habitantes</option>
+                <option value="5000">Por cada 5.000 habitantes</option>
+                <option value="50000">Por cada 50.000 habitantes</option>
+                <option value="100000">Por cada 100.000 habitantes</option>
+                <option value="1000000">Por cada 1.000.000 habitantes</option>
                 <option value="totales">Valores Totales</option>
               </Input> 
             </FormGroup>
@@ -104,7 +102,7 @@ function DepartmensChart({ timeline, data }) {
                     className={cx("btn-simple", {
                       active: status === "cases"
                     })}
-                    color="info"
+                    color="primary"
                     id="0"
                     size="sm"
                     onClick={() => setStatus("cases") }
@@ -123,7 +121,7 @@ function DepartmensChart({ timeline, data }) {
                     </span>
                   </Button>
                   <Button
-                    color="info"
+                    color="primary"
                     id="2"
                     size="sm"
                     tag="label"
@@ -145,7 +143,7 @@ function DepartmensChart({ timeline, data }) {
                     </span>
                   </Button>
                   <Button
-                    color="info"
+                    color="primary"
                     id="2"
                     size="sm"
                     tag="label"
@@ -167,7 +165,7 @@ function DepartmensChart({ timeline, data }) {
                     </span>
                   </Button>
                   <Button
-                    color="info"
+                    color="primary"
                     id="1"
                     size="sm"
                     tag="label"
@@ -192,9 +190,9 @@ function DepartmensChart({ timeline, data }) {
                 </Col>
               <Col sm="6" xs="12">
                 <FormGroup>
-                  <Label for="select1">Ponderación</Label> &nbsp; <i className="tim-icons icon-alert-circle-exc" id="tooltipPond"></i> 
+                  <Label for="select1">Serie</Label> &nbsp; <i className="tim-icons icon-alert-circle-exc" id="tooltipPond"></i> 
                   <CustomTooltip placement="top" target="tooltipPond">
-                    Cambia la ponderación de los valores entre Acumulados y Diarios
+                    Cambia la serie de datos entre diarios y acumulados.
                   </CustomTooltip>
                   <Input 
                     type="select" 
@@ -210,9 +208,9 @@ function DepartmensChart({ timeline, data }) {
               </Col>
               <Col sm="6" xs="12">
                 <FormGroup>
-                  <Label for="recordsNumerSelect">Nro. de días</Label> &nbsp; <i className="tim-icons icon-alert-circle-exc" id="tooltipDias"></i>
+                  <Label for="recordsNumerSelect">Rango</Label> &nbsp; <i className="tim-icons icon-alert-circle-exc" id="tooltipDias"></i>
                   <CustomTooltip placement="top" target="tooltipDias">
-                  Selecciona la cantidad de días hasta el último regitro.
+                    Selecciona el rango de días para la serie de dato.
                   </CustomTooltip>
                   <Input 
                     type="select" 
@@ -239,13 +237,13 @@ function DepartmensChart({ timeline, data }) {
         <div className="chart-area">
 
           
-          <DepartmentsChartDataset 
+        {/*<DepartmentsChartDataset 
             timeline={historical} 
             data={data} 
             hab={habNumber} 
-            /*recordsNum={recordsNumber}
-            eje={eje} */
-          />
+            recordsNum={recordsNumber}
+            eje={eje}
+        /> */}
 
         </div>
       </CardBody>
@@ -253,4 +251,4 @@ function DepartmensChart({ timeline, data }) {
   )
 }
 
-export default DepartmensChart
+export default StadisticsDepChart

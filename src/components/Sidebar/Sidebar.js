@@ -9,6 +9,7 @@ import PerfectScrollbar from "perfect-scrollbar";
 // reactstrap components
 import { Nav, NavLink as ReactstrapNavLink } from "reactstrap";
 
+import ShareButtons from '../ShareButtons/ShareButtons'
 
 //Icons
 import BoliviaIcon from '../CustomIcons/BoliviaIcon'
@@ -96,12 +97,18 @@ class Sidebar extends React.Component {
     return (
       <div className="sidebar" data={bgColor}>
         <div className="sidebar-wrapper" ref="sidebar">
-          {logoImg !== null || logoText !== null ? (
+          {/*logoImg !== null || logoText !== null ? (
             <div className="logo">
               {logoImg}
               {logoText}
             </div>
-          ) : null}
+          ) : null*/}
+          <div className="logo">
+            <h4 className="simple-text logo-normal qec_logo">
+              <span className="text-default" >#</span>
+              QuedateEnCasa
+            </h4>
+          </div>
           <Nav>
             {routes.map((prop, key) => {
               if (prop.redirect) return null;
@@ -137,6 +144,9 @@ class Sidebar extends React.Component {
               );
             })}
           </Nav>
+
+            <ShareButtons />
+
         </div>
       </div>
     );
