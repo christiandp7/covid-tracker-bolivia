@@ -79,7 +79,7 @@ function BoliviaCardsData({ data: { tests, lethalityPercent, recoveredPercent, m
   </Col>*/}
 
           <Col xs="12">
-            <p style={{marginBottom: '9px'}}><strong>Nota:</strong> Los datos de <b>Nro. de Test</b> no se actualizan diariamente, en ocaciones tardan semanas.</p>
+            <p style={{marginBottom: '9px'}}><strong>Nota:</strong> Los datos de <b>Nro. de Test</b> no se actualizan diariamente, en ocasiones tardan semanas.</p>
           </Col>
           
 
