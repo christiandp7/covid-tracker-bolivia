@@ -3,6 +3,10 @@ import CardLoader from '../../Loaders/CardsLoaderBo'
 import CountUp from 'react-countup'
 
 import {
+  sumBOTodayStatus
+} from '../../../variables/math'
+
+import {
   Row,
   Col,
   Card,
@@ -11,7 +15,7 @@ import {
 } from "reactstrap";
 
 
-function BoliviaCards({ data: { cases, todayCases, deaths, todayDeaths, recovered, todayRecovered, active }}) {
+function BoliviaCards({ deps, data: { cases, todayCases, deaths, todayDeaths, recovered, todayRecovered, active }}) {
 
   if(!cases) {
     return ( <CardLoader /> )
@@ -26,7 +30,7 @@ function BoliviaCards({ data: { cases, todayCases, deaths, todayDeaths, recovere
                   <CardTitle tag="h2">
                     <i className="tim-icons icon-single-02 text-info" /> <CountUp start={0} end={cases} duration={2} separator="," />
                   </CardTitle>
-                  <h5>Hoy: <CountUp start={0} end={todayCases} duration={2} separator="," /></h5>
+                  <h5>Hoy: <CountUp start={0} end={sumBOTodayStatus(deps, 'cases')} duration={2} separator="," /></h5>
                 </CardHeader>
               </Card>
             </Col>
@@ -48,7 +52,7 @@ function BoliviaCards({ data: { cases, todayCases, deaths, todayDeaths, recovere
                   <CardTitle tag="h2">
                     <i className="tim-icons icon-single-02 text-success" /> <CountUp start={0} end={recovered} duration={2} separator="," />
                   </CardTitle>
-                  <h5>Hoy: <CountUp start={0} end={todayRecovered} duration={2} separator="," /></h5>
+                  <h5>Hoy: <CountUp start={0} end={sumBOTodayStatus(deps,'recovered')} duration={2} separator="," /></h5>
                 </CardHeader>
               </Card>
             </Col>
@@ -59,7 +63,7 @@ function BoliviaCards({ data: { cases, todayCases, deaths, todayDeaths, recovere
                   <CardTitle tag="h2">
                     <i className="tim-icons icon-single-02 text-danger" /> <CountUp start={0} end={deaths} duration={2} separator="," />
                   </CardTitle>
-                  <h5>Hoy: <CountUp start={0} end={todayDeaths} duration={2} separator="," /></h5>
+                  <h5>Hoy: <CountUp start={0} end={sumBOTodayStatus(deps,'deaths')} duration={2} separator="," /></h5>
                 </CardHeader>
               </Card>
             </Col>

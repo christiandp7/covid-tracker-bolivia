@@ -51,6 +51,16 @@ export const getIncidenceRate = (cases, population) => { // Percents
 
 
 
+// Bolivia Today Sum
+export const sumBOTodayStatus = (deps, status) => { // Percents
+  let sum = 0;
+  for (let key in deps) {
+    sum += deps[key].today[status];
+  }
+  //console.log(deps)
+  return sum;
+}
+
 
 // SUDAMERICA FUNCTIONS
 

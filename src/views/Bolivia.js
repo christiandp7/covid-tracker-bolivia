@@ -64,7 +64,7 @@ export class Bolivia extends Component {
         <div className="content">
         <SkeletonTheme color="#1e1e2f" highlightColor="#BFBFC5">
 
-          <BoliviaCards data={this.state.genData} />
+          <BoliviaCards data={this.state.genData} deps={this.state.depLastUpdate} />
 
           <Row>
             <Col xs="12" md="6">
