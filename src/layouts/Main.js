@@ -17,7 +17,9 @@ import NotFound from "../views/NotFound.js"
 import logo from "assets/img/covid-logo.png";
 
 // Google Analytics
-import googleAnalytics from '../services/googleAnalytics'
+import Analytics from 'react-router-ga';
+//import googleAnalytics from '../services/googleAnalytics'
+
 
 
 var ps;
@@ -34,7 +36,7 @@ class Admin extends React.Component {
 
 
   componentDidMount() {
-    googleAnalytics();
+    //googleAnalytics();
     /*if (navigator.platform.indexOf("Win") > -1) {
       document.documentElement.className += " perfect-scrollbar-on";
       document.documentElement.classList.remove("perfect-scrollbar-off");
@@ -46,7 +48,6 @@ class Admin extends React.Component {
     }*/
   }
   componentWillUnmount() {
-    googleAnalytics();
     /*if (navigator.platform.indexOf("Win") > -1) {
       ps.destroy();
       document.documentElement.className += " perfect-scrollbar-off";
@@ -54,7 +55,7 @@ class Admin extends React.Component {
     }*/
   }
   componentDidUpdate(e) {
-    
+    //googleAnalytics();
 
 
     /*if (e.history.action === "PUSH") {
@@ -128,16 +129,16 @@ class Admin extends React.Component {
               sidebarOpened={this.state.sidebarOpened}
             />
 
-            <Switch>
-              {this.getRoutes(routes)}
-              <Route exact path="/404" component={NotFound} />
-              <Redirect from="*" to="/404" />
-            </Switch>
 
-            {// we don't want the Footer to be rendered on map page
-            this.props.location.pathname.indexOf("maps") !== -1 ? null : (
-              <Footer fluid />
-            )}
+            <Analytics id="UA-173368431-1" debug>
+              <Switch>
+                {this.getRoutes(routes)}
+                <Route exact path="/404" component={NotFound} />
+                <Redirect from="*" to="/404" />
+              </Switch>
+            </Analytics>
+
+            <Footer fluid />
           </div>
         </div>
         

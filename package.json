@@ -27,6 +27,7 @@
     "react-moment": "^0.9.7",
     "react-notification-alert": "0.0.12",
     "react-router-dom": "5.1.2",
+    "react-router-ga": "^1.2.3",
     "react-scripts": "3.4.0",
     "react-share": "^4.2.1",
     "reactstrap": "8.4.1"
