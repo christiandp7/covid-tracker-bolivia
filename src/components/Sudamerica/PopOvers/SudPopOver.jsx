@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import cx from 'classnames';
-import { numberWithCommas, getLethalityRate, getRecoveredRate } from '../../../variables/math'
+import { numberWithCommas, getLethalityRate, getRecoveredRate, getIncidenceRate } from '../../../variables/math'
 
 import moment from 'moment'
 
@@ -23,6 +23,7 @@ import {
   faUserCheck,
   faUserTimes,
   faUserTag,
+  faPeopleArrows
 } from '@fortawesome/free-solid-svg-icons'
 
 const SudPopOver = ({ countryTarget, data, mapa }) => {
@@ -30,11 +31,12 @@ const SudPopOver = ({ countryTarget, data, mapa }) => {
   //console.log('target ' + countryTarget)
   //console.log(data)
 
+  //console.log(data)
 
 
   const [popovertrigger, setpopovertrigger] = useState(mapa)
 
-  const [popoverOpen, setPopoverOpen] = useState(false);
+  const [popoverOpen, setPopoverOpen] = useState(true);
   const togglePopover = (e) => {
     //console.log(e);    
     //console.log(e.target.parentNode.parentNode.id);
@@ -80,6 +82,10 @@ const SudPopOver = ({ countryTarget, data, mapa }) => {
   }
 
 
+
+  if(!data) {
+    return null
+  }
   
   return (
     <div>
@@ -93,12 +99,12 @@ const SudPopOver = ({ countryTarget, data, mapa }) => {
         //offset={100}
       >
         <PopoverHeader>
-          <img className="avatar flag" src={data.flag} />
-          { data.name }
+          <img className="avatar flag" src={data.countryInfo.flag} />
+          { data.country }
         </PopoverHeader>
         <PopoverBody>
 
-        <h5>Última Actualización: { moment(data.lastUpdate).format("DD/MM/YY - HH:MM:SS") }</h5>
+        <h5>Última Actualización: { moment(data.updated).format("DD/MM/YY") }</h5>
 
           <Nav tabs>
             <NavItem>
@@ -186,9 +192,9 @@ const SudPopOver = ({ countryTarget, data, mapa }) => {
                   <h5>
                     <FontAwesomeIcon className="text-danger" icon={faSkullCrossbones} /> { getLethalityRate(data.deaths, data.cases) }%
                   </h5>
-                  <h5>Estado Critico</h5>
+                  <h5>Tasa de Incidencia</h5>
                   <h5>
-                    <FontAwesomeIcon className="text-warning" icon={faProcedures} /> { numberWithCommas(data.critical) } 
+                    <FontAwesomeIcon className="text-warning" icon={faPeopleArrows} /> { getIncidenceRate(data.cases, data.population) }<small>/100mil hab.</small>
                   </h5>
                 </Col>
                 <Col xs="6">

@@ -22,12 +22,14 @@ import {
   faProcedures,
   faMicroscope,
   faHandHoldingMedical,
+  faViruses,
+  faPeopleArrows
 } from '@fortawesome/free-solid-svg-icons'
 
 
 import { chartExample3 } from "variables/charts.js";
 
-function BoliviaCardsData({ data: { critical, tests, lethalityPercent, recoveredPercent, mortalityRate, effectiveLethalityRate }}) {
+function BoliviaCardsData({ data: { tests, lethalityPercent, recoveredPercent, mortalityRate, effectiveLethalityRate, incidenceRate }}) {
   if(!lethalityPercent) {
     return (<CardLoader />)
   }
@@ -43,7 +45,7 @@ function BoliviaCardsData({ data: { critical, tests, lethalityPercent, recovered
         <CardBody>
 
         <Row>
-          <Col xs="6" md="6">
+          <Col xs="12" sm="6" md="6">
             <h5>Tasa de Letalidad</h5>
             <h3><FontAwesomeIcon className="text-danger" icon={faSkullCrossbones} /> { lethalityPercent }%</h3>
             
@@ -55,7 +57,7 @@ function BoliviaCardsData({ data: { critical, tests, lethalityPercent, recovered
             <h5>Nro. Tests</h5>
             <h3><FontAwesomeIcon className="text-info" icon={faMicroscope} /> { numberWithCommas(tests) }</h3>
           </Col>
-          <Col xs="6" md="6">
+          <Col xs="12" sm="6" md="6">
             <h5>Tasa de Recuperacion</h5>
             <h3><FontAwesomeIcon className="text-success" icon={faHandHoldingMedical} /> { recoveredPercent }%</h3>
             
@@ -64,8 +66,8 @@ function BoliviaCardsData({ data: { critical, tests, lethalityPercent, recovered
               <FontAwesomeIcon className="text-tertiary" icon={faSkull} /> { effectiveLethalityRate }%
             </h3>
 
-            <h5>Estado Crítico</h5>
-            <h3><FontAwesomeIcon className="text-purple" icon={faProcedures} /> { numberWithCommas(critical) } </h3>
+            <h5>Incidencia</h5>
+            <h3><FontAwesomeIcon className="text-purple" icon={faPeopleArrows} /> { numberWithCommas(incidenceRate) }<span>/100mil hab.</span> </h3>
           </Col>
           {/*<Col xs="12">
             <div className="chart-area">
@@ -77,7 +79,7 @@ function BoliviaCardsData({ data: { critical, tests, lethalityPercent, recovered
   </Col>*/}
 
           <Col xs="12">
-            <p style={{marginBottom: '9px'}}><strong>Nota:</strong> Los datos de <b>Nro. de Test</b> y <b>Estado Crítico</b> no se actualizan diariamente.</p>
+            <p style={{marginBottom: '9px'}}><strong>Nota:</strong> Los datos de <b>Nro. de Test</b> no se actualizan diariamente, en ocaciones tardan semanas.</p>
           </Col>
           
 

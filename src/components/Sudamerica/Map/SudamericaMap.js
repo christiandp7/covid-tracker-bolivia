@@ -18,7 +18,7 @@ function SudamericaMap({ data }) {
   const [country, setCountry] = useState('');
 
   
-  const getCountrySelectedData = (allData) => {
+  /*const getCountrySelectedData = (allData) => {
     allData.map((co) => {
       if(co.countryInfo.iso2.toLowerCase() === country){
         //return country.country
@@ -33,16 +33,19 @@ function SudamericaMap({ data }) {
         countryData.todayDeaths = co.todayDeaths;
         countryData.todayRecovered = co.todayRecovered;
 
-        countryData.critical = co.critical;
+        countryData.population = co.population;
         countryData.tests = co.tests;
 
         countryData.lastUpdate = co.updated;
       }
     })
     return countryData;
+  }*/
+
+
+  const getCountrySelectedData = (allData) => {
+    return allData.find(co => co.countryInfo.iso2.toLowerCase() === country)
   }
-
-
 
   const handleCountryClick = (eltarget) => {
     

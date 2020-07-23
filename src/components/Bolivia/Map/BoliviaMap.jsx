@@ -17,10 +17,9 @@ function BoliviaMap({ data }) {
   const [dep, setDep] = useState('');
 
   
+  let departmentData = {};
 
-
-  const getDepSelectedData = (allDeps) => {
-    let departmentData = {};
+  /*const getDepSelectedData = (allDeps) => {
     allDeps.map((department) => {
       if(department.iso.toLowerCase() === dep){
         //return country.country
@@ -45,6 +44,11 @@ function BoliviaMap({ data }) {
       }
     })
     return departmentData;
+  }*/
+
+  const getDepSelectedData = (allDeps) => {
+    //return
+    return allDeps.find(department => department.iso === dep)
   }
 
 

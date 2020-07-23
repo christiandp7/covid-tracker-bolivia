@@ -43,6 +43,14 @@ export const getEffectiveLethalityRate = (cases, deaths, active) => { // Percent
   return roundNumber(((deaths * 100) / (cases - active)), 2)
 }
 
+// Incidence
+export const getIncidenceRate = (cases, population) => { // Percents
+  return roundNumber(((cases * 100000) / population), 2)
+}
+
+
+
+
 
 // SUDAMERICA FUNCTIONS
 

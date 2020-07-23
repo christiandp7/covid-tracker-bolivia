@@ -23,9 +23,10 @@ import {
   faUserCheck,
   faUserTimes,
   faUserTag,
+  faPeopleArrows
 } from '@fortawesome/free-solid-svg-icons'
 
-function SudCardData({ data: { cases, active, deaths, recovered, critical, tests, lethalityPercent, recoveredPercent } }) {
+function SudCardData({ data: { cases, active, deaths, recovered, tests, lethalityPercent, recoveredPercent, incidenceRate } }) {
   if(!cases) {
     return (<CardLoader />)
   }
@@ -87,9 +88,9 @@ function SudCardData({ data: { cases, active, deaths, recovered, critical, tests
               <h4>
                 <FontAwesomeIcon className="text-danger" icon={faSkullCrossbones} /> { lethalityPercent }%
               </h4>
-              <h5>Estado Critico</h5>
+              <h5>Tasa de Incidencia</h5>
               <h4>
-                <FontAwesomeIcon className="text-warning" icon={faProcedures} /> { numberWithCommas(critical) } 
+                <FontAwesomeIcon className="text-warning" icon={faPeopleArrows} /> { incidenceRate }<span className="ext">/100mil hab.</span>
               </h4>
             </Col>
             <Col xs="6" md="6">

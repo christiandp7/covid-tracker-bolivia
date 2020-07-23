@@ -45,7 +45,6 @@ function SudamericaTable({ data }) {
               <th>Recuperados</th>
               <th>Decesos</th>
               <th>Nro. Tests</th>
-              <th>Estado Crítico</th>
               <th>Población</th>
             </tr>
           </thead>
@@ -71,7 +70,6 @@ function SudamericaTable({ data }) {
                   <td>{numberWithCommas(country.recovered)}</td>
                   <td>{numberWithCommas(country.deaths)}</td>
                   <td>{numberWithCommas(country.tests)}</td>
-                  <td>{numberWithCommas(country.critical)}</td>
                   <td>{numberWithCommas(country.population)}</td>
 
 

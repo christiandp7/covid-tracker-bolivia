@@ -1,7 +1,14 @@
 //https://covid19.mathdro.id/api/countries/BO
 //https://covid19.mathdro.id/api/countries/BO/confirmed
 import axios from 'axios'
-import { roundNumber, getLethalityRate, getRecoveredRate, getMortalityRate, getEffectiveLethalityRate } from '../variables/math'
+import { 
+  roundNumber,
+  getLethalityRate,
+  getRecoveredRate,
+  getMortalityRate,
+  getEffectiveLethalityRate,
+  getIncidenceRate
+ } from '../variables/math'
 
 
 
@@ -29,7 +36,7 @@ export const fetchBOGeneralData = async () => {
         recovered,
         todayRecovered,
         active,
-        critical,
+        //critical,
         tests,
         population
       } 
@@ -41,6 +48,7 @@ export const fetchBOGeneralData = async () => {
     let mortalityRate = getMortalityRate(deaths, population);
     let effectiveLethalityRate = getEffectiveLethalityRate(cases, deaths, active);
 
+    let incidenceRate = getIncidenceRate(cases, population);
 
 
     //console.log(confirmed.value +"/"+recovered.value)
@@ -53,12 +61,13 @@ export const fetchBOGeneralData = async () => {
       recovered, 
       todayRecovered,
       active, 
-      critical,
+      //critical,
       tests,
       lethalityPercent,
       recoveredPercent,
       mortalityRate,
-      effectiveLethalityRate
+      effectiveLethalityRate,
+      incidenceRate
     }
   } catch (error) {
     console.log(error);
@@ -133,23 +142,26 @@ export const fetchSudGeneralData = async () => {
       deaths,
       recovered,
       active,
-      critical,
+      //critical,
+      population,
       tests
     } 
   }  = await axios.get(url4);
 
     let lethalityPercent = getLethalityRate(deaths, cases);
     let recoveredPercent = getRecoveredRate(recovered, cases);
+    let incidenceRate = getIncidenceRate(cases, population);
 
     return { 
       cases ,
       deaths, 
       recovered, 
       active, 
-      critical,
+      //critical,
       tests,
       lethalityPercent,
-      recoveredPercent
+      recoveredPercent,
+      incidenceRate
     }
 
   } catch (error) {
