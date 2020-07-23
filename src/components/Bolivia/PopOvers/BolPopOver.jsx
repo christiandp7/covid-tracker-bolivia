@@ -207,7 +207,7 @@ const BolPopOver = ({ depTarget, data, mapa }) => {
                   <h5>
                     <FontAwesomeIcon className="text-warning" icon={faExclamationTriangle} /> { getMortalityRate(data.total.deaths, data.population) }<small>/100mil hab.</small>
                   </h5>
-                  <h5>T. de Recuperacion</h5>
+                  <h5>T. de Recuperación</h5>
                   <h5>
                     <FontAwesomeIcon className="text-success" icon={faHandHoldingMedical} /> { getRecoveredRate(data.total.recovered, data.total.cases) }%
                   </h5>

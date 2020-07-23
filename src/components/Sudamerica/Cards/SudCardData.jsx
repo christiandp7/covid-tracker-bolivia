@@ -94,7 +94,7 @@ function SudCardData({ data: { cases, active, deaths, recovered, tests, lethalit
               </h4>
             </Col>
             <Col xs="6" md="6">
-            <h5>Tasa de Recuperacion</h5>
+            <h5>Tasa de Recuperación</h5>
             <h4>
               <FontAwesomeIcon className="text-success" icon={faHandHoldingMedical} /> { recoveredPercent }%
             </h4>

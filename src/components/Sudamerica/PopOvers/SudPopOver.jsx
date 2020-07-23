@@ -198,7 +198,7 @@ const SudPopOver = ({ countryTarget, data, mapa }) => {
                   </h5>
                 </Col>
                 <Col xs="6">
-                  <h5>Tasa de Recuperacion</h5>
+                  <h5>Tasa de Recuperación</h5>
                   <h5>
                     <FontAwesomeIcon className="text-success" icon={faHandHoldingMedical} /> { getRecoveredRate(data.recovered, data.cases) }%
                   </h5>

@@ -58,7 +58,7 @@ function BoliviaCardsData({ data: { tests, lethalityPercent, recoveredPercent, m
             <h3><FontAwesomeIcon className="text-info" icon={faMicroscope} /> { numberWithCommas(tests) }</h3>
           </Col>
           <Col xs="12" sm="6" md="6">
-            <h5>Tasa de Recuperacion</h5>
+            <h5>Tasa de Recuperación</h5>
             <h3><FontAwesomeIcon className="text-success" icon={faHandHoldingMedical} /> { recoveredPercent }%</h3>
             
             <h5>T. de Letalidad Efectiva</h5>
