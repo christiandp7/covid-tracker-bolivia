@@ -130,7 +130,7 @@ class Admin extends React.Component {
             />
 
 
-            <Analytics id="UA-173368431-1" debug>
+            <Analytics id="UA-173368431-1">
               <Switch>
                 {this.getRoutes(routes)}
                 <Route exact path="/404" component={NotFound} />
