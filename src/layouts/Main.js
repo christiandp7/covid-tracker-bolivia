@@ -16,6 +16,10 @@ import NotFound from "../views/NotFound.js"
 // Assets
 import logo from "assets/img/covid-logo.png";
 
+// Google Analytics
+import ReactGA from 'react-ga';
+
+
 var ps;
 
 class Admin extends React.Component {
@@ -27,6 +31,8 @@ class Admin extends React.Component {
         document.documentElement.className.indexOf("nav-open") !== -1
     };
   }
+
+
   componentDidMount() {
     /*if (navigator.platform.indexOf("Win") > -1) {
       document.documentElement.className += " perfect-scrollbar-on";
@@ -46,6 +52,10 @@ class Admin extends React.Component {
     }*/
   }
   componentDidUpdate(e) {
+    ReactGA.initialize('UA-173368431-1');
+    ReactGA.pageview(window.location.pathname + window.location.search);
+
+
     /*if (e.history.action === "PUSH") {
       if (navigator.platform.indexOf("Win") > -1) {
         let tables = document.querySelectorAll(".table-responsive");
