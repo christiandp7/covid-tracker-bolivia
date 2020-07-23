@@ -17,7 +17,7 @@ import NotFound from "../views/NotFound.js"
 import logo from "assets/img/covid-logo.png";
 
 // Google Analytics
-import ReactGA from 'react-ga';
+import googleAnalytics from '../services/googleAnalytics'
 
 
 var ps;
@@ -34,6 +34,7 @@ class Admin extends React.Component {
 
 
   componentDidMount() {
+    googleAnalytics();
     /*if (navigator.platform.indexOf("Win") > -1) {
       document.documentElement.className += " perfect-scrollbar-on";
       document.documentElement.classList.remove("perfect-scrollbar-off");
@@ -45,6 +46,7 @@ class Admin extends React.Component {
     }*/
   }
   componentWillUnmount() {
+    googleAnalytics();
     /*if (navigator.platform.indexOf("Win") > -1) {
       ps.destroy();
       document.documentElement.className += " perfect-scrollbar-off";
@@ -52,8 +54,7 @@ class Admin extends React.Component {
     }*/
   }
   componentDidUpdate(e) {
-    ReactGA.initialize('UA-173368431-1');
-    ReactGA.pageview(window.location.pathname + window.location.search);
+    
 
 
     /*if (e.history.action === "PUSH") {
