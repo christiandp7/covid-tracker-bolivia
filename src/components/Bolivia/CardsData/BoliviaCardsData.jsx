@@ -66,7 +66,7 @@ function BoliviaCardsData({ data: { tests, lethalityPercent, recoveredPercent, m
               <FontAwesomeIcon className="text-tertiary" icon={faSkull} /> { effectiveLethalityRate }%
             </h3>
 
-            <h5>Incidencia</h5>
+            <h5>Tasa de Incidencia</h5>
             <h3><FontAwesomeIcon className="text-purple" icon={faPeopleArrows} /> { numberWithCommas(incidenceRate) }<span>/100mil hab.</span> </h3>
           </Col>
           {/*<Col xs="12">
