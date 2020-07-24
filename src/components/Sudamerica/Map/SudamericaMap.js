@@ -43,6 +43,9 @@ function SudamericaMap({ data }) {
   }*/
 
 
+
+
+
   const getCountrySelectedData = (allData) => {
     return allData.find(co => co.countryInfo.iso2.toLowerCase() === country)
   }

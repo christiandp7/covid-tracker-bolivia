@@ -1,0 +1,29 @@
+.tooltip {
+  .tooltip-inner {
+    text-align: left !important;
+  }
+  .tooltip-inner.tooltip-data {
+    width: 260px;
+    max-width: 100%;
+    div {      
+      margin-bottom: 5px;
+    }
+    .ecu {
+      //display: block;
+      margin-bottom: 6px;
+      width: 100%;
+      text-align: center;
+      font-weight: 600;
+    }
+  }
+}
+
+
+
+/*.tooltip-data {
+  text-align: left !important;
+  .ecu {
+    text-align: center;
+    font-weight: 600;
+  }
+}*/

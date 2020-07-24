@@ -98,7 +98,7 @@
 }
 
 .card-chart.sud-chart .chart-area {
-  height: 350px;
+  height: 380px;
 }
 .card-chart.bol-chart .chart-area {
   height: 280px;
@@ -237,14 +237,20 @@
       .logo-img{
         max-width: 36px;
       }
-      .logo-text {
-      }
+      /*.logo-text {
+      }*/
     }
   }
-  
+  .card-chart.sud-chart .chart-area {
+    height: 460px;
+  }
 }
 
-
+@media (max-width: 480px){
+  .card-chart.sud-chart .chart-area {
+    height: 500px;
+  }
+}
 
 
 

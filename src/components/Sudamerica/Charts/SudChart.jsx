@@ -85,6 +85,10 @@ function SudChart({ timeline, data }) {
             </CardTitle>
             {/*<h5>Por cada 100.000 habitantes</h5>*/}
             <FormGroup>
+            <Label for="recordsNumerSelect">Ponderación</Label> &nbsp; <i className="tim-icons icon-alert-circle-exc" id="tooltipPond"></i>
+              <CustomTooltip placement="top" target="tooltipPond">
+                Selecciona La ponderación para cada valor de la serie.
+              </CustomTooltip>
               <Input 
                 type="select" 
                 id="recordsNumerSelect" 
@@ -92,7 +96,6 @@ function SudChart({ timeline, data }) {
                 className="width-auto"
                 onChange={(e) => setHabNumber(e.target.value)}
               >
-                <option value="5000">Por cada 5.000 habitantes</option>
                 <option value="50000">Por cada 50.000 habitantes</option>
                 <option value="100000">Por cada 100.000 habitantes</option>
                 <option value="1000000">Por cada 1.000.000 habitantes</option>

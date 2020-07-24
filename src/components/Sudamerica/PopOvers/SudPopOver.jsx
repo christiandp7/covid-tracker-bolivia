@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import cx from 'classnames';
-import { numberWithCommas, getLethalityRate, getRecoveredRate, getIncidenceRate } from '../../../variables/math'
+import { 
+  numberWithDots,
+  getLethalityRate,
+  getMortalityRate,
+  getRecoveredRate,
+  getEffectiveLethalityRate,
+  getIncidenceRate,
+  BolPopoulation
+ } from '../../../variables/math'
 
 import moment from 'moment'
 
@@ -16,7 +24,8 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { 
   faSkullCrossbones,
-  faProcedures,
+  faSkull,
+  faExclamationTriangle,
   faMicroscope,
   faHandHoldingMedical,
   faUser,
@@ -87,6 +96,10 @@ const SudPopOver = ({ countryTarget, data, mapa }) => {
     return null
   }
   
+
+
+
+
   return (
     <div>
       <Popover 
@@ -138,23 +151,23 @@ const SudPopOver = ({ countryTarget, data, mapa }) => {
                 <Col xs="6">
                   <h5>Confirmados</h5>
                   <h5 className="mb15">
-                    <FontAwesomeIcon className="text-info" icon={faUser} /> {numberWithCommas(data.cases)}
+                    <FontAwesomeIcon className="text-info" icon={faUser} /> {numberWithDots(data.cases)}
                   </h5>
 
                   <h5>Recuperados</h5>
                   <h5 className="mb15">
-                  <FontAwesomeIcon className="text-success" icon={faUserCheck} /> {numberWithCommas(data.recovered)}
+                  <FontAwesomeIcon className="text-success" icon={faUserCheck} /> {numberWithDots(data.recovered)}
                   </h5>
                 </Col>
                 <Col xs="6">
                   <h5>Activos</h5>
                   <h5 className="mb15">
-                  <FontAwesomeIcon className="text-warning" icon={faUserTag} /> {numberWithCommas(data.active)}
+                  <FontAwesomeIcon className="text-warning" icon={faUserTag} /> {numberWithDots(data.active)}
                   </h5>
 
                   <h5>Decesos</h5>
                   <h5 className="mb15">
-                  <FontAwesomeIcon className="text-danger" icon={faUserTimes} /> {numberWithCommas(data.deaths)}
+                  <FontAwesomeIcon className="text-danger" icon={faUserTimes} /> {numberWithDots(data.deaths)}
                   </h5>
                 </Col>
               </Row>
@@ -164,23 +177,23 @@ const SudPopOver = ({ countryTarget, data, mapa }) => {
                 <Col xs="6">
                   <h5>Confirmados</h5>
                   <h5 className="mb15">
-                    <FontAwesomeIcon className="text-info" icon={faUser} /> {numberWithCommas(data.todayCases)}
+                    <FontAwesomeIcon className="text-info" icon={faUser} /> { updatingDataState(data) ? (<span>Actualizando...</span>) : numberWithDots(data.todayCases)}
                   </h5>
 
                   <h5>Recuperados</h5>
                   <h5 className="mb15">
-                  <FontAwesomeIcon className="text-success" icon={faUserCheck} /> {numberWithCommas(data.todayRecovered)}
+                  <FontAwesomeIcon className="text-success" icon={faUserCheck} /> { updatingDataState(data) ? (<span>Actualizando...</span>) : numberWithDots(data.todayRecovered)}
                   </h5>
                 </Col>
                 <Col xs="6">
                   <h5>Activos</h5>
                   <h5 className="mb15">
-                  <FontAwesomeIcon className="text-warning" icon={faUserTag} /> {numberWithCommas(data.active)}
+                  <FontAwesomeIcon className="text-warning" icon={faUserTag} /> {numberWithDots(data.active)}
                   </h5>
 
                   <h5>Decesos</h5>
                   <h5 className="mb15">
-                  <FontAwesomeIcon className="text-danger" icon={faUserTimes} /> {numberWithCommas(data.todayDeaths)}
+                  <FontAwesomeIcon className="text-danger" icon={faUserTimes} /> { updatingDataState(data) ? (<span>Actualizando...</span>) : numberWithDots(data.todayDeaths)}
                   </h5>
                 </Col>
               </Row>
@@ -188,23 +201,31 @@ const SudPopOver = ({ countryTarget, data, mapa }) => {
             <TabPane tabId="popestadistics">
               <Row>
                 <Col xs="6">
-                  <h5>Tasa de Letalidad</h5>
+                  <h5>T. de Letalidad</h5>
                   <h5>
                     <FontAwesomeIcon className="text-danger" icon={faSkullCrossbones} /> { getLethalityRate(data.deaths, data.cases) }%
                   </h5>
-                  <h5>Tasa de Incidencia</h5>
+                  <h5>T. de Letalidad Efectiva</h5>
                   <h5>
-                    <FontAwesomeIcon className="text-warning" icon={faPeopleArrows} /> { getIncidenceRate(data.cases, data.population) }<small>/100mil hab.</small>
+                    <FontAwesomeIcon className="text-tertiary" icon={faSkull} /> { getEffectiveLethalityRate(data.cases, data.deaths, data.active) }%
+                  </h5>
+                  <h5>T. de Incidencia</h5>
+                  <h5>
+                    <FontAwesomeIcon className="text-purple" icon={faPeopleArrows} /> { data.country === 'Bolivia' ? getIncidenceRate(data.cases, BolPopoulation) : getIncidenceRate(data.cases, data.population) }<small>/100mil hab.</small>
                   </h5>
                 </Col>
                 <Col xs="6">
-                  <h5>Tasa de Recuperación</h5>
+                <h5>T. de Mortalidad</h5>
+                  <h5>
+                    <FontAwesomeIcon className="text-warning" icon={faExclamationTriangle} /> { data.country === 'Bolivia' ? getMortalityRate(data.deaths, BolPopoulation) : getMortalityRate(data.deaths, data.population) }%
+                  </h5>
+                  <h5>T. de Recuperación</h5>
                   <h5>
                     <FontAwesomeIcon className="text-success" icon={faHandHoldingMedical} /> { getRecoveredRate(data.recovered, data.cases) }%
                   </h5>
                   <h5>Nro. Tests</h5>
                   <h5>
-                    <FontAwesomeIcon className="text-info" icon={faMicroscope} /> { numberWithCommas(data.tests) }
+                    <FontAwesomeIcon className="text-info" icon={faMicroscope} /> { numberWithDots(data.tests) }
                   </h5>
                 </Col>
               </Row>
@@ -217,5 +238,14 @@ const SudPopOver = ({ countryTarget, data, mapa }) => {
     </div>
   )
 }
+
+
+function updatingDataState(data) {
+  if(data.todayCases === 0 && data.todayDeaths === 0 && data.todayRecovered === 0) {
+    return true
+  }
+  return false;
+}
+
 
 export default SudPopOver

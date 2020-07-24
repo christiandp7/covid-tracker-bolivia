@@ -7,7 +7,8 @@ import {
   getRecoveredRate,
   getMortalityRate,
   getEffectiveLethalityRate,
-  getIncidenceRate
+  getIncidenceRate,
+  BolPopoulation
  } from '../variables/math'
 
 
@@ -19,6 +20,8 @@ import {
 // ------------------------------------
 //            Bolivia
 // ------------------------------------
+
+
 
 // Bolivia
 const url1 = 'https://covid19bo.herokuapp.com/departments'
@@ -37,18 +40,17 @@ export const fetchBOGeneralData = async () => {
         todayRecovered,
         active,
         //critical,
-        tests,
-        population
+        tests
       } 
     } = await axios.get(url3);
 
-    let lethalityPercent = getLethalityRate(deaths, cases);
-    let recoveredPercent = getRecoveredRate(recovered, cases);
+    let lethalityRate = getLethalityRate(deaths, cases);
+    let recoveredRate = getRecoveredRate(recovered, cases);
     
-    let mortalityRate = getMortalityRate(deaths, population);
+    let mortalityRate = getMortalityRate(deaths, BolPopoulation);
     let effectiveLethalityRate = getEffectiveLethalityRate(cases, deaths, active);
 
-    let incidenceRate = getIncidenceRate(cases, population);
+    let incidenceRate = getIncidenceRate(cases, BolPopoulation);
 
 
     //console.log(confirmed.value +"/"+recovered.value)
@@ -63,8 +65,8 @@ export const fetchBOGeneralData = async () => {
       active, 
       //critical,
       tests,
-      lethalityPercent,
-      recoveredPercent,
+      lethalityRate,
+      recoveredRate,
       mortalityRate,
       effectiveLethalityRate,
       incidenceRate

@@ -1,13 +1,37 @@
 import moment from 'moment'
 
+// Variables
+export let BolPopoulation = '11633371';
+
+
+
 // NUMBER FUNCTIONS
 export const roundNumber = (num, decimals=0) => {
   return (Math.round(num * 100) / 100).toFixed(decimals);
 }
 
-export const numberWithCommas = (xnum) => {
+export const numberWithDots = (xnum) => {
   if(xnum === 0) return 0;
   if(xnum) return xnum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+export const replaceDecDotByComma = (xnum) => {
+  if(xnum === 0) return 0;
+  if(xnum.toString().indexOf('.') > -1) { //contiene .
+    
+    let string = xnum.toString();
+    let find = '.';
+    let replace = ',';
+
+    let lastIndex = string.lastIndexOf(find);
+    
+    let beginString = string.substring(0, lastIndex);
+    let endString = string.substring(lastIndex + find.length);
+    let result = beginString + replace + endString;
+    return result;
+
+  } 
+  return xnum;  
 }
 
 export const valuePerHab = (numHab, value, population) => {
@@ -16,7 +40,7 @@ export const valuePerHab = (numHab, value, population) => {
 
 
 
-// FORMATING FUNCTIONS
+// FORMATING Date FUNCTIONS
 export const formatDate1 = (str) => {
   let strArr = Array.from(str);
   return strArr.split('-').join('/');
@@ -26,36 +50,36 @@ export const formatDate1 = (str) => {
 // ESTADISTICS DATA FUNCTIONS
 
 export const getLethalityRate = (deaths, cases) => { // Percents
-  return roundNumber(((deaths * 100) / cases ), 2)
+  return replaceDecDotByComma(roundNumber(((deaths * 100) / cases ), 2))
 }
 
 export const getRecoveredRate = (recovered, cases) => { // Percents
-  return roundNumber(((recovered * 100) / cases), 2)
+  return replaceDecDotByComma(roundNumber(((recovered * 100) / cases), 2))
 }
 
 // Mortality Rate
 export const getMortalityRate = (deaths, population) => { // per 100mil hab
-  return roundNumber(((deaths * 100000) / population ), 2)
+  return replaceDecDotByComma(roundNumber(((deaths * 100000) / population ), 2))
 }
 
 // Effective Effective Lethality Rate
 export const getEffectiveLethalityRate = (cases, deaths, active) => { // Percents
-  return roundNumber(((deaths * 100) / (cases - active)), 2)
+  return replaceDecDotByComma(roundNumber(((deaths * 100) / (cases - active)), 2))
 }
 
 // Incidence
 export const getIncidenceRate = (cases, population) => { // Percents
-  return roundNumber(((cases * 100000) / population), 2)
+  return replaceDecDotByComma(numberWithDots(roundNumber(((cases * 100000) / population), 2)))
 }
 
 
 
 
 // Bolivia Today Sum
-export const sumBOTodayStatus = (deps, status) => { // Percents
+export const sumBOStatus = (deps, statusType, status) => { // Percents
   let sum = 0;
   for (let key in deps) {
-    sum += deps[key].today[status];
+    sum += deps[key][statusType][status];
   }
   //console.log(deps)
   return sum;

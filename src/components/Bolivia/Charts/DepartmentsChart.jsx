@@ -194,7 +194,6 @@ function DepartmentsChart({ timeline, data }) {
                   className="width-auto"
                   onChange={(e) => setHabNumber(e.target.value)}
                 >
-                  <option value="5000">Por cada 5.000 habitantes</option>
                   <option value="50000">Por cada 50.000 habitantes</option>
                   <option value="100000">Por cada 100.000 habitantes</option>
                   <option value="1000000">Por cada 1.000.000 habitantes</option>
@@ -205,7 +204,7 @@ function DepartmentsChart({ timeline, data }) {
             <Col sm="6" xs="12">
               <Row>
                 <Col sm="6" xs="12">
-                  <FormGroup>
+                  <FormGroup> 
                     <Label for="select1">Serie</Label> &nbsp; <i className="tim-icons icon-alert-circle-exc" id="tooltipSerie"></i> 
                     <CustomTooltip placement="top" target="tooltipSerie">
                       Cambia la serie de datos entre diarios y acumulados.

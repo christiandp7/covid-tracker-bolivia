@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import TableLoader from '../../Loaders/TableLoader'
 import moment from 'moment'
 
-import { numberWithCommas } from '../../../variables/math'
+import { numberWithDots } from '../../../variables/math'
 
 import ChartLoader from '../../Loaders/ChartLoader'
 
@@ -65,11 +65,11 @@ function DepartmentsTable({ data }) {
                   </td>
                 
 
-                  <td>{numberWithCommas(dep.total.cases)}</td>
-                  <td>{numberWithCommas(dep.total.active)}</td>
-                  <td>{numberWithCommas(dep.total.recovered)}</td>
-                  <td>{numberWithCommas(dep.total.deaths)}</td>
-                  <td>{numberWithCommas(dep.population)}</td>
+                  <td>{numberWithDots(dep.total.cases)}</td>
+                  <td>{numberWithDots(dep.total.active)}</td>
+                  <td>{numberWithDots(dep.total.recovered)}</td>
+                  <td>{numberWithDots(dep.total.deaths)}</td>
+                  <td>{numberWithDots(dep.population)}</td>
 
 
                 </tr>

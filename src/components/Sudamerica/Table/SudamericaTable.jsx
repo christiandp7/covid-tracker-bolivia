@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import TableLoader from '../../Loaders/TableLoader'
 import moment from 'moment'
 
-import { numberWithCommas } from '../../../variables/math'
+import { numberWithDots } from '../../../variables/math'
 
 import {
   Card,
@@ -65,12 +65,12 @@ function SudamericaTable({ data }) {
                   <td><CountUp start={0} end={country.critical} duration={2} separator="," /></td>
             <td><CountUp start={0} end={country.population} duration={2} separator="," /></td>*/}
 
-                  <td>{numberWithCommas(country.cases)}</td>
-                  <td>{numberWithCommas(country.active)}</td>
-                  <td>{numberWithCommas(country.recovered)}</td>
-                  <td>{numberWithCommas(country.deaths)}</td>
-                  <td>{numberWithCommas(country.tests)}</td>
-                  <td>{numberWithCommas(country.population)}</td>
+                  <td>{numberWithDots(country.cases)}</td>
+                  <td>{numberWithDots(country.active)}</td>
+                  <td>{numberWithDots(country.recovered)}</td>
+                  <td>{numberWithDots(country.deaths)}</td>
+                  <td>{numberWithDots(country.tests)}</td>
+                  <td>{numberWithDots(country.population)}</td>
 
 
                 </tr>
