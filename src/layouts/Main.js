@@ -17,8 +17,7 @@ import NotFound from "../views/NotFound.js"
 import logo from "assets/img/covid-logo.png";
 
 // Google Analytics
-import Analytics from 'react-router-ga';
-//import googleAnalytics from '../services/googleAnalytics'
+//import Analytics from 'react-router-ga';
 
 
 
@@ -36,7 +35,6 @@ class Admin extends React.Component {
 
 
   componentDidMount() {
-    //googleAnalytics();
     /*if (navigator.platform.indexOf("Win") > -1) {
       document.documentElement.className += " perfect-scrollbar-on";
       document.documentElement.classList.remove("perfect-scrollbar-off");
@@ -55,7 +53,6 @@ class Admin extends React.Component {
     }*/
   }
   componentDidUpdate(e) {
-    //googleAnalytics();
 
 
     /*if (e.history.action === "PUSH") {
@@ -130,13 +127,13 @@ class Admin extends React.Component {
             />
 
 
-            <Analytics id="UA-173368431-1">
+            
               <Switch>
                 {this.getRoutes(routes)}
                 <Route exact path="/404" component={NotFound} />
                 <Redirect from="*" to="/404" />
               </Switch>
-            </Analytics>
+            
 
             <Footer fluid />
           </div>
