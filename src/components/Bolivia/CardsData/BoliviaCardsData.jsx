@@ -1,11 +1,11 @@
 import React from 'react'
-import { Bar } from "react-chartjs-2";
+//import { Bar } from "react-chartjs-2";
 import CardLoader from '../../Loaders/CardsDataLoaderBo'
 
 import { numberWithDots } from '../../../variables/math'
 
 import {
-  Alert,
+ // Alert,
   Row,
   Col,
   Card,
@@ -19,10 +19,10 @@ import {
   faSkull,
   faExclamationTriangle,
   faSkullCrossbones,
-  faProcedures,
+ // faProcedures,
   faMicroscope,
   faHandHoldingMedical,
-  faViruses,
+ // faViruses,
   faPeopleArrows
 } from '@fortawesome/free-solid-svg-icons'
 
@@ -30,13 +30,13 @@ import {
   TooltipTL,
   TooltipTM,
   TooltipTR,
-  tooltipTLE,
+  TooltipTLE,
   TooltipTI  
 } from '../../Tooltip/dataTooltips'
 
 
-import { chartExample3 } from "variables/charts.js";
-import { TooltipTLE } from 'components/Tooltip/dataTooltips';
+//import { chartExample3 } from "variables/charts.js";
+//import { TooltipTLE } from 'components/Tooltip/dataTooltips';
 
 function BoliviaCardsData({ data: { tests, lethalityRate, recoveredRate, mortalityRate, effectiveLethalityRate, incidenceRate }}) {
   if(!lethalityRate) {

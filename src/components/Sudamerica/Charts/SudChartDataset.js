@@ -2,18 +2,18 @@ import React from 'react'
 
 import { Line } from 'react-chartjs-2';
 
-import { chartBlueBgSud } from "../../../variables/chartOptions";
+import { lineChartBlueBg } from "../../../variables/chartOptions";
 
 import { roundNumber, valuePerHab, generateDaysEje, generateDailyRecords } from '../../../variables/math'
 import moment from 'moment'
 
 
-function SudChartDatated({ timeline, data, eje, hab, recordsNum }) {
+function SudChartDatated({ timeline, data, status, eje, hab, recordsNum }) {
 
   //console.log(eje) // AQUI ME QUEDE -------------------------------------
   //console.log(timeline[0])
 
-  const dailyRecords = false;
+  //const dailyRecords = false;
 
   const getKeyTimeline = (timelineDataType) => {
     let fechas = Object.keys(timelineDataType).map((key) => {
@@ -23,36 +23,36 @@ function SudChartDatated({ timeline, data, eje, hab, recordsNum }) {
     return fechas;
   }
   const getValueTimeline = (timelineDataType, countryPopulation) => {
-    let casos = Object.values(timelineDataType).map((value) => {
+    let statusValues = Object.values(timelineDataType).map((value) => {
       //return value;
       //console.log(roundNumber((100000 * Number(value)) / countryPopulation))
       
       //if(hab === "total"){
-      if(hab === "acumulados" || hab == "diarios"){
+      if(hab === "acumulados" || hab === "diarios"){
         return value;
       }
       return roundNumber(valuePerHab(hab, value, countryPopulation));
     })
     //console.log(casos)
 
-    if(hab == "diarios"){
-      return generateDailyRecords(casos);
+    if(hab === "diarios"){
+      return generateDailyRecords(statusValues);
     }
-    return casos;
+    return statusValues;
 
   }
 
   const getPopulation = countryName => {
-    let popu = data.find(obj => obj.country.toLowerCase() == countryName.toLowerCase());
+    let popu = data.find(obj => obj.country.toLowerCase() === countryName.toLowerCase());
     //console.log(pop.population)
     return popu.population
   }  
 
   const setHorizontalEje = () => {
     if(eje === "dias") {
-      return generateDaysEje(getKeyTimeline(timeline[2].timeline.cases), recordsNum);
+      return generateDaysEje(getKeyTimeline(timeline[2].timeline[status]), recordsNum);
     }
-    return getKeyTimeline(timeline[2].timeline.cases); // Fechas Brazil
+    return getKeyTimeline(timeline[2].timeline[status]); // Fechas Brazil
   }
 
 
@@ -107,7 +107,7 @@ function SudChartDatated({ timeline, data, eje, hab, recordsNum }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline(timeline[0].timeline.cases, getPopulation("Argentina"))
+          data: getValueTimeline(timeline[0].timeline[status], getPopulation("Argentina"))
         },
         {
           label: "Bolivia",
@@ -124,7 +124,7 @@ function SudChartDatated({ timeline, data, eje, hab, recordsNum }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline(timeline[1].timeline.cases, getPopulation("Bolivia"))
+          data: getValueTimeline(timeline[1].timeline[status], getPopulation("Bolivia"))
           //data: [600,210,350,40,50,90]
         },
        {
@@ -142,7 +142,7 @@ function SudChartDatated({ timeline, data, eje, hab, recordsNum }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline(timeline[2].timeline.cases, getPopulation("Brazil"))
+          data: getValueTimeline(timeline[2].timeline[status], getPopulation("Brazil"))
           //data: [40,50,90,210,350,500,650,680,920]
         },
         {
@@ -160,7 +160,7 @@ function SudChartDatated({ timeline, data, eje, hab, recordsNum }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline(timeline[3].timeline.cases, getPopulation("Chile"))
+          data: getValueTimeline(timeline[3].timeline[status], getPopulation("Chile"))
         },
         {
           label: "Perú",
@@ -177,7 +177,7 @@ function SudChartDatated({ timeline, data, eje, hab, recordsNum }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline(timeline[4].timeline.cases, getPopulation("Peru"))
+          data: getValueTimeline(timeline[4].timeline[status], getPopulation("Peru"))
         }
 
       ]
@@ -187,7 +187,7 @@ function SudChartDatated({ timeline, data, eje, hab, recordsNum }) {
   
   if(timeline[0]){
     return (
-      <Line data={boliviaData} options={chartBlueBgSud} />
+      <Line data={boliviaData} options={lineChartBlueBg} />
     )
   }
 }

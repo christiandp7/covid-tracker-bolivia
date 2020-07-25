@@ -11,7 +11,7 @@ import SudPopOver from '../PopOvers/SudPopOver'
 
 function SudamericaMap({ data }) {
 
-  let countryData = {}
+  //let countryData = {}
   const style = { margin: '1rem auto', width: '289px' };
 
   //const [hovered, setHovered] = useState('None');

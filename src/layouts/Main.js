@@ -7,7 +7,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import Footer from "components/Footer/Footer.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
-import FixedPlugin from "components/FixedPlugin/FixedPlugin.js";
+//import FixedPlugin from "components/FixedPlugin/FixedPlugin.js";
 
 // Routes
 import routes from "routes.js";
@@ -21,7 +21,7 @@ import logo from "assets/img/covid-logo.png";
 
 
 
-var ps;
+//var ps;
 
 class Admin extends React.Component {
   constructor(props) {

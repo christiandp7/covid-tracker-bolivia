@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import cx from 'classnames';
 import { 
   numberWithDots,
-  formatDate1,
+  //formatDate1,
   getLethalityRate,
   getRecoveredRate,
   getMortalityRate,
@@ -10,7 +10,7 @@ import {
   getIncidenceRate
  } from '../../../variables/math'
 
-import moment from 'moment'
+//import moment from 'moment'
 
 import { 
   Row,
@@ -25,7 +25,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { 
   faSkullCrossbones,
   faExclamationTriangle,
-  faMicroscope,
+  //faMicroscope,
   faHandHoldingMedical,
   faUser,
   faUserCheck,
@@ -45,7 +45,7 @@ const BolPopOver = ({ depTarget, data, mapa }) => {
   const [popoverOpen, setPopoverOpen] = useState(true);
   const togglePopover = (e) => {
 
-    if(Object.keys(data).length != 0){ //check if object is empty
+    if(Object.keys(data).length !== 0){ //check if object is empty
 
       if(e.target.parentNode.parentNode.id === mapa){ // si se hace click en un pais
         handleActiveDep(depTarget)
@@ -100,7 +100,7 @@ const BolPopOver = ({ depTarget, data, mapa }) => {
         //offset={100}
       >
         <PopoverHeader>
-          <img className="avatar flag" src={data.flag} />
+          <img className="avatar flag" src={data.flag} alt={data.name} />
           { data.name }
         </PopoverHeader>
         <PopoverBody>

@@ -29,34 +29,42 @@ import  SudChartDataset  from './SudChartDataset'
 function SudChart({ timeline, data }) {
 
   const [historical, setHistorical] = useState(timeline)
+  const [status, setStatus] = useState('cases')
+  const [statusName, setStatusName] = useState('Confirmados')
   const [recordsNumber, setRecordsNumber] = useState(30)
   const [habNumber, setHabNumber] = useState(1000000)
   const [eje, setEje] = useState('fechas')
 
-  // Tooltips
-  const [tooltipEjeOpen, setTooltipEjeOpen] = useState(false);
-  const [tooltipDiasOpen, setTooltipDiasOpen] = useState(false);
-  const toggle1 = () => setTooltipEjeOpen(!tooltipEjeOpen);
-  const toggle2 = () => setTooltipDiasOpen(!tooltipDiasOpen);
 
+  const getStatusName = () => {
+    if(status === 'cases') setStatusName('Confirmados')
+    if(status === 'active') setStatusName('Activos')
+    if(status === 'deaths') setStatusName('Decesos')
+    if(status === 'recovered') setStatusName('Recuperados')
+  }
 
   const fetchAPI = async () => {
     let histTemp = await fetchCountriesHistoryData(null, recordsNumber)
     //console.log("changed!")
     if(eje === "dias"){
-      setHistorical(moveEjeToDays(histTemp))
+      setHistorical(moveEjeToDays(histTemp, status))
     } else {
       setHistorical(histTemp)
     }
   }
 
+
+  useEffect(() => {
+    getStatusName();
+  }, [status])
+
   useEffect(() => {
     fetchAPI();
-  }, [recordsNumber, habNumber])
+  }, [recordsNumber, habNumber, status])
 
   useEffect(() => {
     if(eje === "dias"){
-      setHistorical(moveEjeToDays(historical))
+      setHistorical(moveEjeToDays(historical, status))
       //console.log("days!!!")
     } else {
       fetchAPI();
@@ -76,13 +84,115 @@ function SudChart({ timeline, data }) {
     <Card className="card-chart sud-chart">
       <CardHeader>
         <Row>
-          <Col className="text-left" sm="6" xs="8">
-            {/*<h5>Últimos 30 días | Última actualización: {}</h5>*/}
-            {/*<p>Últimos {recordsNumber} días</p>*/}
-            <h5>Últimos { recordsNumber } días | Última actualización: { moment(timeline[0].lastUpdate).format('DD/MM/YYYY') }</h5>
+          <Col className="text-left" xs="12">
+          <h5>Últimos { recordsNumber } días | Última actualización: { moment(timeline[0].lastUpdate).format('DD/MM/YYYY') }</h5>
+          </Col>
+        </Row>
+        <Row>
+          <Col className="text-left" sm="6" xs="12">
             <CardTitle tag="h2">
-              <i className="tim-icons icon-chart-bar-32 text-Info" /> Casos Confirmados
+              <i className="tim-icons icon-chart-bar-32 text-Info" /> { statusName }
             </CardTitle>
+          </Col>
+          <Col sm="6" xs="12">
+            <ButtonGroup
+              className="btn-group-toggle float-right"
+              data-toggle="buttons"
+            >
+              <Button
+                tag="label"
+                className={cx("btn-simple", {
+                  active: status === "cases"
+                })}
+                color="primary"
+                id="0"
+                size="sm"
+                onClick={() => setStatus("cases") }
+              >
+                <input
+                  defaultChecked
+                  className="d-none"
+                  name="options"
+                  type="radio"
+                />
+                <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
+                  Confirmados
+                </span>
+                <span className="d-block d-sm-none">
+                  <i className="tim-icons icon-single-02 text-primary" />
+                </span>
+              </Button>
+              {/*<Button
+                color="primary"
+                id="2"
+                size="sm"
+                tag="label"
+                className={cx("btn-simple", {
+                  active: status === "active"
+                })}
+                onClick={() => setStatus("active")}
+              >
+                <input
+                  className="d-none"
+                  name="options"
+                  type="radio"
+                />
+                <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
+                  Activos
+                </span>
+                <span className="d-block d-sm-none">
+                  <i className="tim-icons icon-single-02 text-warning" />
+                </span>
+              </Button>*/}
+              <Button
+                color="primary"
+                id="2"
+                size="sm"
+                tag="label"
+                className={cx("btn-simple", {
+                  active: status === "recovered"
+                })}
+                onClick={() => setStatus("recovered")}
+              >
+                <input
+                  className="d-none"
+                  name="options"
+                  type="radio"
+                />
+                <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
+                  Recuperados
+                </span>
+                <span className="d-block d-sm-none">
+                  <i className="tim-icons icon-single-02 text-success" />
+                </span>
+              </Button>
+              <Button
+                color="primary"
+                id="1"
+                size="sm"
+                tag="label"
+                className={cx("btn-simple", {
+                  active: status === "deaths"
+                })}
+                onClick={() => setStatus("deaths")}
+              >
+                <input
+                  className="d-none"
+                  name="options"
+                  type="radio"
+                />
+                <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
+                  Decesos
+                </span>
+                <span className="d-block d-sm-none">
+                  <i className="tim-icons icon-single-02 text-danger" />
+                </span>
+              </Button>
+            </ButtonGroup>
+          </Col>
+        </Row>
+        <Row>
+          <Col sm="6" xs="12">
             {/*<h5>Por cada 100.000 habitantes</h5>*/}
             <FormGroup>
             <Label for="recordsNumerSelect">Ponderación</Label> &nbsp; <i className="tim-icons icon-alert-circle-exc" id="tooltipPond"></i>
@@ -104,7 +214,7 @@ function SudChart({ timeline, data }) {
               </Input> 
             </FormGroup>
           </Col>
-          <Col sm="6" xs="4">
+          <Col sm="6" xs="12">
             <Row>
               <Col sm="6" xs="12">
               <FormGroup>
@@ -157,7 +267,8 @@ function SudChart({ timeline, data }) {
           {/*<SudChartDataset timeline={timeline} data={data} />*/}
           <SudChartDataset 
             timeline={historical} 
-            data={data} 
+            data={data}
+            status={status}
             eje={eje} 
             hab={habNumber} 
             recordsNum={recordsNumber}

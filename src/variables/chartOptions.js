@@ -200,7 +200,7 @@ let chartDangerBg = {
   }
 };
 
-let chartBlueBgSud = {
+let lineChartBlueBg = {
   maintainAspectRatio: false,
   legend: {
     display: true,
@@ -263,6 +263,6 @@ module.exports = {
   chartGreenBg, // Green
   chartPinkBg, // Pink Bar
   chartDangerBg, // Danger Bg
-  chartBlueBgSud // blue for Sud
+  lineChartBlueBg // blue for Line
 };
 

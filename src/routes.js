@@ -1,13 +1,13 @@
-import Dashboard from "views/Dashboard.js";
+//import Dashboard from "views/Dashboard.js";
 import Bolivia from "views/Bolivia.js";
 import Sudamerica from "views/Sudamerica.js";
-import Icons from "views/Icons.js";
-import Map from "views/Map.js";
-import Notifications from "views/Notifications.js";
+//import Icons from "views/Icons.js";
+//import Map from "views/Map.js";
+//import Notifications from "views/Notifications.js";
 //import Rtl from "views/Rtl.js";
-import TableList from "views/TableList.js";
-import Typography from "views/Typography.js";
-import UserProfile from "views/UserProfile.js";
+//import TableList from "views/TableList.js";
+//import Typography from "views/Typography.js";
+//import UserProfile from "views/UserProfile.js";
 
 
 

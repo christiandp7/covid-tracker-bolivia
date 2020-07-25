@@ -2,7 +2,7 @@
 //https://covid19.mathdro.id/api/countries/BO/confirmed
 import axios from 'axios'
 import { 
-  roundNumber,
+  //roundNumber,
   getLethalityRate,
   getRecoveredRate,
   getMortalityRate,

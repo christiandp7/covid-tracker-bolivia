@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import cx from 'classnames';
 import { 
   numberWithDots,
@@ -51,7 +51,7 @@ const SudPopOver = ({ countryTarget, data, mapa }) => {
     //console.log(e.target.parentNode.parentNode.id);
     //setPopoverOpen(!popoverOpen);
 
-    if(Object.keys(data).length != 0){ //check if object is empty
+    if(Object.keys(data).length !== 0){ //check if object is empty
 
       if(e.target.parentNode.parentNode.id === mapa){ // si se hace click en un pais
         handleActiveCountry(countryTarget)
@@ -112,7 +112,7 @@ const SudPopOver = ({ countryTarget, data, mapa }) => {
         //offset={100}
       >
         <PopoverHeader>
-          <img className="avatar flag" src={data.countryInfo.flag} />
+          <img className="avatar flag" src={data.countryInfo.flag} alt={data.country} />
           { data.country }
         </PopoverHeader>
         <PopoverBody>

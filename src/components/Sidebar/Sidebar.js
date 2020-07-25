@@ -7,7 +7,7 @@ import { PropTypes } from "prop-types";
 import PerfectScrollbar from "perfect-scrollbar";
 
 // reactstrap components
-import { Nav, NavLink as ReactstrapNavLink } from "reactstrap";
+import { Nav } from "reactstrap";
 
 import ShareButtons from '../ShareButtons/ShareButtons'
 
@@ -25,7 +25,7 @@ class Sidebar extends React.Component {
   // verifies if routeName is the one active (in browser input)
   activeRoute(routeName) {
     //return this.props.location.pathname.indexOf(routeName) > -1 ? "active" : "";
-    return this.props.location.pathname == routeName ? "active" : "";
+    return this.props.location.pathname === routeName ? "active" : "";
   }
   componentDidMount() {
     if (navigator.platform.indexOf("Win") > -1) {

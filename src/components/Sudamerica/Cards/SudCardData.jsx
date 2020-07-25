@@ -16,7 +16,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { 
   faSkullCrossbones,
-  faProcedures,
+  //faProcedures,
   faMicroscope,
   faHandHoldingMedical,
   faUser,

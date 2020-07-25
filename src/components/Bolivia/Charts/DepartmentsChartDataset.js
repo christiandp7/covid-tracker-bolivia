@@ -1,10 +1,10 @@
 import React from 'react'
-import moment from 'moment'
+//import moment from 'moment'
 
 import { Line } from 'react-chartjs-2';
 
 
-import { chartBlueBgSud } from "../../../variables/chartOptions";
+import { lineChartBlueBg } from "../../../variables/chartOptions";
 
 import { roundNumber, valuePerHab } from '../../../variables/math'
 
@@ -32,7 +32,7 @@ function DepartmentsChartDataset({ timeline, data, hab }) {
   }
 
   const getPopulation = depId => {
-    let dep = data.find(obj => obj.id == depId);
+    let dep = data.find(obj => obj.id === depId);
     //console.log(dep.name + ': ' + dep.population)
     return dep.population;
   }  
@@ -270,7 +270,7 @@ function DepartmentsChartDataset({ timeline, data, hab }) {
 
   if(timeline){
     return (
-      <Line data={boliviaData} options={chartBlueBgSud} />
+      <Line data={boliviaData} options={lineChartBlueBg} />
     )
   }
 }

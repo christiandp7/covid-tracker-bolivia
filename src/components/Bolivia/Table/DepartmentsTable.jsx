@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import TableLoader from '../../Loaders/TableLoader'
-import moment from 'moment'
+//import moment from 'moment'
 
 import { numberWithDots } from '../../../variables/math'
 
@@ -32,9 +32,12 @@ function DepartmentsTable({ data }) {
     
   })
 
+
   if(!depsData.length){
     return ( <ChartLoader /> )
   }
+
+  
 
   return (
     <Card>

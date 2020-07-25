@@ -4,7 +4,7 @@ import { SkeletonTheme } from "react-loading-skeleton";
 
 import { 
   fetchBOGeneralData,
-  fetchCountriesHistoryData,
+  //fetchCountriesHistoryData,
   fetchDepartmentsLastUpdate,
   fetchDepartmentsStatus
 } from '../api'
@@ -13,7 +13,7 @@ import {
   BoliviaCards,
   BoliviaCardsData,
   BoliviaMap,
-  BoliviaChart,
+  //BoliviaChart,
   DepartmentsChart,
   DepartmentsTable
 } from "../components/Bolivia"

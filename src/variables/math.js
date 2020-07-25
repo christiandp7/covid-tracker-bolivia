@@ -105,7 +105,7 @@ export const generateDailyRecords = (valueArray) => { // genera los registros Di
 
   for(let i = valueArray.length - 1; i >= 0 ; i--) {
 
-    if(i != 0){
+    if(i !== 0){
       if(valueArray[i] === valueArray[i - 1]){ // Coloca el mismo valor por que es igual
         backArray[i] = valueArray[i - 1] - valueArray[i - 2];
       } else {                                 // Hace la resta y coloca el valor que es
@@ -158,7 +158,7 @@ export const generateDaysEje = (keyArray, recordsNum) => {
   return list;
 }
 
-export function moveEjeToDays (timeline) {
+export function moveEjeToDays (timeline, status) {
 
     const newTimeline = timeline.map((countryItem, i) => {
       let countryName = countryItem.country; // Nombre del pais
@@ -168,7 +168,7 @@ export function moveEjeToDays (timeline) {
 
         let counter = 0;
         let casesTemp = {};
-        for (const [key, value] of Object.entries(countryItem.timeline.cases)) {
+        for (const [key, value] of Object.entries(countryItem.timeline[status])) {
           if(counter > daysDiff) { 
             //console.log(`Deleted: ${key}: ${value}`);
             casesTemp[key] = value;
@@ -176,7 +176,7 @@ export function moveEjeToDays (timeline) {
           counter ++;
         }
         //console.log(casesTemp);
-        countryItem.timeline.cases = casesTemp;
+        countryItem.timeline[status] = casesTemp;
 
         return countryItem; 
       }
