@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import cx from 'classnames';
 import { 
   numberWithDots,
-  //formatDate1,
+  formatDateSlash,
   getLethalityRate,
   getRecoveredRate,
   getMortalityRate,
@@ -105,7 +105,7 @@ const BolPopOver = ({ depTarget, data, mapa }) => {
         </PopoverHeader>
         <PopoverBody>
 
-        <h5>Última Actualización: { data.date }</h5>
+        <h5>Última Actualización: { formatDateSlash(data.date) }</h5>
 
           <Nav tabs>
             <NavItem>

@@ -284,7 +284,13 @@ let chartExample3 = {
   options: {
     maintainAspectRatio: false,
     legend: {
-      display: false
+      display: true,
+      position: 'bottom',
+      labels: {
+        fontColor: "#ffffff",
+        fontSize: 14,
+        padding: 25
+      }
     },
     tooltips: {
       backgroundColor: "#f5f5f5",
@@ -306,8 +312,8 @@ let chartExample3 = {
             zeroLineColor: "transparent"
           },
           ticks: {
-            suggestedMin: 60,
-            suggestedMax: 120,
+            /*suggestedMin: 60,
+            suggestedMax: 120,*/
             padding: 20,
             fontColor: "#9e9e9e"
           }

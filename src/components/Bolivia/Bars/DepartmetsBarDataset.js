@@ -1,48 +1,52 @@
 import React from 'react'
-//import moment from 'moment'
+import { Bar } from 'react-chartjs-2';
 
-import { Line } from 'react-chartjs-2';
+import { chartExample3 } from "variables/charts.js";
 
+import {
+  getLethalityRate,
+  getRecoveredRate,
+  getMortalityRate,
+  getEffectiveLethalityRate,
+  getIncidenceRate
+} from '../../../variables/math'
+//import { lineChartBlueBg } from "../../../variables/chartOptions";
 
-import { lineChartBlueBg } from "../../../variables/chartOptions";
+function DepartmetsBarDataset({ tasa, data, tasaName }) {
 
-import { roundNumber, valuePerHab, formatDateSlash } from '../../../variables/math'
+  console.log(data[0].id + " : " + tasa)
 
+  const getTasaType = (depto, tasaToShow) => {
+    if(tasaToShow === 'tl') {
+      console.log(getLethalityRate(depto.total.deaths, depto.total.cases))
+      return getLethalityRate(depto.total.deaths, depto.total.cases);
+    }
+    if(tasaToShow === 'tm') {
+      //return getRecoveredRate(depto.)
+    }
+    if(tasaToShow === 'tr') {
 
-function DepartmentsChartDataset({ timeline, data, hab }) {
+    }
+    if(tasaToShow === 'tle') {
+      
+    }
+    if(tasaToShow === 'ti') {
 
-  const setHorizontalEje = () => {
-    return timeline.map((obj) => {
-      //return moment(obj['date']).format("DD/MM/YY");
-      return formatDateSlash(obj['date']);
-    })
-  }
-
-  const getValueTimeline = (depId, depPopulation) => {
-    if(hab === "totales"){
-      return timeline.map((obj) => {
-        return obj[depId];
-      })
-    } else {
-      return timeline.map((obj) => {
-        //console.log(roundNumber(valuePerHab(hab, obj[depId], depPopulation)))
-        return roundNumber(valuePerHab(hab, obj[depId], depPopulation));
-      })
     }
   }
 
-  const getPopulation = depId => {
-    let dep = data.find(obj => obj.id === depId);
-    //console.log(dep.name + ': ' + dep.population)
-    return dep.population;
-  }  
-  
 
+  const DepsBarData = (canvas) => {
 
-
-
-  const boliviaData = (canvas) => {
     let ctx = canvas.getContext("2d");
+
+    let gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
+    gradientStroke.addColorStop(1, "rgba(72,72,176,0.1)");
+    gradientStroke.addColorStop(0.4, "rgba(72,72,176,0.0)");
+    gradientStroke.addColorStop(0, "rgba(119,52,169,0)"); //purple colors
+
+    // Dep COLORS !!!
+
 
     //warning colors Gradient (La Paz)
     let warningGradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
@@ -98,12 +102,9 @@ function DepartmentsChartDataset({ timeline, data, hab }) {
     purpleGradientStroke.addColorStop(0.4, "rgba(137,101,224, 0.0)"); 
     purpleGradientStroke.addColorStop(0, "rgba(137,101,224, 0)"); // Warning
 
-    
 
-
-    
     return {
-      labels: setHorizontalEje().reverse(),
+      labels: [tasaName],
       datasets: [
         {
           label: "La Paz",
@@ -120,7 +121,7 @@ function DepartmentsChartDataset({ timeline, data, hab }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline('la_paz', getPopulation('la_paz')).reverse()
+          data: getTasaType(data[0], tasa) // La Paz
         },
         {
           label: "Cochabamba",
@@ -137,7 +138,7 @@ function DepartmentsChartDataset({ timeline, data, hab }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline('cochabamba', getPopulation('cochabamba')).reverse()
+          data: getTasaType(data[1], tasa) // Cochabamba
           //data: [600,210,350,40,50,90]
         },
        {
@@ -155,7 +156,7 @@ function DepartmentsChartDataset({ timeline, data, hab }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline('santa_cruz', getPopulation('santa_cruz')).reverse()
+          data: getTasaType(data[2], tasa) //Santa Cruz
           //data: [40,50,90,210,350,500,650,680,920]
         },
         {
@@ -173,7 +174,7 @@ function DepartmentsChartDataset({ timeline, data, hab }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline('oruro', getPopulation('oruro')).reverse()
+          data: getTasaType(data[3], tasa) //Oruro
         },
         {
           label: "Potosí",
@@ -190,7 +191,7 @@ function DepartmentsChartDataset({ timeline, data, hab }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline('potosi', getPopulation('potosi')).reverse()
+          data: getTasaType(data[4], tasa) // Potosi
         },
         {
           label: "Tarija",
@@ -207,7 +208,7 @@ function DepartmentsChartDataset({ timeline, data, hab }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline('tarija', getPopulation('tarija')).reverse()
+          data: getTasaType(data[5], tasa) // Tarija
         },
         {
           label: "Chuquisaca",
@@ -224,7 +225,7 @@ function DepartmentsChartDataset({ timeline, data, hab }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline('chuquisaca', getPopulation('chuquisaca')).reverse()
+          data: getTasaType(data[6], tasa) // Chuquisaca
         },
         {
           label: "Beni",
@@ -241,7 +242,7 @@ function DepartmentsChartDataset({ timeline, data, hab }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline('beni', getPopulation('beni')).reverse()
+          data: getTasaType(data[7], tasa) // Beni
         },
         {
           label: "Pando",
@@ -258,21 +259,19 @@ function DepartmentsChartDataset({ timeline, data, hab }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline('pando', getPopulation('pando')).reverse()
+          data: getTasaType(data[8], tasa) // Pando
         }
-
       ]
-    }
+    };
   }
 
 
 
-
-  if(timeline){
+  if(data[0]){
     return (
-      <Line data={boliviaData} options={lineChartBlueBg} />
+      <Bar data={DepsBarData} options={chartExample3.options} />
     )
   }
 }
 
-export default DepartmentsChartDataset
+export default DepartmetsBarDataset

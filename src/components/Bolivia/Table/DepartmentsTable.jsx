@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import TableLoader from '../../Loaders/TableLoader'
 //import moment from 'moment'
 
-import { numberWithDots } from '../../../variables/math'
+import { numberWithDots, formatDateSlash } from '../../../variables/math'
 
 import ChartLoader from '../../Loaders/ChartLoader'
 
@@ -42,7 +42,7 @@ function DepartmentsTable({ data }) {
   return (
     <Card>
       <CardHeader>
-        <h5>Valores Totales | Última Actualización: { data[0].date }</h5>
+        <h5>Valores Totales | Última Actualización: { formatDateSlash(data[0].date) }</h5>
         <CardTitle tag="h2">Departamentos</CardTitle>
       </CardHeader>
       <CardBody>

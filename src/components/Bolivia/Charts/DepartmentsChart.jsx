@@ -3,6 +3,8 @@ import cx from 'classnames'
 
 import ChartLoader from '../../Loaders/ChartLoader'
 
+import { formatDateSlash } from '../../../variables/math'
+
 // reactstrap components
 import {
   FormGroup,
@@ -60,7 +62,7 @@ function DepartmentsChart({ timeline, data }) {
 
 
 
-  if(!timeline[0]){
+  if(!timeline[0] || !data[0]){
     //console.log(timeline.cases); // Datos obtenidos correctamente
     return ( <ChartLoader /> )
   }  
@@ -70,7 +72,7 @@ function DepartmentsChart({ timeline, data }) {
       <CardHeader>
           <Row>
             <Col className="text-left" xs="12">
-              <h5>Últimos { recordsNumber } días | Última actualización: {data[0].date}</h5>
+              <h5>Últimos { recordsNumber } días | Última actualización: { formatDateSlash(data[0].date) }</h5>
               {/*<p>Últimos {recordsNumber} días</p>*/}
               
               {/*<h5>Por cada 100.000 habitantes</h5>*/}

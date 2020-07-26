@@ -41,9 +41,9 @@ export const valuePerHab = (numHab, value, population) => {
 
 
 // FORMATING Date FUNCTIONS
-export const formatDate1 = (str) => {
-  let strArr = Array.from(str);
-  return strArr.split('-').join('/');
+export const formatDateSlash = (str) => {
+  let strStr = str.toString()
+  return strStr.split('-').join('/');
 }
 
 

@@ -15,6 +15,7 @@ import {
   BoliviaMap,
   //BoliviaChart,
   DepartmentsChart,
+  DepartmentsBar,
   DepartmentsTable
 } from "../components/Bolivia"
 
@@ -89,6 +90,12 @@ export class Bolivia extends Component {
               <DepartmentsChart timeline={this.state.depStatus} data={this.state.depLastUpdate} />
             </Col>
           </Row>
+
+          {/*<Row>
+            <Col xs="12">
+              <DepartmentsBar data={this.state.depLastUpdate} />
+            </Col>
+          </Row>*/}
 
           <Row>
             <Col xs="12">
