@@ -1,20 +1,3 @@
-/*!
-
-=========================================================
-* Black Dashboard React v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/black-dashboard-react
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/black-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 /*eslint-disable*/
 import React from "react";
 // used for making the prop types of this component
@@ -26,6 +9,8 @@ import { Container, Row, Col, Nav, NavItem, NavLink } from "reactstrap";
 import jhuLogo from '../../assets/img/JHU-white.png'
 import worddometersLogo from '../../assets/img/worldometers.jpg'
 import bolsegLogo from '../../assets/img/bolseg.png'
+
+import yanderesalogo from '../../assets/img/yanderesa.jpg'
 
 import dpLogo from '../../assets/img/dp1.png'
 
@@ -40,6 +25,7 @@ class Footer extends React.Component {
 
 
           <div className="fuentes">
+            <p>Fuentes de información:</p>
             <a target="_blank" href="https://www.worldometers.info/">
               <img className="img-responsive wordometers-logo" src={worddometersLogo} />
             </a>
@@ -52,6 +38,12 @@ class Footer extends React.Component {
             </a>
           </div>
           
+          <div className="fuentes">
+            <p>Desarrollado en colaboración con:</p>
+            <a target="_blank" href="https://www.yanderesa.net/">
+              <img className="img-responsive yanderesa-logo" src={yanderesalogo} />
+            </a>
+          </div>
 
 
 
