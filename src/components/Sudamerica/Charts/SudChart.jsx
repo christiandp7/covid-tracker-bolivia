@@ -85,7 +85,7 @@ function SudChart({ timeline, data }) {
       <CardHeader>
         <Row>
           <Col className="text-left" xs="12">
-          <h5>Últimos { recordsNumber } días | Última actualización: { moment(timeline[0].lastUpdate).format('DD/MM/YYYY') }</h5>
+          <h5>Últimos { recordsNumber } días | Última actualización: { moment(timeline[0].lastUpdate).format("DD/MM/YYYY - HH:MM") }</h5>
           </Col>
         </Row>
         <Row>

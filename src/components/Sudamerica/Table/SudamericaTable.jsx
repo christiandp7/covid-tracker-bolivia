@@ -32,7 +32,7 @@ function SudamericaTable({ data }) {
   return (
     <Card>
       <CardHeader>
-        <h5>Valores Totales | Última Actualización: { moment(data.lastUpdate).format("DD/MM/YYYY") }</h5>
+        <h5>Valores Totales | Última Actualización: { moment(data.lastUpdate).format("DD/MM/YYYY - HH:MM") }</h5>
         <CardTitle tag="h2">Sudamerica</CardTitle>
       </CardHeader>
       <CardBody>
