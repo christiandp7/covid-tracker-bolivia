@@ -26,6 +26,7 @@ import {
   Col
 } from "reactstrap";
 
+import BoliviaNotification from '../components/Notifications/BoliviaNotfication'
 
 export class Bolivia extends Component {
 
@@ -64,6 +65,8 @@ export class Bolivia extends Component {
       <>
         <div className="content">
         <SkeletonTheme color="#1e1e2f" highlightColor="#BFBFC5">
+
+          <BoliviaNotification />
 
           <BoliviaCards data={this.state.genData} deps={this.state.depLastUpdate} />
 
