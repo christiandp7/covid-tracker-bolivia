@@ -105,7 +105,7 @@ const BolPopOver = ({ depTarget, data, mapa }) => {
         </PopoverHeader>
         <PopoverBody>
 
-        <h5>Última Actualización: { formatDateSlash(data.date) }</h5>
+        <h5>Última Actualización: { data.lastUpdate }</h5>
 
           <Nav tabs>
             <NavItem>

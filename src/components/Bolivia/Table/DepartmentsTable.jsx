@@ -42,7 +42,7 @@ function DepartmentsTable({ data }) {
   return (
     <Card>
       <CardHeader>
-        <h5>Valores Totales | Última Actualización: { formatDateSlash(data[0].date) }</h5>
+        <h5>Valores Totales | Última Actualización: { data[0].lastUpdate }</h5>
         <CardTitle tag="h2">Departamentos</CardTitle>
       </CardHeader>
       <CardBody>
