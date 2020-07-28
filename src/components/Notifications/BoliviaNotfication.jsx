@@ -19,7 +19,7 @@ function BoliviaNotfication() {
   return (
       <Alert color="danger" className="alert-with-icon" isOpen={visible} toggle={onDismiss}>
         <span className="tim-icons icon-bell-55" data-notify="icon" />
-        Ayer experimentamos inconvenientes en nuestro servidor, que ocasionaron una toma errónea de los datos, lo solucionamos durante el día de hoy y corregímos los datos erróneos, estamos trabajando constantemente para brindarle el mejor servicio y los datos mas actualizados.
+        Ayer experimentamos inconvenientes en nuestro servidor que ocasionaron una toma errónea de los datos, lo solucionamos durante el día de hoy y corregímos los datos erróneos. Estamos trabajando constantemente para brindarle el mejor servicio y los datos mas actualizados.
       </Alert>
   )
 }
