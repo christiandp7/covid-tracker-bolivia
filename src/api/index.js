@@ -14,9 +14,6 @@ import {
 
 
 
-
-
-
 // ------------------------------------
 //            Bolivia
 // ------------------------------------
@@ -24,7 +21,7 @@ import {
 
 
 // Bolivia
-const url1 = 'https://covid19bo.herokuapp.com/departments'
+const url1 = 'https://apicovid19bo.diazportela.com/departments'
 //const url2 = ''
 const url3 = 'https://corona.lmao.ninja/v2/countries/Bolivia'
 
