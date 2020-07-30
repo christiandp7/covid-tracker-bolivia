@@ -6,7 +6,7 @@ import {
 
 function BoliviaNotfication() {
 
-  let lsVarName = 'bol-err-notification-1';
+  let lsVarName = 'bol-err-notification-2';
 
   const initialState = () => window.localStorage.getItem(lsVarName) === null ? true : false
 
@@ -17,9 +17,9 @@ function BoliviaNotfication() {
   };
 
   return (
-      <Alert color="danger" className="alert-with-icon" isOpen={visible} toggle={onDismiss}>
+      <Alert color="primary" className="alert-with-icon" isOpen={visible} toggle={onDismiss}>
         <span className="tim-icons icon-bell-55" data-notify="icon" />
-        Ayer experimentamos inconvenientes en nuestro servidor que ocasionaron una toma errónea de los datos, lo solucionamos durante el día y corregímos los datos erróneos. Estamos trabajando constantemente para brindarle el mejor servicio y los datos mas actualizados.
+        Los datos que se muestran corresponden al día 28/07/2020 publicados aproximadamente a las 10:30pm en agetic.gob.bo, desde esa fecha no se actualizaron los datos necesarios para el procesamiento de nuestra información, por ende estamos a la espera de la actualización de los datos su API. De momento pueden consultar los datos publicados el dia de ayer 29/07/2020 en <a href="https://www.boliviasegura.gob.bo/" target="_blank">boliviasegura.gob.bo</a>. En cuanto tengamos la actualización de los datos que necesitamos para nuestro procesamiento, se publicarán automaticamente.
       </Alert>
   )
 }

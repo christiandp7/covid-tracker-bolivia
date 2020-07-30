@@ -49,26 +49,41 @@ export const formatDateSlash = (str) => {
 
 // ESTADISTICS DATA FUNCTIONS
 
-export const getLethalityRate = (deaths, cases) => { // Percents
+export const getLethalityRate = (deaths, cases, asNumber=false) => { // Percents
+  if(asNumber){
+    return roundNumber(((deaths * 100) / cases ), 2)
+  }
   return replaceDecDotByComma(roundNumber(((deaths * 100) / cases ), 2))
 }
 
-export const getRecoveredRate = (recovered, cases) => { // Percents
+export const getRecoveredRate = (recovered, cases, asNumber=false) => { // Percents
+  if(asNumber){
+    return roundNumber(((recovered * 100) / cases), 2)
+  }
   return replaceDecDotByComma(roundNumber(((recovered * 100) / cases), 2))
 }
 
 // Mortality Rate
-export const getMortalityRate = (deaths, population) => { // per 100mil hab
+export const getMortalityRate = (deaths, population, asNumber=false) => { // per 100mil hab
+  if(asNumber){
+    return roundNumber(((deaths * 100000) / population ), 2)
+  }
   return replaceDecDotByComma(roundNumber(((deaths * 100000) / population ), 2))
 }
 
 // Effective Effective Lethality Rate
-export const getEffectiveLethalityRate = (cases, deaths, active) => { // Percents
+export const getEffectiveLethalityRate = (cases, deaths, active, asNumber=false) => { // Percents
+  if(asNumber){
+    return roundNumber(((deaths * 100) / (cases - active)), 2)
+  }
   return replaceDecDotByComma(roundNumber(((deaths * 100) / (cases - active)), 2))
 }
 
 // Incidence
-export const getIncidenceRate = (cases, population) => { // Percents
+export const getIncidenceRate = (cases, population, asNumber=false) => { // Percents
+  if(asNumber){
+    return roundNumber(((cases * 100000) / population), 2)
+  }
   return replaceDecDotByComma(numberWithDots(roundNumber(((cases * 100000) / population), 2)))
 }
 

@@ -276,7 +276,7 @@ let chartExample3 = {
           borderWidth: 2,
           borderDash: [],
           borderDashOffset: 0.0,
-          data: [53, 20, 10, 80, 100, 45, 50, 25, 10]
+          data: [1.3, 2.6, 1.1, 5.2, 4.9,7.1, 2.5, 6.8, 2.8]
         }
       ]
     };
@@ -284,7 +284,7 @@ let chartExample3 = {
   options: {
     maintainAspectRatio: false,
     legend: {
-      display: true,
+      display: false,
       position: 'bottom',
       labels: {
         fontColor: "#ffffff",

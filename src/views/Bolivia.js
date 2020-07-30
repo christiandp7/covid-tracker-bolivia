@@ -15,7 +15,7 @@ import {
   BoliviaMap,
   //BoliviaChart,
   DepartmentsChart,
-  DepartmentsBar,
+  //DepartmentsBar,
   DepartmentsTable
 } from "../components/Bolivia"
 
@@ -26,7 +26,7 @@ import {
   Col
 } from "reactstrap";
 
-//import BoliviaNotification from '../components/Notifications/BoliviaNotfication'
+import BoliviaNotification from '../components/Notifications/BoliviaNotfication'
 
 export class Bolivia extends Component {
 
@@ -66,7 +66,7 @@ export class Bolivia extends Component {
         <div className="content">
         <SkeletonTheme color="#1e1e2f" highlightColor="#BFBFC5">
 
-          {/*<BoliviaNotification />*/}
+          <BoliviaNotification />
 
           <BoliviaCards data={this.state.genData} deps={this.state.depLastUpdate} />
 
@@ -95,7 +95,7 @@ export class Bolivia extends Component {
           </Row>
 
           {/*<Row>
-            <Col xs="12">
+            <Col xs="8">
               <DepartmentsBar data={this.state.depLastUpdate} />
             </Col>
           </Row>*/}
