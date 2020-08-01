@@ -36,7 +36,7 @@ function BoliviaChart({ data: { timeline } }) {
   }  
 
   return (
-    <Card className="card-chart bol-chart">
+    <Card className="card-chart md-chart">
       <CardHeader>
         <Row>
           <Col className="text-left" sm="6" xs="8">

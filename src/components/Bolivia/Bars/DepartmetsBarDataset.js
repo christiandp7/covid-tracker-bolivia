@@ -15,9 +15,9 @@ import {
 
 function DepartmetsBarDataset({ tasa, data, tasaName, tasaColor }) {
 
-  console.log(tasa)
+  //console.log(tasa)
 
-  console.log(data[0].id + " : " + tasa)
+  //console.log(data[0].id + " : " + tasa)
 
   const getTasaType = (depto, tasaToShow) => {
     const { cases, deaths, recovered, active } = depto.total;
@@ -55,37 +55,6 @@ function DepartmetsBarDataset({ tasa, data, tasaName, tasaColor }) {
 
     let ctx = canvas.getContext("2d");
 
-    // danger colors Gradient (Lethality)
-    let dangerGradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
-    dangerGradientStroke.addColorStop(1, "rgba(253, 93, 147, 0.15)");
-    dangerGradientStroke.addColorStop(0.4, "rgba(253, 93, 147, 0.0)");
-    dangerGradientStroke.addColorStop(0, "rgba(253, 93, 147, 0)"); // danger
-
-    //warning colors Gradient (Mortality)
-    let warningGradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
-    warningGradientStroke.addColorStop(1, "rgba(255,141,114,0.15)");
-    warningGradientStroke.addColorStop(0.4, "rgba(255,141,114,0.0)"); 
-    warningGradientStroke.addColorStop(0, "rgba(255,141,114,0)"); // warning
-
-    //success colors Gradient (Recover)
-    let greenGradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
-    greenGradientStroke.addColorStop(1, "rgba(66,134,121,0.15)");
-    greenGradientStroke.addColorStop(0.4, "rgba(66,134,121,0.0)"); 
-    greenGradientStroke.addColorStop(0, "rgba(66,134,121,0)"); // success
-
-    //tertiary colors Gradient (TLE)
-    let tertiaryGradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
-    tertiaryGradientStroke.addColorStop(1, "rgba(72,72,176,0.15)");
-    tertiaryGradientStroke.addColorStop(0.4, "rgba(72,72,176,0.0)");
-    tertiaryGradientStroke.addColorStop(0, "rgba(119,52,169,0)"); //purple colors
-
-    //purple colors Gradient (Incidence)
-    let purpleGradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
-    purpleGradientStroke.addColorStop(1, "rgba(137,101,224, 0.15)");
-    purpleGradientStroke.addColorStop(0.4, "rgba(137,101,224, 0.0)"); 
-    purpleGradientStroke.addColorStop(0, "rgba(137,101,224, 0)"); // purple
-
-
     //purple colors Gradient (Incidence)
     let dynamicGradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
     dynamicGradientStroke.addColorStop(1, tasaColor.rgba('0.15'));
@@ -96,7 +65,7 @@ function DepartmetsBarDataset({ tasa, data, tasaName, tasaColor }) {
       labels: getDepsNames(),
       datasets: [
         {
-          label: "Confirmados",
+          label: tasaName.toString(),
           fill: true,
           backgroundColor: dynamicGradientStroke,
           hoverBackgroundColor: dynamicGradientStroke,
@@ -276,16 +245,27 @@ function DepartmetsBarDataset({ tasa, data, tasaName, tasaColor }) {
 
 
 
-  const chageBarCharOptions = () => {
+  const changeBarCharOptions = () => {
     barChartOptions.scales.yAxes[0].gridLines.color = tasaColor.rgba('0.12');
     barChartOptions.scales.xAxes[0].gridLines.color = tasaColor.rgba('0.12');
+
+    if(tasa === 'tm' || tasa === 'ti'){
+      barChartOptions.tooltips.callbacks.label = function(tooltipItem, cdata) {
+        return `${cdata.datasets[tooltipItem.datasetIndex].label}: ${cdata['datasets'][0]['data'][tooltipItem['index']]}/100mil hab.`;
+      };
+    } else {
+      barChartOptions.tooltips.callbacks.label = function(tooltipItem, cdata) {
+        return `${cdata.datasets[tooltipItem.datasetIndex].label}: ${cdata['datasets'][0]['data'][tooltipItem['index']]}%`;
+      };
+    }
+
     return barChartOptions;
   }
 
   
   if(data[0]){
     return (
-      <Bar data={DepsBarData} options={chageBarCharOptions()} />
+      <Bar data={DepsBarData} options={changeBarCharOptions()} />
     )
   }
 }

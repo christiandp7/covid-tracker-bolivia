@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import cx from 'classnames'
-import moment from 'moment'
 
 import ChartLoader from '../../Loaders/ChartLoader'
 
@@ -81,7 +79,7 @@ function DepartmentsBar({ data }) {
       setTasaColor(tasaColorObj.success)
     }
     if(tasa === 'tle') {
-      setTasaName('Letalidad E.');
+      setTasaName('Letalidad Efectiva');
       setTasaColor(tasaColorObj.tertiary)
     }
     if(tasa === 'ti') {
@@ -103,7 +101,7 @@ function DepartmentsBar({ data }) {
   }  
 
   return (
-    <Card className="card-chart sud-chart">
+    <Card className="card-chart md-chart">
       <CardHeader>
         <Row>
           <Col className="text-left" xs="12">
@@ -112,7 +110,7 @@ function DepartmentsBar({ data }) {
         </Row>
         <Row>
           <Col className="text-left" sm="6" xs="12">
-            <CardTitle tag="h2">
+            <CardTitle tag="h3">
               <i className={`tim-icons icon-chart-bar-32 text-${tasaColor.name}`} />T. { tasaName }
             </CardTitle>
           </Col>
@@ -122,7 +120,7 @@ function DepartmentsBar({ data }) {
                 type="select" 
                 id="recordsNumerSelect" 
                 defaultValue={tasa}
-                className="width-auto float-right"
+                className="width-auto float-sm-right"
                 onChange={(e) => setTasa(e.target.value)}
               >
                 <option value="tl">T. Letalidad</option>

@@ -15,7 +15,8 @@ import {
   BoliviaMap,
   //BoliviaChart,
   DepartmentsChart,
-  //DepartmentsBar,
+  DepartmentsBar,
+  BoliviaTestsPie,
   DepartmentsTable
 } from "../components/Bolivia"
 
@@ -50,7 +51,7 @@ export class Bolivia extends Component {
       depStatus: fetchedDepStatus,
       //historyData: fetchedHistory
     })
-  //}, 5000);
+  //}, 50000);
     //console.log(genData)
   }
 
@@ -94,11 +95,14 @@ export class Bolivia extends Component {
             </Col>
           </Row>
 
-          {/*<Row>
-            <Col xs="8">
+          <Row>
+            <Col md="8" sm="12">
               <DepartmentsBar data={this.state.depLastUpdate} />
             </Col>
-          </Row>*/}
+            <Col md="4" sm="12">
+              <BoliviaTestsPie data={this.state.genData} />
+            </Col>
+          </Row>
 
           <Row>
             <Col xs="12">

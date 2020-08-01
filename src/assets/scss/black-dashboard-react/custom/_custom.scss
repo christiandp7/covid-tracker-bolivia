@@ -97,10 +97,17 @@
   padding: 28px 0;
 }
 
-.card-chart.sud-chart .chart-area {
+.pie_loader_container {
+  text-align:center;
+  //padding: px 0;
+  padding-top: 5px;
+  padding-bottom: 20px;
+}
+
+.card-chart.lg-chart .chart-area {
   height: 380px;
 }
-.card-chart.bol-chart .chart-area {
+.card-chart.md-chart .chart-area {
   height: 280px;
 }
 
@@ -241,13 +248,13 @@
       }*/
     }
   }
-  .card-chart.sud-chart .chart-area {
+  .card-chart.lg-chart .chart-area {
     height: 460px;
   }
 }
 
 @media (max-width: 480px){
-  .card-chart.sud-chart .chart-area {
+  .card-chart.lg-chart .chart-area {
     height: 500px;
   }
 }

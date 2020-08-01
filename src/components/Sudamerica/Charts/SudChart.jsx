@@ -81,7 +81,7 @@ function SudChart({ timeline, data }) {
   }  
 
   return (
-    <Card className="card-chart sud-chart">
+    <Card className="card-chart lg-chart">
       <CardHeader>
         <Row>
           <Col className="text-left" xs="12">
@@ -89,14 +89,14 @@ function SudChart({ timeline, data }) {
           </Col>
         </Row>
         <Row>
-          <Col className="text-left" sm="6" xs="12">
+          <Col className="text-left" md="6" sm="12">
             <CardTitle tag="h2">
               <i className="tim-icons icon-chart-bar-32 text-Info" /> { statusName }
             </CardTitle>
           </Col>
-          <Col sm="6" xs="12">
+          <Col md="6" sm="12">
             <ButtonGroup
-              className="btn-group-toggle float-right"
+              className="btn-group-toggle float-md-right"
               data-toggle="buttons"
             >
               <Button
@@ -214,7 +214,7 @@ function SudChart({ timeline, data }) {
               </Input> 
             </FormGroup>
           </Col>
-          <Col sm="6" xs="12">
+          <Col md="6" sm="12">
             <Row>
               <Col sm="6" xs="12">
               <FormGroup>

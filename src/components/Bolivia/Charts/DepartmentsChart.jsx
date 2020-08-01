@@ -32,7 +32,7 @@ function DepartmentsChart({ timeline, data }) {
   const [status, setStatus] = useState('cases')
   const [statusName, setStatusName] = useState('Confirmados')
   const [recordsNumber, setRecordsNumber] = useState(30)
-  const [habNumber, setHabNumber] = useState(1000000)
+  const [habNumber, setHabNumber] = useState(100000) // 100 mil
   const [ponderation, setPonderation] = useState('acumulados')
   //const [habNumber, setHabNumber] = useState(100000)
 
@@ -68,7 +68,7 @@ function DepartmentsChart({ timeline, data }) {
   }  
 
   return (
-    <Card className="card-chart sud-chart">
+    <Card className="card-chart lg-chart">
       <CardHeader>
           <Row>
             <Col className="text-left" xs="12">
@@ -80,14 +80,14 @@ function DepartmentsChart({ timeline, data }) {
             </Col>
           </Row>
           <Row>
-            <Col sm="6" xs="12">
+            <Col md="6" sm="12">
               <CardTitle tag="h2">
                 <i className="tim-icons icon-chart-bar-32 text-Info" /> { statusName }
               </CardTitle>
             </Col>
-            <Col sm="6" xs="12">
+            <Col md="6" sm="12">
                 <ButtonGroup
-                  className="btn-group-toggle float-right"
+                  className="btn-group-toggle float-md-right"
                   data-toggle="buttons"
                 >
                   <Button

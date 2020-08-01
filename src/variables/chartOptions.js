@@ -17,7 +17,13 @@ let barChartOptions = {
     xPadding: 12,
     mode: "nearest",
     intersect: 0,
-    position: "nearest"
+    position: "nearest",
+    callbacks: {
+      label: function(tooltipItem, data){
+        //return data['datasets'][0]['data'][tooltipItem['index']] + '%';
+        return `${data.datasets[tooltipItem.datasetIndex].label}: ${data['datasets'][0]['data'][tooltipItem['index']]}%`;
+      }
+    }
   },
   responsive: true,
   scales: {
@@ -61,6 +67,12 @@ let lineChartBlueBg = {
       fontColor: "#ffffff",
       fontSize: 14,
       padding: 25
+    },
+    onHover: function (e) {
+      e.target.style.cursor = 'pointer';
+    },
+    onLeave: function (e) {
+      e.target.style.cursor = 'default';
     }
   },
   tooltips: {
