@@ -6,8 +6,8 @@ export let BolPopoulation = '11633371';
 
 
 // NUMBER FUNCTIONS
-export const roundNumber = (num, decimals=0) => {
-  return (Math.round(num * 100) / 100).toFixed(decimals);
+export const roundNumber = (xnum, decimals=0) => {
+  return (Math.round(xnum * 100) / 100).toFixed(decimals);
 }
 
 export const numberWithDots = (xnum) => {
@@ -36,6 +36,10 @@ export const replaceDecDotByComma = (xnum) => {
 
 export const valuePerHab = (numHab, value, population) => {
   return (numHab * Number(value)) / population
+}
+
+export const valuePercent = (x, y) => {
+  return roundNumber(((x * 100) / y), 2)
 }
 
 
@@ -85,6 +89,11 @@ export const getIncidenceRate = (cases, population, asNumber=false) => { // Perc
     return roundNumber(((cases * 100000) / population), 2)
   }
   return replaceDecDotByComma(numberWithDots(roundNumber(((cases * 100000) / population), 2)))
+}
+
+// Tests menos Cases
+export const getSuspectsAndDiscartedSum = (tests, cases) => { // Percents
+  return Math.abs(tests - cases)
 }
 
 

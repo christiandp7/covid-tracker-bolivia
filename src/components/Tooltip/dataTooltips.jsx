@@ -51,3 +51,13 @@ export function TooltipTI() { // Tasa de Incidencia
     </CustomTooltip>
   )
 }
+
+export function TooltipTests() { // Nro tests
+  return (
+    <CustomTooltip placement="top" tooltipClassName="tooltip-data" target="tooltipTests">
+      <div>El Número de Tests es igual al número de casos confirmados, más los casos descartados, más los casos sospechosos(cuyas muestras fueron tomadas y están a la espera de los resultados).</div>
+      <div>Ecuación:</div>
+      <div className="ecu">Nro. Tests = confirmados + descartados + sospechosos</div>
+    </CustomTooltip>
+  )
+}

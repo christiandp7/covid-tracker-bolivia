@@ -8,7 +8,8 @@ import {
   getRecoveredRate,
   getMortalityRate,
   getEffectiveLethalityRate,
-  getIncidenceRate
+  getIncidenceRate,
+  replaceDecDotByComma
 } from '../../../variables/math'
 
 //import { lineChartBlueBg } from "../../../variables/chartOptions";
@@ -251,11 +252,11 @@ function DepartmetsBarDataset({ tasa, data, tasaName, tasaColor }) {
 
     if(tasa === 'tm' || tasa === 'ti'){
       barChartOptions.tooltips.callbacks.label = function(tooltipItem, cdata) {
-        return `${cdata.datasets[tooltipItem.datasetIndex].label}: ${cdata['datasets'][0]['data'][tooltipItem['index']]}/100mil hab.`;
+        return `${cdata.datasets[tooltipItem.datasetIndex].label}: ${replaceDecDotByComma(cdata['datasets'][0]['data'][tooltipItem['index']])}/100mil hab.`;
       };
     } else {
       barChartOptions.tooltips.callbacks.label = function(tooltipItem, cdata) {
-        return `${cdata.datasets[tooltipItem.datasetIndex].label}: ${cdata['datasets'][0]['data'][tooltipItem['index']]}%`;
+        return `${cdata.datasets[tooltipItem.datasetIndex].label}: ${replaceDecDotByComma(cdata['datasets'][0]['data'][tooltipItem['index']])}%`;
       };
     }
 

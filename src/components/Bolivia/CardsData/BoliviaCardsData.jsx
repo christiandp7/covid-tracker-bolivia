@@ -31,7 +31,8 @@ import {
   TooltipTM,
   TooltipTR,
   TooltipTLE,
-  TooltipTI  
+  TooltipTI,
+  TooltipTests
 } from '../../Tooltip/dataTooltips'
 
 
@@ -63,7 +64,7 @@ function BoliviaCardsData({ data: { tests, lethalityRate, recoveredRate, mortali
               <FontAwesomeIcon className="text-warning" icon={faExclamationTriangle} /> { mortalityRate }<span>/100mil hab.</span>
             </h3>
 
-            <h5>Nro. Tests</h5>
+            <h5>Nro. Tests <i className="tim-icons icon-alert-circle-exc" id="tooltipTests"></i></h5>
             <h3><FontAwesomeIcon className="text-info" icon={faMicroscope} /> { numberWithDots(tests) }</h3>
           </Col>
           <Col xs="12" sm="6" md="6">
@@ -104,6 +105,7 @@ function BoliviaCardsData({ data: { tests, lethalityRate, recoveredRate, mortali
       <TooltipTM />
       <TooltipTLE />
       <TooltipTI />
+      <TooltipTests />
       
     </>
   )

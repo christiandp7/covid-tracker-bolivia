@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import cx from 'classnames'
 import { Pie } from 'react-chartjs-2'
 
 import moment from 'moment'
 
 // reactstrap components
 import {
-  Button,
-  ButtonGroup,
-  FormGroup,
-  Input,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
   Card,
   CardHeader,
   CardBody,
@@ -17,20 +18,53 @@ import {
   Col,
 } from "reactstrap";
 
-import { numberWithDots } from '../../../variables/math'
+import CustomTooltip from '../../Tooltip/CustomTooltip'
+
+import { 
+  numberWithDots,
+  valuePercent,
+  getSuspectsAndDiscartedSum,
+  replaceDecDotByComma
+ } from '../../../variables/math'
 
 import PieLoader from '../../Loaders/PieLoader'
 
 function BoliviaTestsPie({ data: { cases, tests, updated }}) {
 
+  const [valuesType, setValuesType] = useState('totals')
+
+  const changeValuesType = (e, newValueType) => {
+    e.preventDefault();
+    if(valuesType != newValueType){
+      setValuesType(newValueType)
+    }
+  }
+
+  const getArrayData = (rawTests, rawCases) => {
+    if(valuesType === 'totals') {
+      return [
+        rawCases,
+        getSuspectsAndDiscartedSum(rawTests, rawCases)
+      ]
+    }
+    if(valuesType === 'percents') {
+      return [
+        valuePercent(rawCases, rawTests),
+        valuePercent(getSuspectsAndDiscartedSum(rawTests, rawCases), rawTests)
+      ]
+    }
+  }
+
+
+  useEffect(() => {
+    console.log(valuesType)
+  }, [valuesType])
+
+
+
+
   let bolTestsPieOptions = {
     maintainAspectRatio: false,
-    /*layout: {
-      padding: {
-        top: 20,
-        bottom: 20
-      }
-    },*/
     title: {
       display: true,
       text: 'Confirmados por cantidad de Tests ',
@@ -60,15 +94,19 @@ function BoliviaTestsPie({ data: { cases, tests, updated }}) {
       bodyFontColor: "#666",
       bodySpacing: 4,
       xPadding: 12,
-      mode: "nearest",
+      mode: "point",
       intersect: 0,
       position: "nearest",
-      /*callbacks: {
-        label: function(tooltipItem, data){
-          //return data['datasets'][0]['data'][tooltipItem['index']] + '%';
-          return `${data.datasets[tooltipItem.datasetIndex].label}: ${data['datasets'][0]['data'][tooltipItem['index']]}%`;
+      callbacks: {
+        label: function(tooltipItem, cdata){
+          if(valuesType === 'totals') {
+            return `${cdata.labels[tooltipItem.index]}: ${numberWithDots(cdata['datasets'][0]['data'][tooltipItem['index']])}`;
+          } else { // percents
+            return `${cdata.labels[tooltipItem.index]}: ${replaceDecDotByComma(cdata['datasets'][0]['data'][tooltipItem['index']])}%`;
+          }
+          
         }
-      }*/
+      }
     },
   }
 
@@ -87,7 +125,7 @@ function BoliviaTestsPie({ data: { cases, tests, updated }}) {
     greenGradientStroke.addColorStop(0, "rgba(45,206,137,0)"); // green
 
     return {
-      labels: ["Confirmados", "Nro. Tests"],
+      labels: ["Confirmados", "Sospechosos y Descartados"],
       datasets: [
         {
           //backgroundColor: [ "#2ecc71", "#3498db"],
@@ -96,7 +134,8 @@ function BoliviaTestsPie({ data: { cases, tests, updated }}) {
           hoverBackgroundColor: [greenGradientStroke, blueGradientStroke],
           borderColor: ["#2dce89", "#1d8cf8"],
           borderWidth: 2,
-          data: [numberWithDots(cases), numberWithDots(tests)]
+          //data: [cases, getSuspectsAndDiscartedSum(tests, cases)]
+          data: getArrayData(tests, cases)
         }
       ]
     }
@@ -119,6 +158,39 @@ function BoliviaTestsPie({ data: { cases, tests, updated }}) {
           <Col className="text-left" xs="12">
             <CardTitle tag="h3">
               <i className="tim-icons icon-chart-pie-36 text-info" />Tests
+            
+              <UncontrolledDropdown className="float-right" >
+                <DropdownToggle
+                  caret
+                  className="btn-icon"
+                  color="link"
+                  data-toggle="dropdown"
+                  type="button"
+                >
+                  <i className="tim-icons icon-settings-gear-63" />
+                </DropdownToggle>
+                <DropdownMenu aria-labelledby="dropdownMenuLink" right>
+                  <DropdownItem
+                    href="#pablo"
+                    className={cx({
+                      "font-weight-bold": valuesType === "percents"
+                    })}
+                    onClick={e => changeValuesType(e, "percents")}
+                  >
+                    Valores Porcentuales
+                  </DropdownItem>
+                  <DropdownItem
+                    href="#pablo"
+                    className={cx({
+                      "font-weight-bold": valuesType === "totals"
+                    })}
+                    onClick={e => changeValuesType(e, "totals")}
+                  >
+                    Valores Totales
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+
             </CardTitle>
           </Col>
         </Row>
