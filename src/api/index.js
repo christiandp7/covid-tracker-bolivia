@@ -37,6 +37,7 @@ export const fetchBOGeneralData = async () => {
         todayRecovered,
         active,
         //critical,
+        updated,
         tests
       } 
     } = await axios.get(url3);
@@ -61,6 +62,7 @@ export const fetchBOGeneralData = async () => {
       todayRecovered,
       active, 
       //critical,
+      updated,
       tests,
       lethalityRate,
       recoveredRate,

@@ -1,5 +1,6 @@
 import React from 'react'
 //import { Bar } from "react-chartjs-2";
+import moment from 'moment'
 import CardLoader from '../../Loaders/CardsDataLoaderBo'
 
 import { numberWithDots } from '../../../variables/math'
@@ -39,7 +40,7 @@ import {
 //import { chartExample3 } from "variables/charts.js";
 //import { TooltipTLE } from 'components/Tooltip/dataTooltips';
 
-function BoliviaCardsData({ data: { tests, lethalityRate, recoveredRate, mortalityRate, effectiveLethalityRate, incidenceRate }}) {
+function BoliviaCardsData({ deps, data: { tests, lethalityRate, recoveredRate, mortalityRate, effectiveLethalityRate, incidenceRate, updated }}) {
   if(!lethalityRate) {
     return (<CardLoader />)
   }
@@ -51,8 +52,11 @@ function BoliviaCardsData({ data: { tests, lethalityRate, recoveredRate, mortali
           <CardTitle className="text-center" tag="h3">
             Datos Estadísticos
           </CardTitle>
+          <h5 style={{marginTop: '30px'}}>Última actualización: {deps[0].lastUpdate}</h5>
         </CardHeader>
         <CardBody>
+
+
 
         <Row>
           <Col xs="12" sm="6" md="6">
@@ -88,9 +92,9 @@ function BoliviaCardsData({ data: { tests, lethalityRate, recoveredRate, mortali
             </div>
   </Col>*/}
 
-          <Col xs="12">
-            <p style={{marginBottom: '9px'}}><strong>Nota:</strong> Los datos de <b>Nro. de Test</b> no se actualizan diariamente, en ocasiones tardan semanas.</p>
-          </Col>
+          {/*<Col xs="12">
+            <p style={{marginBottom: '9px'}}><strong>Nota:</strong> Los datos de <b>Nro. de Test</b> ahora se actualizan diariamente.</p>
+          </Col>*/}
           
 
         </Row>

@@ -96,6 +96,11 @@ export const getSuspectsAndDiscartedSum = (tests, cases) => { // Percents
   return Math.abs(tests - cases)
 }
 
+// Return Active
+export const getActiveValue = (cases, deaths, recovered) => { // Percents
+  return (cases - (deaths + recovered))
+}
+
 
 
 

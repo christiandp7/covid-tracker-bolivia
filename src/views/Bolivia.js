@@ -78,7 +78,7 @@ export class Bolivia extends Component {
               </Card>
             </Col>
             <Col xs="12" md="6">
-              <BoliviaCardsData data={this.state.genData} />
+              <BoliviaCardsData data={this.state.genData} deps={this.state.depLastUpdate} />
             </Col>
           </Row>
 

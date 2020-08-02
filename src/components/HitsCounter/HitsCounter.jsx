@@ -14,11 +14,11 @@ class HitsCounter extends Component {
     };
   }
  
-  /*async componentDidMount() {
+  async componentDidMount() {
     const data = await countapi.hit('covid19bo.diazportela.com', 'visits');
     //console.log(data.value)
     this.setState({ hits: data.value })
-  }*/
+  }
  
   render () {
     const { hits } = this.state;
