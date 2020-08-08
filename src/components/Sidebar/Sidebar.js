@@ -7,13 +7,14 @@ import { PropTypes } from "prop-types";
 import PerfectScrollbar from "perfect-scrollbar";
 
 // reactstrap components
-import { Nav } from "reactstrap";
+import { Nav, Badge } from "reactstrap";
 
 import ShareButtons from '../ShareButtons/ShareButtons'
 
 //Icons
 import BoliviaIcon from '../CustomIcons/BoliviaIcon'
 import SudamericaIcon from '../CustomIcons/SudamericaIcon'
+import VaccineIcon from '../CustomIcons/VaccineIcon'
 
 var ps;
 
@@ -118,6 +119,8 @@ class Sidebar extends React.Component {
                 linkIcon = (<BoliviaIcon />) 
               } else if (prop.customIcon == 'SU') {
                 linkIcon = (<SudamericaIcon />) 
+              } else if (prop.customIcon == 'VA') {
+                linkIcon = (<VaccineIcon />) 
               }
 
               return (
@@ -138,7 +141,14 @@ class Sidebar extends React.Component {
                     
                     {linkIcon}
 
-                    <p>{prop.name}</p>
+                    <p>{prop.name} 
+                    {prop.customIcon == 'VA' ? 
+                      (<Badge style={{ marginLeft: '12px' }} color="danger">Nuevo</Badge>) : null
+                    }
+                    </p>
+
+                    
+
                   </NavLink>
                 </li>
               );

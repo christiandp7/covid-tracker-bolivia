@@ -111,6 +111,10 @@
   height: 280px;
 }
 
+.card-chart.sm-chart .chart-area {
+  height: 220px;
+}
+
 
 .card-chart {
   .btn-group {
@@ -135,6 +139,15 @@
 
   }
 }
+
+
+// VACCINE
+.vaccine-dev-img {
+  max-width: 320px;
+  width: 85%;
+}
+
+
 
 // SOCIAL SHARE BUTTONS
 
@@ -194,6 +207,49 @@
   width: auto !important;
 }
 
+// REACT-BOOTSTRAP-TABLE2-PAGINATION
+.react-bootstrap-table-pagination { 
+  .react-bootstrap-table-pagination-list {
+    .react-bootstrap-table-page-btns-ul {
+      float: right;
+      .page-link {
+        padding: 0.22rem 1rem;
+        font-size: 0.8rem;
+        line-height: 1.5rem;
+      }
+      .page-item:first-child .page-link {
+        border-top-left-radius: 0.3rem;
+        border-bottom-left-radius: 0.3rem;
+      }
+      .page-item:last-child .page-link {
+        border-top-right-radius: 0.3rem;
+        border-bottom-right-radius: 0.3rem;
+      }
+    }
+  }
+  /*.react-bs-table-sizePerPage-dropdown .btn.btn-default {
+    background: #2dce89;
+    background-image: linear-gradient(to bottom left, #2dce89, #04AC71, #2dce89);
+    background-size: 210% 210%;
+    background-position: top right;
+    background-color: #2dce89;
+    transition: all 0.15s ease;
+    box-shadow: none;
+    color: #ffffff;
+  }*/
+}
+
+th:focus {
+  outline: none;
+}
+
+
+@media (max-width: 1200px){
+  .vaccine-dev-img {
+    max-width: 320px;
+    width: 100%;
+  }
+}
 
 /* Sidebar retrac */
 @media (max-width: 992px){
@@ -251,6 +307,11 @@
   .card-chart.lg-chart .chart-area {
     height: 460px;
   }
+
+  .react-bootstrap-table.table-responsive table {
+    table-layout: auto !important;
+  }
+
 }
 
 @media (max-width: 480px){

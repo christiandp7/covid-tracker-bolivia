@@ -8,6 +8,7 @@ import MainLayout from "layouts/Main.js";
 import "assets/scss/black-dashboard-react.scss";
 import "assets/demo/demo.css";
 import "assets/css/nucleo-icons.css";
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 
 // Google Analytics
 import Analytics from 'react-router-ga';

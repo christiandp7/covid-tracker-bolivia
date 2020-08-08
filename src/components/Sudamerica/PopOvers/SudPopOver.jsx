@@ -117,7 +117,7 @@ const SudPopOver = ({ countryTarget, data, mapa }) => {
         </PopoverHeader>
         <PopoverBody>
 
-        <h5>Última Actualización: { moment(data.updated).format("DD/MM/YYYY - HH:MM") }</h5>
+        <h5>Última Actualización: { moment(data.updated).format("DD/MM/YYYY - hh:mma") }</h5>
 
           <Nav tabs>
             <NavItem>

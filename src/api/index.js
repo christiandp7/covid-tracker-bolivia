@@ -203,3 +203,22 @@ export const fetchCountriesHistoryData = async (countries, lastDays=30) => {
     console.log(error)
   }
 }
+
+
+
+// ------------------------------------
+//            Vacunas
+// ------------------------------------
+
+export const fetchVaccine = async () => {
+  try {
+    const { data }  = await axios.get('https://disease.sh/v3/covid-19/vaccine');
+    //console.log(data)
+    return data;
+
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+

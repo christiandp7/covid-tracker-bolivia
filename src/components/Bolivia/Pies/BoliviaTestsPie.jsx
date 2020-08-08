@@ -57,7 +57,7 @@ function BoliviaTestsPie({ data: { cases, tests, updated }}) {
 
 
   useEffect(() => {
-    console.log(valuesType)
+    //console.log(valuesType)
   }, [valuesType])
 
 

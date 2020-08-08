@@ -1,6 +1,7 @@
 //import Dashboard from "views/Dashboard.js";
 import Bolivia from "views/Bolivia.js";
 import Sudamerica from "views/Sudamerica.js";
+import Vacunas from "views/Vacunas.js"
 //import Icons from "views/Icons.js";
 //import Map from "views/Map.js";
 //import Notifications from "views/Notifications.js";
@@ -34,6 +35,14 @@ var routes = [
     icon: "tim-icons icon-chart-pie-36",
     customIcon: "SU",
     component: Sudamerica,
+    layout: "/admin"
+  },
+  {
+    path: "/vacunas",
+    name: "Vacunas",
+    icon: "tim-icons icon-chart-pie-36",
+    customIcon: "VA",
+    component: Vacunas,
     layout: "/admin"
   },
  /*{
