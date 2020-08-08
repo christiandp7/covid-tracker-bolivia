@@ -58,8 +58,21 @@ function CandidatesTable({ data: { data, source, totalCandidates } }) {
   }, [vaccinePhase])*/
 
 
+  const listColFormater = (cell, row) => {
+    //console.log(cell)
+    if(cell[0] === "") {
+      return "-"
+    }
+    return (<ul style={{ paddingInlineStart: '10px' }}>
+      {cell.map((el, i) => {
+        return (<li key={i}>{el}</li>)
+      })}
+    </ul>)
+    //return cell;
+  }
+
   const phaseColFormater = (cell, row) => {
-    console.log(cell)
+    //console.log(cell)
     if(cell === "Phase 3") {
       return (<Badge style={{ backgroundColor: '#00d6b4' }}>{ cell }</Badge>)
     }
@@ -114,10 +127,10 @@ function CandidatesTable({ data: { data, source, totalCandidates } }) {
   const columns = [
     { dataField: 'id', text: 'ID', hidden: true, align: 'left' },
     { dataField: 'candidate', text: 'Candidatos', align: 'left' }, 
-    { dataField: 'sponsors', text: 'Patrocinadores', align: 'left' }, 
+    { dataField: 'sponsors', text: 'Patrocinadores', align: 'left', formatter: listColFormater, style: { verticalAlign: 'top' } }, 
     { dataField: 'trialPhase', text: 'Fase de Prueba', align: 'left', formatter: phaseColFormater },
-    { dataField: 'institutions', text: 'Instituciones', align: 'left' },
-    { dataField: 'funding', text: 'Financiamiento', align: 'left' },
+    { dataField: 'institutions', text: 'Instituciones', align: 'left', formatter: listColFormater, style: { verticalAlign: 'top' } },
+    { dataField: 'funding', text: 'Financiamiento', align: 'left', formatter: listColFormater, style: { verticalAlign: 'top' } },
   ];
 
 
