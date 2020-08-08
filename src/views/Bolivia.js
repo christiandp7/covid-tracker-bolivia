@@ -57,8 +57,6 @@ export class Bolivia extends Component {
 
   
 
-  
-
   render() {
     //const { genData } = this.state;
     
@@ -69,7 +67,7 @@ export class Bolivia extends Component {
 
           {/*<BoliviaNotification />*/}
 
-          <BoliviaCards data={this.state.genData} deps={this.state.depLastUpdate} />
+          <BoliviaCards data={this.state.genData} />
 
           <Row>
             <Col xs="12" md="6">
@@ -78,7 +76,7 @@ export class Bolivia extends Component {
               </Card>
             </Col>
             <Col xs="12" md="6">
-              <BoliviaCardsData data={this.state.genData} deps={this.state.depLastUpdate} />
+              <BoliviaCardsData data={this.state.genData} />
             </Col>
           </Row>
 

@@ -15,9 +15,11 @@ class HitsCounter extends Component {
   }
  
   async componentDidMount() {
-    const data = await countapi.hit('covid19bo.diazportela.com', 'visits');
-    //console.log(data.value)
-    this.setState({ hits: data.value })
+    if(process.env.NODE_ENV === 'production') {
+      const data = await countapi.hit('covid19bo.diazportela.com', 'visits');
+      //console.log(data.value)
+      this.setState({ hits: data.value })
+    }
   }
  
   render () {

@@ -40,7 +40,7 @@ import {
 //import { chartExample3 } from "variables/charts.js";
 //import { TooltipTLE } from 'components/Tooltip/dataTooltips';
 
-function BoliviaCardsData({ deps, data: { tests, lethalityRate, recoveredRate, mortalityRate, effectiveLethalityRate, incidenceRate, updated }}) {
+function BoliviaCardsData({ data: { tests, lethalityRate, recoveredRate, mortalityRate, effectiveLethalityRate, incidenceRate, lastUpdate }}) {
   if(!lethalityRate) {
     return (<CardLoader />)
   }
@@ -52,7 +52,7 @@ function BoliviaCardsData({ deps, data: { tests, lethalityRate, recoveredRate, m
           <CardTitle className="text-center" tag="h3">
             Datos Estadísticos
           </CardTitle>
-          <h5 style={{marginTop: '30px'}}>Última actualización: {deps[0].lastUpdate}</h5>
+          <h5 style={{marginTop: '30px'}}>Última actualización: {lastUpdate}</h5>
         </CardHeader>
         <CardBody>
 

@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import cx from 'classnames';
 import { 
   numberWithDots,
-  formatDateSlash,
   getLethalityRate,
   getRecoveredRate,
   getMortalityRate,

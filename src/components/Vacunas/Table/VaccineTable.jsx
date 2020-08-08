@@ -64,7 +64,7 @@ function VaccineTable({ data: { data, source, totalCandidates } }) {
           <Col className="text-left" xs="12">
             <h5>
             Total Candidatos: {totalCandidates} | 
-            Fuente:  <a target="_blank" href={source}>raps.org</a>
+            Fuente:  <a target="_blank" rel="noopener noreferrer" href={source}>raps.org</a>
           </h5>
           </Col>
         </Row>

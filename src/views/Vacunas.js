@@ -3,12 +3,11 @@ import React, { Component } from 'react'
 import { SkeletonTheme } from "react-loading-skeleton";
 
 import {
-  Card,
   Row,
   Col
 } from "reactstrap";
 
-import { PhaseDoughnut, VaccineTable, CandidatesTable } from '../components/Vacunas'
+import { PhaseDoughnut, CandidatesTable } from '../components/Vacunas'
 
 import { fetchVaccine } from '../api/index.js'
 

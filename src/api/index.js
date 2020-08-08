@@ -8,7 +8,7 @@ import {
   getMortalityRate,
   getEffectiveLethalityRate,
   getIncidenceRate,
-  BolPopoulation
+  //BolPopoulation
  } from '../variables/math'
 
 
@@ -22,48 +22,48 @@ import {
 
 // Bolivia
 const url1 = 'https://apicovid19bo.diazportela.com/departments'
-//const url2 = ''
-const url3 = 'https://corona.lmao.ninja/v2/countries/Bolivia'
+const url2 = 'https://apicovid19bo.diazportela.com/bolivia'
+//const url3 = 'https://corona.lmao.ninja/v2/countries/Bolivia'
 
 export const fetchBOGeneralData = async () => {
   try {
     const  { 
         data: {
         cases,
-        todayCases,
         deaths,
-        todayDeaths,
         recovered,
-        todayRecovered,
         active,
-        //critical,
-        updated,
-        tests
+        todayCases,
+        todayDeaths,
+        todayRecovered,
+        lastUpdate,
+        tests,
+        info,
       } 
-    } = await axios.get(url3);
+    } = await axios.get(url2);
 
     let lethalityRate = getLethalityRate(deaths, cases);
     let recoveredRate = getRecoveredRate(recovered, cases);
     
-    let mortalityRate = getMortalityRate(deaths, BolPopoulation);
+    let mortalityRate = getMortalityRate(deaths, info.population);
     let effectiveLethalityRate = getEffectiveLethalityRate(cases, deaths, active);
 
-    let incidenceRate = getIncidenceRate(cases, BolPopoulation);
+    let incidenceRate = getIncidenceRate(cases, info.population);
 
 
     //console.log(confirmed.value +"/"+recovered.value)
 
     return { 
-      cases ,
+      cases,
+      deaths,
+      recovered,
+      active,
       todayCases,
-      deaths, 
       todayDeaths,
-      recovered, 
       todayRecovered,
-      active, 
-      //critical,
-      updated,
+      lastUpdate,
       tests,
+      info,
       lethalityRate,
       recoveredRate,
       mortalityRate,

@@ -4,8 +4,6 @@ import ChartLoader from '../../Loaders/ChartLoader'
 
 // reactstrap components
 import {
-  Button,
-  ButtonGroup,
   FormGroup,
   Input,
   Card,

@@ -17,10 +17,20 @@ const hist = createBrowserHistory();
 
 ReactDOM.render(
   <Router history={hist}>
-    <Analytics id="UA-173368431-1">
-      <Route path="/"  render={props => <MainLayout {...props} />} />
+
+    { process.env.NODE_ENV === 'production' ? 
+      (
+        <Analytics id="UA-173368431-1">
+          <Route path="/"  render={props => <MainLayout {...props} />} />
+        </Analytics>
+      ) : 
+      (
+        <Route path="/"  render={props => <MainLayout {...props} />} />
+      )
+    }
+      
       {/*<Redirect from="/" to="/admin/dashboard" />*/}
-    </Analytics>
+
   </Router>,
   document.getElementById("root")
 );
