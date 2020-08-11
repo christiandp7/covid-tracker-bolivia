@@ -64,9 +64,9 @@ function ShareButtons() {
         <PinterestIcon size={32} round={true}  description ={description} media={media} />
       </PinterestShareButton>
 
-      <WhatsappShareButton url={url} className='d-none d-sm-block d-md-none' >
+      {/*<WhatsappShareButton url={url} className='d-none d-sm-block d-md-none' >
         <WhatsappIcon size={32} round={true}  title={description}  />
-      </WhatsappShareButton>
+      </WhatsappShareButton>*/}
     </div>
   )
 }

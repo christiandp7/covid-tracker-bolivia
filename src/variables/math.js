@@ -120,9 +120,15 @@ export const sumBOStatus = (deps, statusType, status) => { // Percents
 const firstCaseDate = { // DD/MM/YYYY
   "Argentina": "03/03/2020",
   "Bolivia": "11/03/2020",
-  "Brazil": "26/02/20",
-  "Chile": "03/03/20",
-  "Peru": "06/03/20"
+  "Brazil": "26/02/2020",
+  "Chile": "03/03/2020",
+  "Peru": "06/03/2020",
+  //Nuevos
+  /*"Colombia": "06/03/2020",
+  "Ecuador": "01/03/2020",
+  "Uruguay": "13/03/2020",
+  "Paraguay": "08/03/2020",
+  "Venezuela": "14/03/2020",*/
 }
 
 

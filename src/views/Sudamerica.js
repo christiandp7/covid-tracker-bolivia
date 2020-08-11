@@ -4,7 +4,13 @@ import { SkeletonTheme } from "react-loading-skeleton";
 
 import { fetchSudGeneralData, fetchSudCountriesData, fetchCountriesHistoryData } from '../api'
 
-import { SudamericaMap, SudamericaTable, SudamericaChart, SudamericaCard } from "../components/Sudamerica"
+import { 
+  SudamericaMap, 
+  SudamericaTable, 
+  SudamericaChart, 
+  SudamericaCard,
+  SudamericaBar,
+} from "../components/Sudamerica"
 
 
 // reactstrap components
@@ -68,6 +74,12 @@ export class Sudamerica extends Component {
           <Row>
             <Col xs="12">
                 <SudamericaChart timeline={this.state.historyData} data={this.state.countriesData} />
+            </Col>
+          </Row>
+
+          <Row>
+            <Col xs="12">
+                <SudamericaBar data={this.state.countriesData} />
             </Col>
           </Row>
 

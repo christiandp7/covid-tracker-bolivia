@@ -190,6 +190,13 @@ export const fetchCountriesHistoryData = async (countries, lastDays=30) => {
       "Brazil",
       "Chile",
       "Peru",
+      // Nuevos
+      /*"Colombia",
+      "Ecuador",
+      "Uruguay",
+      "Paraguay",
+      "Venezuela",*/
+      
     ];
   }
 

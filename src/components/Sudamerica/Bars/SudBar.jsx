@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-
+import moment from 'moment'
 import ChartLoader from '../../Loaders/ChartLoader'
 
 // reactstrap components
@@ -14,9 +14,9 @@ import {
   Col,
 } from "reactstrap";
 
-import DepartmentsBarDataset from './DepartmetsBarDataset'
+import SudBarDataset from './SudBarDataset'
 
-function DepartmentsBar({ data }) {
+function SudBar({ data }) {
 
   const tasaColorObj = {
     danger: {
@@ -87,6 +87,7 @@ function DepartmentsBar({ data }) {
   }
 
 
+
   useEffect(() => {
     getTasaName() // change Chart Name
     //console.log(tasaColor)
@@ -103,7 +104,7 @@ function DepartmentsBar({ data }) {
       <CardHeader>
         <Row>
           <Col className="text-left" xs="12">
-          <h5>Valores Totales | Última actualización: { data[0].lastUpdate }</h5>
+          <h5>Valores Totales | Última actualización: { moment(data[0].updated).format("DD/MM/YYYY - hh:mma") }</h5>
           </Col>
         </Row>
         <Row>
@@ -135,8 +136,7 @@ function DepartmentsBar({ data }) {
       <CardBody>
         <div className="chart-area">
 
-          {/*<SudChartDataset timeline={timeline} data={data} />*/}
-          <DepartmentsBarDataset 
+          <SudBarDataset 
             data={data}
             tasa={tasa}
             tasaName={tasaName}
@@ -149,4 +149,4 @@ function DepartmentsBar({ data }) {
   )
 }
 
-export default DepartmentsBar
+export default SudBar
