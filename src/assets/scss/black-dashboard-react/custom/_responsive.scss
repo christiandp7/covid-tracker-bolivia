@@ -1,0 +1,40 @@
+
+@mixin card-status--font-size($titleFontSize, $numberFontSize) {
+  .card-status {
+    .card-header {
+      h4 {
+        font-size: $titleFontSize;
+      }
+      .card-title {
+        font-size: $numberFontSize;
+      }
+    }
+  }
+}
+
+@mixin card-data--font-size($numberFontSize) {
+  .card-data--bolivia {
+    .card-body {
+      h3 {
+        font-size: $numberFontSize;
+      }
+    }
+  }
+}
+
+// Status Cards
+@media (max-width: 1200px) and (min-width: 1101px){
+  @include card-status--font-size(0.95rem, 1.5rem)
+}
+
+@media (max-width: 1100px) and (min-width: 1061px){
+  @include card-status--font-size(0.85rem, 1.4rem)
+}
+
+// Data Cards
+@media (max-width: 1200px) and (min-width: 1061px){
+  .bolivia_map {
+    width: 334px !important;
+  }
+  @include card-data--font-size(1.2rem)
+}

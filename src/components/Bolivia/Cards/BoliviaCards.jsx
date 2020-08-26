@@ -22,7 +22,7 @@ function BoliviaCards({ data: { cases, deaths, recovered, active, todayCases, to
   return (
     <Row>
             <Col xs="12" sm="6" md="3">
-              <Card>
+              <Card className="card-status">
                 <CardHeader>
                   <h4>Total Confirmados</h4>
                   <CardTitle tag="h2">
@@ -33,7 +33,7 @@ function BoliviaCards({ data: { cases, deaths, recovered, active, todayCases, to
               </Card>
             </Col>
             <Col xs="12" sm="6" md="3">
-              <Card>
+              <Card className="card-status">
                 <CardHeader>
                   <h4>Total Activos</h4>
                   <CardTitle tag="h2">
@@ -44,7 +44,7 @@ function BoliviaCards({ data: { cases, deaths, recovered, active, todayCases, to
               </Card>
             </Col>
             <Col xs="12" sm="6" md="3">
-              <Card>
+              <Card className="card-status">
                 <CardHeader>
                   <h4>Total Recuperados</h4>
                   <CardTitle tag="h2">
@@ -55,7 +55,7 @@ function BoliviaCards({ data: { cases, deaths, recovered, active, todayCases, to
               </Card>
             </Col>
             <Col xs="12" sm="6" md="3">
-              <Card>
+              <Card className="card-status">
                 <CardHeader>
                   <h4>Total Decesos</h4>
                   <CardTitle tag="h2">

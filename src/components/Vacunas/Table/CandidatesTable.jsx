@@ -27,8 +27,10 @@ import {
   faSyringe
 } from '@fortawesome/free-solid-svg-icons'
 
+import { vaccinePhaseText } from '../../../helpers'
+import { vaccinePhasesData } from '../../../data/vaccineData'
 
-function CandidatesTable({ data: { data, source, totalCandidates } }) {
+function CandidatesTable({ data: { data, phases, source, totalCandidates } }) {
 
   const [vaccines, setVaccines] = useState([]);
   const [vaccinePhase, setVaccinePhase] = useState('all');
@@ -57,6 +59,16 @@ function CandidatesTable({ data: { data, source, totalCandidates } }) {
     }
   }, [vaccinePhase])*/
 
+  const assignColorToPhase = (phases, cellPhase) => {
+    let phasesWColors = phases.map((phase, i) => {
+      return {
+        phase: phase.phase,
+        color: vaccinePhasesData.hexColors[i]
+      }
+    })
+    return phasesWColors.find(pha => pha.phase === cellPhase)
+  }
+
 
   const listColFormater = (cell, row) => {
     //console.log(cell)
@@ -71,13 +83,17 @@ function CandidatesTable({ data: { data, source, totalCandidates } }) {
     //return cell;
   }
 
-  const phaseColFormater = (cell, row) => {
-    //console.log(cell)
+  /*const phaseColFormater = (cell, row) => {
+    console.log(cell)
+    console.log(assignColorToPhase(phases))
     if(cell === "Phase 3") {
       return (<Badge style={{ backgroundColor: '#00d6b4' }}>{ cell }</Badge>)
     }
     if(cell === "Phase 2/3") {
       return (<Badge style={{ backgroundColor: '#ffd600' }}>{ cell }</Badge>)
+    }
+    if(cell === "Phase 2b") {
+      return (<Badge style={{ backgroundColor: '#8965e0' }}>{ cell }</Badge>)
     }
     if(cell === "Phase 2") {
       return (<Badge style={{ backgroundColor: '#11cdef' }}>{ cell }</Badge>)
@@ -91,9 +107,18 @@ function CandidatesTable({ data: { data, source, totalCandidates } }) {
     if(cell === "Pre-clinical") {
       return (<Badge style={{ backgroundColor: '#1d8cf8' }}>{ cell }</Badge>)
     }
-    //Early Research
-    return (<Badge style={{ backgroundColor: '#8965e0' }}>{ cell }</Badge>)
     
+    //Early Research
+    return (<Badge style={{ backgroundColor: '#f5365c' }}>{ cell }</Badge>)
+    
+  }*/
+
+
+  const phaseColFormater = (cell, row) => {
+    //console.log(cell)
+    //console.log(assignColorToPhase(phases, cell))
+    let phaseColors = assignColorToPhase(phases, cell)
+    return (<Badge style={{ backgroundColor: phaseColors.color }}>{ vaccinePhaseText(cell) }</Badge>)
   }
 
   const sizePerPageRenderer = ({
@@ -160,14 +185,19 @@ function CandidatesTable({ data: { data, source, totalCandidates } }) {
                 //onChange={(e) => filterCandByPhase(e.target.value)}
                 onChange={(e) => setVaccinePhase(e.target.value)}
               >
+                {phases.map((phase, i) => {
+                  return (
+                  <option key={i} value={phase.phase}>{vaccinePhaseText(phase.phase)}</option>
+                  )
+                })}
                 <option value="all">Todas</option>
-                <option value="Phase 3">Fase 3</option>
+                {/*<option value="Phase 3">Fase 3</option>
                 <option value="Phase 2/3">Fase 2/3</option>
                 <option value="Phase 2">Fase 2</option>
                 <option value="Phase 1/2">Fase 1/2</option>
                 <option value="Phase 1">Fase 1</option>
                 <option value="Pre-clinical">Pre-Clinica</option>
-                <option value="Early research">Investigación temprana</option>
+              <option value="Early research">Investigación temprana</option>*/}
               </Input> 
             </FormGroup>
           </Col>

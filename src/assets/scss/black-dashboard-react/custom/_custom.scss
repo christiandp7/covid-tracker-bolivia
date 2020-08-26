@@ -2,6 +2,9 @@
   //padding-top:10px;
 }*/
 
+$vaccine-chart-height: 255px;
+$vaccine-dev-img: 355px;
+
 .text-tertiary {
   color: $tertiary;
 }
@@ -111,6 +114,10 @@
   height: 280px;
 }
 
+.card-chart.vaccine-chart .chart-area {
+  height: $vaccine-chart-height;
+}
+
 .card-chart.sm-chart .chart-area {
   height: 220px;
 }
@@ -143,7 +150,7 @@
 
 // VACCINE
 .vaccine-dev-img {
-  max-width: 320px;
+  max-width: $vaccine-dev-img;
   width: 85%;
 }
 
@@ -244,9 +251,9 @@ th:focus {
 }
 
 
-@media (max-width: 1200px){
+@media (max-width: 1300px){
   .vaccine-dev-img {
-    max-width: 320px;
+    max-width: $vaccine-dev-img;
     width: 100%;
   }
 }

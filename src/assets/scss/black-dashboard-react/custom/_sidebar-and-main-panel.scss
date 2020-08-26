@@ -1,3 +1,5 @@
+$hide-sidebar-breakpoint: 1060px;
+
 .wrapper{
   position: relative;
   top: 0;
@@ -509,7 +511,7 @@
   -webkit-overflow-scrolling: touch;
 }
 
-@media (min-width: 991px) {
+@media (min-width: $hide-sidebar-breakpoint) {
   .sidebar,
   .main-panel,
   .sidebar-wrapper{
@@ -657,7 +659,7 @@
   height: 380px
 }
 
-@media screen and (max-width: 991px){
+@media screen and (max-width: $hide-sidebar-breakpoint){
   .sidebar{
     position: fixed;
     display: block;

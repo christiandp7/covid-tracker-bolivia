@@ -1,3 +1,6 @@
+$visible-navbar-breakpoint: 1060px;
+$hide-navbar-breakpoint: 1059px;
+
 .navbar {
   padding: 10px 30px 10px 15px;
   width: 100%;
@@ -158,7 +161,7 @@
   }
 }
 
-@media screen and (max-width: 991px){
+@media screen and (max-width: $visible-navbar-breakpoint){
   .navbar{
       .container-fluid{
           padding-right: 15px;
@@ -376,7 +379,7 @@
 
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: $hide-navbar-breakpoint) {
   .navbar-collapse {
     background: none !important;
   }

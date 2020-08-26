@@ -47,7 +47,7 @@ function BoliviaCardsData({ data: { tests, lethalityRate, recoveredRate, mortali
   return (
     <>
     
-      <Card>
+      <Card className="card-data--bolivia">
         <CardHeader>
           <CardTitle className="text-center" tag="h3">
             Datos Estadísticos

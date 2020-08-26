@@ -1,6 +1,10 @@
 import React from 'react'
 import { Doughnut } from 'react-chartjs-2';
 
+import { vaccinePhasesText } from '../../../helpers'
+
+import { vaccinePhasesData } from '../../../data/vaccineData'
+
 function PhaseDoughnutDataset({ phases }) {
 
   const getArrayData = (phasesArray) => {
@@ -9,6 +13,8 @@ function PhaseDoughnutDataset({ phases }) {
       return phase.candidates;
     })
   }
+
+  const getArrayLabels = (phasesArray) => vaccinePhasesText(phasesArray)
 
   let VaccinePhaseOptions = {
     maintainAspectRatio: false,
@@ -93,6 +99,9 @@ function PhaseDoughnutDataset({ phases }) {
     //purpleGradientStroke.addColorStop(0.4, "rgba(255,141,114,0.0)"); 
     //purpleGradientStroke.addColorStop(0, "rgba(255,141,114,0)"); // purple
 
+    let redGradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
+    redGradientStroke.addColorStop(1, "rgba(245,54,92, 0.2)");
+
     let gradientsArray = [
       greenGradientStroke,
       yellowGradientStroke,
@@ -101,25 +110,19 @@ function PhaseDoughnutDataset({ phases }) {
       orangeGradientStroke,
       blueGradientStroke,
       purpleGradientStroke,
+      redGradientStroke,
     ];
 
     return {
-      labels: ["Fase 3", "Fase 2/3", "Fase 2", "Fase 1/2", "Fase 1", "Pre-Clinica", "Investigación temprana"],
+      //labels: ["Fase 3", "Fase 2/3",   "Fase 2", "Fase 1/2", "Fase 1", "Pre-Clinica", "Investigación temprana"],
+      labels: getArrayLabels(phases),
       datasets: [
         {
           //backgroundColor: [ "#2ecc71", "#3498db"],
           //borderColor:	"transparent",
           backgroundColor: gradientsArray,
           hoverBackgroundColor: gradientsArray,
-          borderColor: [
-            "#00d6b4", //green
-            "#ffd600", //yellow
-            "#11cdef", //teal
-            "#e14eca", //pink
-            "#fb6340", //orange
-            "#1d8cf8", //blue
-            "#8965e0", //purple
-          ],
+          borderColor: vaccinePhasesData.hexColors,
           borderWidth: 2,
           //data: [cases, getSuspectsAndDiscartedSum(tests, cases)]
           data: getArrayData(phases)

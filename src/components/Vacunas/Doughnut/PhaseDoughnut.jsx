@@ -20,7 +20,7 @@ function PhaseDoughnut({ data: { phases, totalCandidates } }) {
   //console.log(data)
 
   return (
-    <Card className="card-chart sm-chart">
+    <Card className="card-chart vaccine-chart">
       <CardHeader>
         <CardTitle tag="h3">
           <i className={`tim-icons icon-chart-pie-36`} /> Fases de Prueba y Desarrollo
