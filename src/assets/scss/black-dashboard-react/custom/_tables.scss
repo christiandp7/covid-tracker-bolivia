@@ -157,6 +157,11 @@
       color: hsla(0,0%,100%,.7);
       text-transform: uppercase;
     }
+
+
+    
+
+
 }
 
 .table-responsive{
@@ -166,4 +171,14 @@
 
 #tables .table-responsive{
     margin-bottom: 30px;
+}
+
+
+@media (max-width: 768px) {
+  table {
+    tbody > tr > td.table_cell_wide {
+      white-space: nowrap;
+      padding-right: 35px;
+    }
+  }
 }

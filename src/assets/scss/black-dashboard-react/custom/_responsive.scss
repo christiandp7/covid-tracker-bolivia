@@ -22,6 +22,12 @@
   }
 }
 
+@mixin bolivia-map--width($width) {
+  .bolivia_map {
+    width: $width !important;
+  }
+}
+
 // Status Cards
 @media (max-width: 1200px) and (min-width: 1101px){
   @include card-status--font-size(0.95rem, 1.5rem)
@@ -31,10 +37,14 @@
   @include card-status--font-size(0.85rem, 1.4rem)
 }
 
+@media (max-width: 920px) and (min-width: 768px){
+  @include bolivia-map--width(322px);
+  @include card-status--font-size(0.8rem, 1.4rem);
+  @include card-data--font-size(1rem);
+}
+
 // Data Cards
 @media (max-width: 1200px) and (min-width: 1061px){
-  .bolivia_map {
-    width: 334px !important;
-  }
+  @include bolivia-map--width(334px);
   @include card-data--font-size(1.2rem)
 }

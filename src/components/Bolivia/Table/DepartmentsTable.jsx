@@ -61,7 +61,7 @@ function DepartmentsTable({ data }) {
 
             {depsData.length ? depsData.map((dep, i) => (
                 <tr key={i}>
-                  <td>
+                  <td className="table_cell_wide">
                     <img className="avatar flag" src={dep.flag2} />
                     
                     {dep.name }

@@ -52,7 +52,7 @@ function SudamericaTable({ data }) {
 
             {countriesData.length? countriesData.map((country, i) => (
                 <tr key={i}>
-                  <td>
+                  <td className="table_cell_wide">
                     <img className="avatar flag" src={country.country.indexOf("Malvinas") !== -1 ? "https://disease.sh/assets/img/flags/ar.png" : country.countryInfo.flag} />
                     
                     {country.country.indexOf("Malvinas") !== -1 ? "Islas Malvinas" : country.country }
