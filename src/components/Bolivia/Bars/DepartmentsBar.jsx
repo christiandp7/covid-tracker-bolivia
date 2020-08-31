@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react'
-
+import cx from 'classnames';
 import ChartLoader from '../../Loaders/ChartLoader'
 
 // reactstrap components
 import {
+  Nav,
+  NavItem,
+  NavLink,
+  Button,
   FormGroup,
   Input,
   Card,
@@ -12,9 +16,16 @@ import {
   CardTitle,
   Row,
   Col,
+  TabContent,
+  TabPane,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
 } from "reactstrap";
 
 import DepartmentsBarDataset from './DepartmetsBarDataset'
+import { sortDepsData } from '../../../helpers'
 
 function DepartmentsBar({ data }) {
 
@@ -93,6 +104,18 @@ function DepartmentsBar({ data }) {
   }, [tasa])
 
 
+  // Tabs
+  const [activeTab, setActiveTab] = useState('1');
+  const toggleTabs = tab => {
+    if(activeTab !== tab) setActiveTab(tab);
+  }
+
+  // Sort
+  const [depsOrder, setDepsOrder] = useState('')
+  const changeDepsOrder = (e, sorter) => {
+    e.preventDefault()
+    setDepsOrder(sorter);
+  }
 
   if(!data[0]){
     return ( <ChartLoader /> )
@@ -103,7 +126,76 @@ function DepartmentsBar({ data }) {
       <CardHeader>
         <Row>
           <Col className="text-left" xs="12">
-          <h5>Valores Totales | Última actualización: { data[0].lastUpdate }</h5>
+          <h5>Valores Totales | Última actualización: { data[0].lastUpdate }
+            <UncontrolledDropdown className="float-right" >
+                <DropdownToggle
+                  caret
+                  className="btn-icon"
+                  color="link"
+                  data-toggle="dropdown"
+                  type="button"
+                >
+                  <i className="tim-icons icon-settings-gear-63" />
+                </DropdownToggle>
+                <DropdownMenu aria-labelledby="dropdownMenuLink" right>
+                  <DropdownItem
+                    href="#"
+                    className={cx({
+                      "font-weight-bold": depsOrder === "val"
+                    })}
+                    onClick={e => changeDepsOrder(e, 'val')}
+                  >
+                    Ordenar por valores
+                  </DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem
+                    href="#"
+                    className={cx({
+                      "font-weight-bold": depsOrder === "population"
+                    })}
+                    onClick={e => changeDepsOrder(e, 'population')}
+                  >
+                    Ordenar por población
+                  </DropdownItem>
+                  <DropdownItem
+                    href="#"
+                    className={cx({
+                      "font-weight-bold": depsOrder === "cases"
+                    })}
+                    onClick={e => changeDepsOrder(e, 'cases')}
+                  >
+                    Ordenar por casos confirmados
+                  </DropdownItem>
+                  <DropdownItem
+                    href="#"
+                    className={cx({
+                      "font-weight-bold": depsOrder === "deaths"
+                    })}
+                    onClick={e => changeDepsOrder(e, 'deaths')}
+                  >
+                    Ordenar por decesos
+                  </DropdownItem>
+                  <DropdownItem
+                    href="#"
+                    className={cx({
+                      "font-weight-bold": depsOrder === "recovered"
+                    })}
+                    onClick={e => changeDepsOrder(e, 'recovered')}
+                  >
+                    Ordenar por casos recuperados
+                  </DropdownItem>
+                  <DropdownItem
+                    href="#"
+                    className={cx({
+                      "font-weight-bold": depsOrder === "active"
+                    })}
+                    onClick={e => changeDepsOrder(e, 'active')}
+                  >
+                    Ordenar por casos activos
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+          </h5>
           </Col>
         </Row>
         <Row>
@@ -113,6 +205,7 @@ function DepartmentsBar({ data }) {
             </CardTitle>
           </Col>
           <Col sm="6" xs="12">
+
             <FormGroup>
               <Input 
                 type="select" 
@@ -133,17 +226,44 @@ function DepartmentsBar({ data }) {
         </Row>
       </CardHeader>
       <CardBody>
-        <div className="chart-area">
 
-          {/*<SudChartDataset timeline={timeline} data={data} />*/}
-          <DepartmentsBarDataset 
-            data={data}
-            tasa={tasa}
-            tasaName={tasaName}
-            tasaColor={tasaColor}
-          />
 
-        </div>
+      {/*<Nav tabs>
+        <NavItem>
+          <NavLink
+            className={cx({ active: activeTab === '1' })}
+            onClick={() => { toggleTabs('1'); }}
+          >
+            Acumulado
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink
+            className={cx({ active: activeTab === '2' })}
+            onClick={() => { toggleTabs('2'); }}
+          >
+            Histórico
+          </NavLink>
+        </NavItem>
+      </Nav>
+
+      <TabContent activeTab={activeTab}>
+        <TabPane tabId="1">
+          1
+        </TabPane>
+        <TabPane tabId="2">2</TabPane>
+      </TabContent>*/}
+        
+          <div className="chart-area">
+            <DepartmentsBarDataset 
+              data={sortDepsData(data, depsOrder)}
+              tasa={tasa}
+              depsOrder={depsOrder}
+              tasaName={tasaName}
+              tasaColor={tasaColor}
+            />
+          </div>
+        
       </CardBody>
     </Card>
   )

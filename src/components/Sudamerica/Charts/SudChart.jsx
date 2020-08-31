@@ -275,6 +275,14 @@ function SudChart({ timeline, data }) {
           />
 
         </div>
+        
+        {/*<Row>
+          <Col sm="6" xs="12">
+            <hr />
+            <Button color="primary" size="sm">Seleccionar Países</Button>
+          </Col>
+        </Row>*/}
+        
       </CardBody>
     </Card>
   )

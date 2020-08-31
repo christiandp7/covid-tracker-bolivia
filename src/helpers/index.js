@@ -27,3 +27,51 @@ export const vaccinePhaseText = phase => {
 
   return phase
 }
+
+
+export const sortDepsData = (data, sortBy) => {
+  if(sortBy === 'population') {
+    return data.sort((a,b) => (a.population < b.population) ? 1 : -1)
+  }
+  if(sortBy === 'cases') {
+    return data.sort((a,b) => (a.total.cases < b.total.cases) ? 1 : -1)
+  }
+  if(sortBy === 'deaths') {
+    return data.sort((a,b) => (a.total.deaths < b.total.deaths) ? 1 : -1)
+  }
+  if(sortBy === 'recovered') {
+    return data.sort((a,b) => (a.total.recovered < b.total.recovered) ? 1 : -1)
+  }
+  if(sortBy === 'active') {
+    return data.sort((a,b) => (a.total.active < b.total.active) ? 1 : -1)
+  }
+  return data
+}
+
+export const sortTasasAsc = (data, sortBy) => {
+  if(sortBy === 'val') {
+    return data.sort((a,b) => (a.value < b.value) ? 1 : -1)
+  }
+  return data
+}
+
+
+
+export const sortCountriesData = (data, sortBy) => {
+  if(sortBy === 'population') {
+    return data.sort((a,b) => (a.population < b.population) ? 1 : -1)
+  }
+  if(sortBy === 'cases') {
+    return data.sort((a,b) => (a.cases < b.cases) ? 1 : -1)
+  }
+  if(sortBy === 'deaths') {
+    return data.sort((a,b) => (a.deaths < b.deaths) ? 1 : -1)
+  }
+  if(sortBy === 'recovered') {
+    return data.sort((a,b) => (a.recovered < b.recovered) ? 1 : -1)
+  }
+  if(sortBy === 'active') {
+    return data.sort((a,b) => (a.active < b.active) ? 1 : -1)
+  }
+  return data
+}

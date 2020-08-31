@@ -13,8 +13,9 @@ import {
 } from '../../../variables/math'
 
 //import { lineChartBlueBg } from "../../../variables/chartOptions";
+import { sortTasasAsc } from '../../../helpers'
 
-function DepartmetsBarDataset({ tasa, data, tasaName, tasaColor }) {
+function DepartmetsBarDataset({ tasa, data, tasaName, tasaColor, countriesOrder }) {
 
 
   const getTasaType = (country, tasaToShow) => {
@@ -36,7 +37,7 @@ function DepartmetsBarDataset({ tasa, data, tasaName, tasaColor }) {
     }
   }
 
-  const getCountriesNames = (data) => {
+  /*const getCountriesNames = (data) => {
     return data.map(country => {
       return country['countryInfo']['iso3'].toUpperCase();
     })
@@ -45,6 +46,28 @@ function DepartmetsBarDataset({ tasa, data, tasaName, tasaColor }) {
   const getCountriesValues = (data) => {
     return data.map(country => {
       return getTasaType(country,tasa);
+    })
+  }*/
+
+  const generateCountriesObj = (data) => {
+    let filteredData = data.map(country => {
+      return {
+        name: country['countryInfo']['iso3'].toUpperCase(),
+        value: Number(getTasaType(country,tasa))
+      }
+    })
+    return sortTasasAsc(filteredData, countriesOrder)
+  }
+
+  const getCountriesNames = (data) => {
+    return generateCountriesObj(data).map(country => {
+      return country['name'];
+    })
+  }
+
+  const getCountriesValues = (data) => {
+    return generateCountriesObj(data).map(country => {
+      return country['value'];
     })
   }
 

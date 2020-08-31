@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import cx from 'classnames'
 import moment from 'moment'
 import ChartLoader from '../../Loaders/ChartLoader'
 
@@ -12,9 +13,14 @@ import {
   CardTitle,
   Row,
   Col,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
 } from "reactstrap";
 
 import SudBarDataset from './SudBarDataset'
+import { sortCountriesData } from '../../../helpers'
 
 function SudBar({ data }) {
 
@@ -95,6 +101,13 @@ function SudBar({ data }) {
 
 
 
+  // Sort
+  const [countriesOrder, setCountriesOrder] = useState('')
+  const changeCountriesOrder = (e, sorter) => {
+    e.preventDefault()
+    setCountriesOrder(sorter);
+  }
+
   if(!data[0]){
     return ( <ChartLoader /> )
   }  
@@ -104,7 +117,76 @@ function SudBar({ data }) {
       <CardHeader>
         <Row>
           <Col className="text-left" xs="12">
-          <h5>Valores Totales | Última actualización: { moment(data[0].updated).format("DD/MM/YYYY - hh:mma") }</h5>
+          <h5>Valores Totales | Última actualización: { moment(data[0].updated).format("DD/MM/YYYY - hh:mma") }
+            <UncontrolledDropdown className="float-right" >
+                <DropdownToggle
+                  caret
+                  className="btn-icon"
+                  color="link"
+                  data-toggle="dropdown"
+                  type="button"
+                >
+                  <i className="tim-icons icon-settings-gear-63" />
+                </DropdownToggle>
+                <DropdownMenu aria-labelledby="dropdownMenuLink" right>
+                  <DropdownItem
+                    href="#"
+                    className={cx({
+                      "font-weight-bold": countriesOrder === "val"
+                    })}
+                    onClick={e => changeCountriesOrder(e, 'val')}
+                  >
+                    Ordenar por valores
+                  </DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem
+                    href="#"
+                    className={cx({
+                      "font-weight-bold": countriesOrder === "population"
+                    })}
+                    onClick={e => changeCountriesOrder(e, 'population')}
+                  >
+                    Ordenar por población
+                  </DropdownItem>
+                  <DropdownItem
+                    href="#"
+                    className={cx({
+                      "font-weight-bold": countriesOrder === "cases"
+                    })}
+                    onClick={e => changeCountriesOrder(e, 'cases')}
+                  >
+                    Ordenar por casos confirmados
+                  </DropdownItem>
+                  <DropdownItem
+                    href="#"
+                    className={cx({
+                      "font-weight-bold": countriesOrder === "deaths"
+                    })}
+                    onClick={e => changeCountriesOrder(e, 'deaths')}
+                  >
+                    Ordenar por decesos
+                  </DropdownItem>
+                  <DropdownItem
+                    href="#"
+                    className={cx({
+                      "font-weight-bold": countriesOrder === "recovered"
+                    })}
+                    onClick={e => changeCountriesOrder(e, 'recovered')}
+                  >
+                    Ordenar por casos recuperados
+                  </DropdownItem>
+                  <DropdownItem
+                    href="#"
+                    className={cx({
+                      "font-weight-bold": countriesOrder === "active"
+                    })}
+                    onClick={e => changeCountriesOrder(e, 'active')}
+                  >
+                    Ordenar por casos activos
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+          </h5>
           </Col>
         </Row>
         <Row>
@@ -137,8 +219,9 @@ function SudBar({ data }) {
         <div className="chart-area">
 
           <SudBarDataset 
-            data={data}
+            data={sortCountriesData(data, countriesOrder)}
             tasa={tasa}
+            countriesOrder={countriesOrder}
             tasaName={tasaName}
             tasaColor={tasaColor}
           />
