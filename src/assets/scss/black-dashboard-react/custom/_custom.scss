@@ -251,6 +251,17 @@ th:focus {
 }
 
 
+
+/* Custom Inputs */
+// Switch
+.custom-switch {
+  cursor: pointer;
+  .custom-control-label {
+    cursor: pointer;
+  }
+}
+
+
 @media (max-width: 1300px){
   .vaccine-dev-img {
     max-width: $vaccine-dev-img;

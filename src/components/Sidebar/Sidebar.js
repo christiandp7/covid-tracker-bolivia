@@ -9,12 +9,12 @@ import PerfectScrollbar from "perfect-scrollbar";
 // reactstrap components
 import { Nav, Badge } from "reactstrap";
 
-import ShareButtons from '../ShareButtons/ShareButtons'
+import ShareButtons from "../ShareButtons/ShareButtons";
 
 //Icons
-import BoliviaIcon from '../CustomIcons/BoliviaIcon'
-import SudamericaIcon from '../CustomIcons/SudamericaIcon'
-import VaccineIcon from '../CustomIcons/VaccineIcon'
+import BoliviaIcon from "../CustomIcons/BoliviaIcon";
+import SudamericaIcon from "../CustomIcons/SudamericaIcon";
+import VaccineIcon from "../CustomIcons/VaccineIcon";
 
 var ps;
 
@@ -32,7 +32,7 @@ class Sidebar extends React.Component {
     if (navigator.platform.indexOf("Win") > -1) {
       ps = new PerfectScrollbar(this.refs.sidebar, {
         suppressScrollX: true,
-        suppressScrollY: false
+        suppressScrollY: false,
       });
     }
   }
@@ -106,21 +106,21 @@ class Sidebar extends React.Component {
           ) : null*/}
           <div className="logo">
             <h4 className="simple-text logo-normal qec_logo">
-              <span className="text-default" >#</span>
+              <span className="text-default">#</span>
               QuedateEnCasa
             </h4>
           </div>
           <Nav>
             {routes.map((prop, key) => {
               if (prop.redirect) return null;
-              
-              let linkIcon = (<i className={prop.icon} />); 
-              if(prop.customIcon == 'BO') {
-                linkIcon = (<BoliviaIcon />) 
-              } else if (prop.customIcon == 'SU') {
-                linkIcon = (<SudamericaIcon />) 
-              } else if (prop.customIcon == 'VA') {
-                linkIcon = (<VaccineIcon />) 
+
+              let linkIcon = <i className={prop.icon} />;
+              if (prop.customIcon == "BO") {
+                linkIcon = <BoliviaIcon />;
+              } else if (prop.customIcon == "SU") {
+                linkIcon = <SudamericaIcon />;
+              } else if (prop.customIcon == "VA") {
+                linkIcon = <VaccineIcon />;
               }
 
               return (
@@ -138,25 +138,21 @@ class Sidebar extends React.Component {
                     activeClassName="active"
                     onClick={this.props.toggleSidebar}
                   >
-                    
                     {linkIcon}
 
-                    <p>{prop.name} 
-                    {prop.customIcon == 'VA' ? 
+                    <p>
+                      {prop.name}
+                      {/*prop.customIcon == 'VA' ? 
                       (<Badge style={{ marginLeft: '12px' }} color="danger">Nuevo</Badge>) : null
-                    }
+                      */}
                     </p>
-
-                    
-
                   </NavLink>
                 </li>
               );
             })}
           </Nav>
 
-            <ShareButtons />
-
+          <ShareButtons />
         </div>
       </div>
     );
@@ -165,7 +161,7 @@ class Sidebar extends React.Component {
 
 Sidebar.defaultProps = {
   bgColor: "primary",
-  routes: [{}]
+  routes: [{}],
 };
 
 Sidebar.propTypes = {
@@ -183,8 +179,8 @@ Sidebar.propTypes = {
     // the text of the logo
     text: PropTypes.node,
     // the image src of the logo
-    imgSrc: PropTypes.string
-  })
+    imgSrc: PropTypes.string,
+  }),
 };
 
 export default Sidebar;
