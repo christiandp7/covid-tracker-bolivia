@@ -270,6 +270,7 @@ function SudChart({ timeline, data }) {
                     <option value="45">últimos 45 días</option>
                     <option value="60">últimos 60 días</option>
                     <option value="90">últimos 90 días</option>
+                    <option value="120">últimos 120 días</option>
                   </Input>
                 </FormGroup>
               </Col>
