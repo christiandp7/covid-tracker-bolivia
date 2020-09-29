@@ -123,7 +123,39 @@ export const sumBOStatus = (deps, statusType, status) => {
   return sum;
 };
 
-// SUDAMERICA FUNCTIONS
+// GRAPHICAL CHART FUNCTIONS ----------------
+export const getSmoothValues = (array, factor) => {
+  let from = Number(factor) + 1;
+  let to = array.length - Number(factor);
+  let smoothArray = array;
+  let promFactor = factor * 2;
+  promFactor += 1;
+  //console.log(promFactor);
+  let icount = 0;
+  for (let i = from; i < to; i++) {
+    // hacer un for para que de el vueltas equivalente al doble del factor mas 1
+    // y retorne la suma de todos los valores
+    // luego ese valor se va a dividir entre el doble del factor mas 1
+    // por ultimo asignar ese resultado al item actual del array (i)
+
+    let sumatoria = 0;
+    for (let j = i - from; j < promFactor + icount; j++) {
+      //console.log(`i: ${i}, j: ${j}`);
+      sumatoria += Number(array[j]);
+      //console.log(array[j]);
+    }
+    //console.log("---------------------");
+    let prom = sumatoria / promFactor;
+    smoothArray[i] = Math.round(prom);
+
+    icount++;
+  }
+
+  return smoothArray;
+  //return array;
+};
+
+// SUDAMERICA FUNCTIONS -----------------------
 
 const firstCaseDate = {
   // DD/MM/YYYY

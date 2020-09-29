@@ -9,6 +9,7 @@ import {
   roundNumber,
   valuePerHab,
   formatDateSlash,
+  getSmoothValues,
 } from "../../../variables/math";
 
 function DepartmentsChartDataset({
@@ -19,6 +20,8 @@ function DepartmentsChartDataset({
   smoothFactor,
 }) {
   //console.log(smoothFactor);
+  console.log(timeline);
+  //console.log(data);
 
   const setHorizontalEje = () => {
     return timeline.map((obj) => {
@@ -27,7 +30,7 @@ function DepartmentsChartDataset({
     });
   };
 
-  const getValueTimeline = (depId, depPopulation) => {
+  const getValuesFromTimeline = (depId, depPopulation) => {
     if (hab === "totales") {
       return timeline.map((obj) => {
         return obj[depId];
@@ -38,6 +41,19 @@ function DepartmentsChartDataset({
         return roundNumber(valuePerHab(hab, obj[depId], depPopulation));
       });
     }
+  };
+
+  const getValueTimeline = (depId, depPopulation) => {
+    const timelineValues = getValuesFromTimeline(
+      depId,
+      depPopulation
+    ).reverse();
+    if (ponderation === "diarios" && smoothFactor != 1) {
+      return getSmoothValues(timelineValues, smoothFactor);
+    } else {
+      return timelineValues;
+    }
+    return timelineValues;
   };
 
   const getPopulation = (depId) => {
@@ -121,7 +137,7 @@ function DepartmentsChartDataset({
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline("la_paz", getPopulation("la_paz")).reverse(),
+          data: getValueTimeline("la_paz", getPopulation("la_paz")),
         },
         {
           label: "Cochabamba",
@@ -138,10 +154,7 @@ function DepartmentsChartDataset({
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline(
-            "cochabamba",
-            getPopulation("cochabamba")
-          ).reverse(),
+          data: getValueTimeline("cochabamba", getPopulation("cochabamba")),
           //data: [600,210,350,40,50,90]
         },
         {
@@ -159,10 +172,7 @@ function DepartmentsChartDataset({
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline(
-            "santa_cruz",
-            getPopulation("santa_cruz")
-          ).reverse(),
+          data: getValueTimeline("santa_cruz", getPopulation("santa_cruz")),
           //data: [40,50,90,210,350,500,650,680,920]
         },
         {
@@ -180,7 +190,7 @@ function DepartmentsChartDataset({
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline("oruro", getPopulation("oruro")).reverse(),
+          data: getValueTimeline("oruro", getPopulation("oruro")),
         },
         {
           label: "Potosí",
@@ -197,7 +207,7 @@ function DepartmentsChartDataset({
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline("potosi", getPopulation("potosi")).reverse(),
+          data: getValueTimeline("potosi", getPopulation("potosi")),
         },
         {
           label: "Tarija",
@@ -214,7 +224,7 @@ function DepartmentsChartDataset({
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline("tarija", getPopulation("tarija")).reverse(),
+          data: getValueTimeline("tarija", getPopulation("tarija")),
         },
         {
           label: "Chuquisaca",
@@ -231,10 +241,7 @@ function DepartmentsChartDataset({
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline(
-            "chuquisaca",
-            getPopulation("chuquisaca")
-          ).reverse(),
+          data: getValueTimeline("chuquisaca", getPopulation("chuquisaca")),
         },
         {
           label: "Beni",
@@ -251,7 +258,7 @@ function DepartmentsChartDataset({
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline("beni", getPopulation("beni")).reverse(),
+          data: getValueTimeline("beni", getPopulation("beni")),
         },
         {
           label: "Pando",
@@ -268,7 +275,7 @@ function DepartmentsChartDataset({
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline("pando", getPopulation("pando")).reverse(),
+          data: getValueTimeline("pando", getPopulation("pando")),
         },
       ],
     };

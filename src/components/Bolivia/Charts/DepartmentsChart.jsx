@@ -37,7 +37,7 @@ function DepartmentsChart({ timeline, data }) {
   const [recordsNumber, setRecordsNumber] = useState(30);
   const [habNumber, setHabNumber] = useState(100000); // 100 mil
   const [ponderation, setPonderation] = useState("acumulados");
-  const [smoothFactor, setSmoothFactor] = useState("1");
+  const [smoothFactor, setSmoothFactor] = useState(1);
   //const [habNumber, setHabNumber] = useState(100000)
 
   const fetchStatus = async () => {
@@ -58,6 +58,7 @@ function DepartmentsChart({ timeline, data }) {
   };
 
   useEffect(() => {
+    //setSmoothFactor(1);
     getStatusName(); // change Chart Name
     fetchStatus();
   }, [status, recordsNumber, ponderation]);
@@ -275,7 +276,8 @@ function DepartmentsChart({ timeline, data }) {
                   id="tooltipSmoothFactor"
                 ></i>
                 <CustomTooltip placement="top" target="tooltipSmoothFactor">
-                  Cambia la serie de datos entre diarios y acumulados.
+                  Suaviza los picos de la curva con valores medios para rango de
+                  N*2+1 días, con pívot central en el dato diario.
                 </CustomTooltip>
                 <Input
                   type="select"
@@ -289,6 +291,7 @@ function DepartmentsChart({ timeline, data }) {
                   <option value="3">N=3</option>
                   <option value="4">N=4</option>
                   <option value="5">N=5</option>
+                  <option value="6">N=6</option>
                 </Input>
               </FormGroup>
             )}
