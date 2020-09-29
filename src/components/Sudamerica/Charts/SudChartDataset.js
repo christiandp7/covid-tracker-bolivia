@@ -1,15 +1,18 @@
-import React from 'react'
+import React from "react";
 
-import { Line } from 'react-chartjs-2';
+import { Line } from "react-chartjs-2";
 
 import { lineChartBlueBg } from "../../../variables/chartOptions";
 
-import { roundNumber, valuePerHab, generateDaysEje, generateDailyRecords } from '../../../variables/math'
-import moment from 'moment'
-
+import {
+  roundNumber,
+  valuePerHab,
+  generateDaysEje,
+  generateDailyRecords,
+} from "../../../variables/math";
+import moment from "moment";
 
 function SudChartDatated({ timeline, data, status, eje, hab, recordsNum }) {
-
   //console.log(eje) // AQUI ME QUEDE -------------------------------------
   //console.log(timeline[0])
 
@@ -19,42 +22,45 @@ function SudChartDatated({ timeline, data, status, eje, hab, recordsNum }) {
     let fechas = Object.keys(timelineDataType).map((key) => {
       //var d = new Date(key);
       return moment(key).format("DD/MM/YY");
-    })
+    });
     return fechas;
-  }
+  };
   const getValueTimeline = (timelineDataType, countryPopulation) => {
     let statusValues = Object.values(timelineDataType).map((value) => {
       //return value;
       //console.log(roundNumber((100000 * Number(value)) / countryPopulation))
-      
+
       //if(hab === "total"){
-      if(hab === "acumulados" || hab === "diarios"){
+      if (hab === "acumulados" || hab === "diarios") {
         return value;
       }
       return roundNumber(valuePerHab(hab, value, countryPopulation));
-    })
+    });
     //console.log(casos)
 
-    if(hab === "diarios"){
+    if (hab === "diarios") {
       return generateDailyRecords(statusValues);
     }
     return statusValues;
+  };
 
-  }
-
-  const getPopulation = countryName => {
-    let popu = data.find(obj => obj.country.toLowerCase() === countryName.toLowerCase());
+  const getPopulation = (countryName) => {
+    let popu = data.find(
+      (obj) => obj.country.toLowerCase() === countryName.toLowerCase()
+    );
     //console.log(pop.population)
-    return popu.population
-  }  
+    return popu.population;
+  };
 
   const setHorizontalEje = () => {
-    if(eje === "dias") {
-      return generateDaysEje(getKeyTimeline(timeline[2].timeline[status]), recordsNum);
+    if (eje === "dias") {
+      return generateDaysEje(
+        getKeyTimeline(timeline[2].timeline[status]),
+        recordsNum
+      );
     }
     return getKeyTimeline(timeline[2].timeline[status]); // Fechas Brazil
-  }
-
+  };
 
   const boliviaData = (canvas) => {
     let ctx = canvas.getContext("2d");
@@ -63,7 +69,7 @@ function SudChartDatated({ timeline, data, status, eje, hab, recordsNum }) {
     let blueGradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
     blueGradientStroke.addColorStop(1, "rgba(29,140,248,0.15)");
     blueGradientStroke.addColorStop(0.4, "rgba(29,140,248,0.0)");
-    blueGradientStroke.addColorStop(0, "rgba(29,140,248,0)"); 
+    blueGradientStroke.addColorStop(0, "rgba(29,140,248,0)");
 
     // danger colors Gradient (Bolivia)
     let dangerGradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
@@ -74,13 +80,13 @@ function SudChartDatated({ timeline, data, status, eje, hab, recordsNum }) {
     //green colors Gradient (Brazil)
     let greenGradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
     greenGradientStroke.addColorStop(1, "rgba(66,134,121,0.15)");
-    greenGradientStroke.addColorStop(0.4, "rgba(66,134,121,0.0)"); 
+    greenGradientStroke.addColorStop(0.4, "rgba(66,134,121,0.0)");
     greenGradientStroke.addColorStop(0, "rgba(66,134,121,0)");
 
     //warning colors Gradient (Chile)
     let warningGradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
     warningGradientStroke.addColorStop(1, "rgba(255,141,114,0.15)");
-    warningGradientStroke.addColorStop(0.4, "rgba(255,141,114,0.0)"); 
+    warningGradientStroke.addColorStop(0.4, "rgba(255,141,114,0.0)");
     warningGradientStroke.addColorStop(0, "rgba(255,141,114,0)");
 
     //primary colors Gradient (Perú)
@@ -88,7 +94,7 @@ function SudChartDatated({ timeline, data, status, eje, hab, recordsNum }) {
     primaryGradientStroke.addColorStop(1, "rgba(72,72,176,0.15)");
     primaryGradientStroke.addColorStop(0.4, "rgba(72,72,176,0.0)");
     primaryGradientStroke.addColorStop(0, "rgba(119,52,169,0)"); //purple colors
-    
+
     return {
       labels: setHorizontalEje(),
       datasets: [
@@ -107,7 +113,10 @@ function SudChartDatated({ timeline, data, status, eje, hab, recordsNum }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline(timeline[0].timeline[status], getPopulation("Argentina"))
+          data: getValueTimeline(
+            timeline[0].timeline[status],
+            getPopulation("Argentina")
+          ),
         },
         {
           label: "Bolivia",
@@ -124,10 +133,13 @@ function SudChartDatated({ timeline, data, status, eje, hab, recordsNum }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline(timeline[1].timeline[status], getPopulation("Bolivia"))
+          data: getValueTimeline(
+            timeline[1].timeline[status],
+            getPopulation("Bolivia")
+          ),
           //data: [600,210,350,40,50,90]
         },
-       {
+        {
           label: "Brazil",
           fill: true,
           backgroundColor: greenGradientStroke,
@@ -142,7 +154,10 @@ function SudChartDatated({ timeline, data, status, eje, hab, recordsNum }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline(timeline[2].timeline[status], getPopulation("Brazil"))
+          data: getValueTimeline(
+            timeline[2].timeline[status],
+            getPopulation("Brazil")
+          ),
           //data: [40,50,90,210,350,500,650,680,920]
         },
         {
@@ -160,7 +175,10 @@ function SudChartDatated({ timeline, data, status, eje, hab, recordsNum }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline(timeline[3].timeline[status], getPopulation("Chile"))
+          data: getValueTimeline(
+            timeline[3].timeline[status],
+            getPopulation("Chile")
+          ),
         },
         {
           label: "Perú",
@@ -177,19 +195,18 @@ function SudChartDatated({ timeline, data, status, eje, hab, recordsNum }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline(timeline[4].timeline[status], getPopulation("Peru"))
-        }
+          data: getValueTimeline(
+            timeline[4].timeline[status],
+            getPopulation("Peru")
+          ),
+        },
+      ],
+    };
+  };
 
-      ]
-    }
-  }
-
-  
-  if(timeline[0]){
-    return (
-      <Line data={boliviaData} options={lineChartBlueBg} />
-    )
+  if (timeline[0]) {
+    return <Line data={boliviaData} options={lineChartBlueBg} />;
   }
 }
 
-export default SudChartDatated
+export default SudChartDatated;
