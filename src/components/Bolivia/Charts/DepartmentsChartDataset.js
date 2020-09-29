@@ -1,45 +1,50 @@
-import React from 'react'
+import React from "react";
 //import moment from 'moment'
 
-import { Line } from 'react-chartjs-2';
-
+import { Line } from "react-chartjs-2";
 
 import { lineChartBlueBg } from "../../../variables/chartOptions";
 
-import { roundNumber, valuePerHab, formatDateSlash } from '../../../variables/math'
+import {
+  roundNumber,
+  valuePerHab,
+  formatDateSlash,
+} from "../../../variables/math";
 
-
-function DepartmentsChartDataset({ timeline, data, hab }) {
+function DepartmentsChartDataset({
+  timeline,
+  data,
+  hab,
+  ponderation,
+  smoothFactor,
+}) {
+  //console.log(smoothFactor);
 
   const setHorizontalEje = () => {
     return timeline.map((obj) => {
       //return moment(obj['date']).format("DD/MM/YY");
-      return formatDateSlash(obj['date']);
-    })
-  }
+      return formatDateSlash(obj["date"]);
+    });
+  };
 
   const getValueTimeline = (depId, depPopulation) => {
-    if(hab === "totales"){
+    if (hab === "totales") {
       return timeline.map((obj) => {
         return obj[depId];
-      })
+      });
     } else {
       return timeline.map((obj) => {
         //console.log(roundNumber(valuePerHab(hab, obj[depId], depPopulation)))
         return roundNumber(valuePerHab(hab, obj[depId], depPopulation));
-      })
+      });
     }
-  }
+  };
 
-  const getPopulation = depId => {
-    let dep = data.find(obj => obj.id === depId);
+  const getPopulation = (depId) => {
+    let dep = data.find((obj) => obj.id === depId);
     //console.log(dep.name + ': ' + dep.population)
     return dep.population;
-  }  
-  
-
-
-
+  };
 
   const boliviaData = (canvas) => {
     let ctx = canvas.getContext("2d");
@@ -47,7 +52,7 @@ function DepartmentsChartDataset({ timeline, data, hab }) {
     //warning colors Gradient (La Paz)
     let warningGradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
     warningGradientStroke.addColorStop(1, "rgba(255,141,114,0.15)");
-    warningGradientStroke.addColorStop(0.4, "rgba(255,141,114,0.0)"); 
+    warningGradientStroke.addColorStop(0.4, "rgba(255,141,114,0.0)");
     warningGradientStroke.addColorStop(0, "rgba(255,141,114,0)"); // warning
 
     // danger colors Gradient (Cochabamba)
@@ -59,13 +64,13 @@ function DepartmentsChartDataset({ timeline, data, hab }) {
     //green colors Gradient (Santa Cruz)
     let greenGradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
     greenGradientStroke.addColorStop(1, "rgba(66,134,121,0.15)");
-    greenGradientStroke.addColorStop(0.4, "rgba(66,134,121,0.0)"); 
+    greenGradientStroke.addColorStop(0.4, "rgba(66,134,121,0.0)");
     greenGradientStroke.addColorStop(0, "rgba(66,134,121,0)"); // green
 
     //green colors Gradient (Oruro)
     let redGradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
     redGradientStroke.addColorStop(1, "rgba(245,54,92, 0.15)");
-    redGradientStroke.addColorStop(0.4, "rgba(245,54,92, 0.0)"); 
+    redGradientStroke.addColorStop(0.4, "rgba(245,54,92, 0.0)");
     redGradientStroke.addColorStop(0, "rgba(245,54,92, 0)"); // red
 
     // danger colors Gradient (Potosí)
@@ -73,7 +78,7 @@ function DepartmentsChartDataset({ timeline, data, hab }) {
     dangerGradientStroke.addColorStop(1, "rgba(253, 93, 147, 0.15)");
     dangerGradientStroke.addColorStop(0.4, "rgba(253, 93, 147, 0.0)");
     dangerGradientStroke.addColorStop(0, "rgba(253, 93, 147, 0)"); // danger
-    
+
     //primary colors Gradient (Tarija)
     let yellowGradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
     yellowGradientStroke.addColorStop(1, "rgba(255, 214, 0, 0.15)");
@@ -83,7 +88,7 @@ function DepartmentsChartDataset({ timeline, data, hab }) {
     //warning colors Gradient (Chuquisaca)
     let orangeGradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
     orangeGradientStroke.addColorStop(1, "rgba(251, 99, 64 ,0.15)");
-    orangeGradientStroke.addColorStop(0.4, "rgba(251, 99, 64, 0.0)"); 
+    orangeGradientStroke.addColorStop(0.4, "rgba(251, 99, 64, 0.0)");
     orangeGradientStroke.addColorStop(0, "rgba(251, 99, 64, 0)"); // Warning
 
     //blue colors Gradient (Beni)
@@ -95,13 +100,9 @@ function DepartmentsChartDataset({ timeline, data, hab }) {
     //warning colors Gradient (Pando)
     let purpleGradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
     purpleGradientStroke.addColorStop(1, "rgba(137,101,224, 0.15)");
-    purpleGradientStroke.addColorStop(0.4, "rgba(137,101,224, 0.0)"); 
+    purpleGradientStroke.addColorStop(0.4, "rgba(137,101,224, 0.0)");
     purpleGradientStroke.addColorStop(0, "rgba(137,101,224, 0)"); // Warning
 
-    
-
-
-    
     return {
       labels: setHorizontalEje().reverse(),
       datasets: [
@@ -120,7 +121,7 @@ function DepartmentsChartDataset({ timeline, data, hab }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline('la_paz', getPopulation('la_paz')).reverse()
+          data: getValueTimeline("la_paz", getPopulation("la_paz")).reverse(),
         },
         {
           label: "Cochabamba",
@@ -137,10 +138,13 @@ function DepartmentsChartDataset({ timeline, data, hab }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline('cochabamba', getPopulation('cochabamba')).reverse()
+          data: getValueTimeline(
+            "cochabamba",
+            getPopulation("cochabamba")
+          ).reverse(),
           //data: [600,210,350,40,50,90]
         },
-       {
+        {
           label: "Santa Cruz",
           fill: true,
           backgroundColor: greenGradientStroke,
@@ -155,7 +159,10 @@ function DepartmentsChartDataset({ timeline, data, hab }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline('santa_cruz', getPopulation('santa_cruz')).reverse()
+          data: getValueTimeline(
+            "santa_cruz",
+            getPopulation("santa_cruz")
+          ).reverse(),
           //data: [40,50,90,210,350,500,650,680,920]
         },
         {
@@ -173,7 +180,7 @@ function DepartmentsChartDataset({ timeline, data, hab }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline('oruro', getPopulation('oruro')).reverse()
+          data: getValueTimeline("oruro", getPopulation("oruro")).reverse(),
         },
         {
           label: "Potosí",
@@ -190,7 +197,7 @@ function DepartmentsChartDataset({ timeline, data, hab }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline('potosi', getPopulation('potosi')).reverse()
+          data: getValueTimeline("potosi", getPopulation("potosi")).reverse(),
         },
         {
           label: "Tarija",
@@ -207,7 +214,7 @@ function DepartmentsChartDataset({ timeline, data, hab }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline('tarija', getPopulation('tarija')).reverse()
+          data: getValueTimeline("tarija", getPopulation("tarija")).reverse(),
         },
         {
           label: "Chuquisaca",
@@ -224,7 +231,10 @@ function DepartmentsChartDataset({ timeline, data, hab }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline('chuquisaca', getPopulation('chuquisaca')).reverse()
+          data: getValueTimeline(
+            "chuquisaca",
+            getPopulation("chuquisaca")
+          ).reverse(),
         },
         {
           label: "Beni",
@@ -241,7 +251,7 @@ function DepartmentsChartDataset({ timeline, data, hab }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline('beni', getPopulation('beni')).reverse()
+          data: getValueTimeline("beni", getPopulation("beni")).reverse(),
         },
         {
           label: "Pando",
@@ -258,21 +268,15 @@ function DepartmentsChartDataset({ timeline, data, hab }) {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: getValueTimeline('pando', getPopulation('pando')).reverse()
-        }
+          data: getValueTimeline("pando", getPopulation("pando")).reverse(),
+        },
+      ],
+    };
+  };
 
-      ]
-    }
-  }
-
-
-
-
-  if(timeline){
-    return (
-      <Line data={boliviaData} options={lineChartBlueBg} />
-    )
+  if (timeline) {
+    return <Line data={boliviaData} options={lineChartBlueBg} />;
   }
 }
 
-export default DepartmentsChartDataset
+export default DepartmentsChartDataset;

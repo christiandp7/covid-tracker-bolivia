@@ -16,6 +16,7 @@ import {
   CardHeader,
   CardBody,
   CardTitle,
+  CardFooter,
   Row,
   Col,
 } from "reactstrap";
@@ -36,6 +37,7 @@ function DepartmentsChart({ timeline, data }) {
   const [recordsNumber, setRecordsNumber] = useState(30);
   const [habNumber, setHabNumber] = useState(100000); // 100 mil
   const [ponderation, setPonderation] = useState("acumulados");
+  const [smoothFactor, setSmoothFactor] = useState("1");
   //const [habNumber, setHabNumber] = useState(100000)
 
   const fetchStatus = async () => {
@@ -255,11 +257,45 @@ function DepartmentsChart({ timeline, data }) {
             timeline={historical}
             data={data}
             hab={habNumber}
+            ponderation={ponderation}
+            smoothFactor={smoothFactor}
             /*recordsNum={recordsNumber}
             eje={eje} */
           />
         </div>
       </CardBody>
+      <CardFooter>
+        <Row>
+          <Col xs="6">
+            {ponderation === "diarios" && (
+              <FormGroup>
+                <Label for="selectSmoothFactor">Suavizar Curva</Label> &nbsp;{" "}
+                <i
+                  className="tim-icons icon-alert-circle-exc"
+                  id="tooltipSmoothFactor"
+                ></i>
+                <CustomTooltip placement="top" target="tooltipSmoothFactor">
+                  Cambia la serie de datos entre diarios y acumulados.
+                </CustomTooltip>
+                <Input
+                  type="select"
+                  id="selectSmoothFactor"
+                  className="width-auto"
+                  defaultValue={smoothFactor}
+                  onChange={(e) => setSmoothFactor(e.target.value)}
+                >
+                  <option value="1">Sin Suavizar</option>
+                  <option value="2">N=2</option>
+                  <option value="3">N=3</option>
+                  <option value="4">N=4</option>
+                  <option value="5">N=5</option>
+                </Input>
+              </FormGroup>
+            )}
+          </Col>
+          <Col xs="6"></Col>
+        </Row>
+      </CardFooter>
     </Card>
   );
 }
