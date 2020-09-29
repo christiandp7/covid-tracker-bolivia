@@ -17,6 +17,7 @@ import {
   CardHeader,
   CardBody,
   CardTitle,
+  CardFooter,
   Row,
   Col,
   Popover,
@@ -38,6 +39,7 @@ function SudChart({ timeline, data }) {
   const [recordsNumber, setRecordsNumber] = useState(30);
   const [habNumber, setHabNumber] = useState(1000000);
   const [eje, setEje] = useState("fechas");
+  const [smoothFactor, setSmoothFactor] = useState(1);
 
   const getStatusName = () => {
     if (status === "cases") setStatusName("Confirmados");
@@ -58,7 +60,7 @@ function SudChart({ timeline, data }) {
 
   useEffect(() => {
     getStatusName();
-  }, [status]);
+  }, [status, smoothFactor]);
 
   useEffect(() => {
     fetchAPI();
@@ -288,6 +290,7 @@ function SudChart({ timeline, data }) {
             eje={eje}
             hab={habNumber}
             recordsNum={recordsNumber}
+            smoothFactor={smoothFactor}
           />
         </div>
 
@@ -329,6 +332,40 @@ function SudChart({ timeline, data }) {
           </PopoverBody>
         </Popover>*/}
       </CardBody>
+      <CardFooter>
+        <Row>
+          <Col xs="6">
+            {habNumber === "diarios" && (
+              <FormGroup>
+                <Label for="selectSmoothFactor">Suavizar Curva</Label> &nbsp;{" "}
+                <i
+                  className="tim-icons icon-alert-circle-exc"
+                  id="tooltipSmoothFactor"
+                ></i>
+                <CustomTooltip placement="top" target="tooltipSmoothFactor">
+                  Suaviza los picos de la curva con valores medios para rango de
+                  N*2+1 días, con pívot central en el dato diario.
+                </CustomTooltip>
+                <Input
+                  type="select"
+                  id="selectSmoothFactor"
+                  className="width-auto"
+                  defaultValue={smoothFactor}
+                  onChange={(e) => setSmoothFactor(e.target.value)}
+                >
+                  <option value="1">Sin Suavizar</option>
+                  <option value="2">N=2</option>
+                  <option value="3">N=3</option>
+                  <option value="4">N=4</option>
+                  <option value="5">N=5</option>
+                  <option value="6">N=6</option>
+                </Input>
+              </FormGroup>
+            )}
+          </Col>
+          <Col xs="6"></Col>
+        </Row>
+      </CardFooter>
     </Card>
   );
 }

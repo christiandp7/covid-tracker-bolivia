@@ -20,7 +20,7 @@ function DepartmentsChartDataset({
   smoothFactor,
 }) {
   //console.log(smoothFactor);
-  console.log(timeline);
+  //console.log(timeline);
   //console.log(data);
 
   const setHorizontalEje = () => {

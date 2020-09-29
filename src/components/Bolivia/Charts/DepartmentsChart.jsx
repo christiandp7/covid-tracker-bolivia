@@ -58,7 +58,6 @@ function DepartmentsChart({ timeline, data }) {
   };
 
   useEffect(() => {
-    //setSmoothFactor(1);
     getStatusName(); // change Chart Name
     fetchStatus();
   }, [status, recordsNumber, ponderation]);

@@ -9,10 +9,19 @@ import {
   valuePerHab,
   generateDaysEje,
   generateDailyRecords,
+  getSmoothValues,
 } from "../../../variables/math";
 import moment from "moment";
 
-function SudChartDatated({ timeline, data, status, eje, hab, recordsNum }) {
+function SudChartDatated({
+  timeline,
+  data,
+  status,
+  eje,
+  hab,
+  recordsNum,
+  smoothFactor,
+}) {
   //console.log(eje) // AQUI ME QUEDE -------------------------------------
   //console.log(timeline[0])
 
@@ -25,12 +34,9 @@ function SudChartDatated({ timeline, data, status, eje, hab, recordsNum }) {
     });
     return fechas;
   };
+
   const getValueTimeline = (timelineDataType, countryPopulation) => {
     let statusValues = Object.values(timelineDataType).map((value) => {
-      //return value;
-      //console.log(roundNumber((100000 * Number(value)) / countryPopulation))
-
-      //if(hab === "total"){
       if (hab === "acumulados" || hab === "diarios") {
         return value;
       }
@@ -39,6 +45,12 @@ function SudChartDatated({ timeline, data, status, eje, hab, recordsNum }) {
     //console.log(casos)
 
     if (hab === "diarios") {
+      if (smoothFactor != 1) {
+        return getSmoothValues(
+          generateDailyRecords(statusValues),
+          smoothFactor
+        );
+      }
       return generateDailyRecords(statusValues);
     }
     return statusValues;
