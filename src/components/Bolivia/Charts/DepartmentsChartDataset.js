@@ -48,7 +48,7 @@ function DepartmentsChartDataset({
       depId,
       depPopulation
     ).reverse();
-    if (ponderation === "diarios" && smoothFactor != 1) {
+    if (ponderation === "diarios" && smoothFactor !== 1) {
       return getSmoothValues(timelineValues, smoothFactor);
     } else {
       return timelineValues;

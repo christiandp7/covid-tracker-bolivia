@@ -6,8 +6,6 @@ import ChartLoader from "../../Loaders/ChartLoader";
 
 // reactstrap components
 import {
-  Container,
-  CustomInput,
   FormGroup,
   Label,
   Input,
@@ -20,9 +18,6 @@ import {
   CardFooter,
   Row,
   Col,
-  Popover,
-  PopoverHeader,
-  PopoverBody,
 } from "reactstrap";
 
 import CustomTooltip from "../../Tooltip/CustomTooltip";

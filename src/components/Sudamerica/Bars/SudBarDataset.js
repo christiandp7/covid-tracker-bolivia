@@ -20,19 +20,19 @@ function DepartmetsBarDataset({ tasa, data, tasaName, tasaColor, countriesOrder 
 
   const getTasaType = (country, tasaToShow) => {
     const { cases, deaths, recovered, active } = country;
-    if(tasaToShow === 'tl') {
-      return getLethalityRate(deaths, cases,true);
+    if (tasaToShow === 'tl') {
+      return getLethalityRate(deaths, cases, true);
     }
-    if(tasaToShow === 'tm') {
+    if (tasaToShow === 'tm') {
       return getMortalityRate(deaths, country.population, true)
     }
-    if(tasaToShow === 'tr') {
+    if (tasaToShow === 'tr') {
       return getRecoveredRate(recovered, cases, true)
     }
-    if(tasaToShow === 'tle') {
+    if (tasaToShow === 'tle') {
       return getEffectiveLethalityRate(cases, deaths, active, true)
     }
-    if(tasaToShow === 'ti') {
+    if (tasaToShow === 'ti') {
       return getIncidenceRate(cases, country.population, true)
     }
   }
@@ -53,7 +53,7 @@ function DepartmetsBarDataset({ tasa, data, tasaName, tasaColor, countriesOrder 
     let filteredData = data.map(country => {
       return {
         name: country['countryInfo']['iso3'].toUpperCase(),
-        value: Number(getTasaType(country,tasa))
+        value: Number(getTasaType(country, tasa))
       }
     })
     return sortTasasAsc(filteredData, countriesOrder)
@@ -74,9 +74,9 @@ function DepartmetsBarDataset({ tasa, data, tasaName, tasaColor, countriesOrder 
 
   const filterCountries = (data) => {
     //console.log(data);
-    data = data.filter(country => country['countryInfo']['iso3'] != 'SUR')
-    data = data.filter(country => country['countryInfo']['iso3'] != 'GUF')
-    data = data.filter(country => country['countryInfo']['iso3'] != 'GUY')
+    data = data.filter(country => country['countryInfo']['iso3'] !== 'SUR')
+    data = data.filter(country => country['countryInfo']['iso3'] !== 'GUF')
+    data = data.filter(country => country['countryInfo']['iso3'] !== 'GUY')
     return data;
     /*return data.map(country => {
       console.log(country)
@@ -85,6 +85,7 @@ function DepartmetsBarDataset({ tasa, data, tasaName, tasaColor, countriesOrder 
         return country;
       } 
       return country
+      
     });*/
     //return data;
   }
@@ -97,7 +98,7 @@ function DepartmetsBarDataset({ tasa, data, tasaName, tasaColor, countriesOrder 
     //purple colors Gradient (Incidence)
     let dynamicGradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
     dynamicGradientStroke.addColorStop(1, tasaColor.rgba('0.15'));
-    dynamicGradientStroke.addColorStop(0.4, tasaColor.rgba('0.0')); 
+    dynamicGradientStroke.addColorStop(0.4, tasaColor.rgba('0.0'));
     dynamicGradientStroke.addColorStop(0, tasaColor.rgba('0')); // purple
 
     return {
@@ -125,12 +126,12 @@ function DepartmetsBarDataset({ tasa, data, tasaName, tasaColor, countriesOrder 
     barChartOptions.scales.yAxes[0].gridLines.color = tasaColor.rgba('0.12');
     barChartOptions.scales.xAxes[0].gridLines.color = tasaColor.rgba('0.12');
 
-    if(tasa === 'tm' || tasa === 'ti'){
-      barChartOptions.tooltips.callbacks.label = function(tooltipItem, cdata) {
+    if (tasa === 'tm' || tasa === 'ti') {
+      barChartOptions.tooltips.callbacks.label = function (tooltipItem, cdata) {
         return `${cdata.datasets[tooltipItem.datasetIndex].label}: ${replaceDecDotByComma(cdata['datasets'][0]['data'][tooltipItem['index']])}/100mil hab.`;
       };
     } else {
-      barChartOptions.tooltips.callbacks.label = function(tooltipItem, cdata) {
+      barChartOptions.tooltips.callbacks.label = function (tooltipItem, cdata) {
         return `${cdata.datasets[tooltipItem.datasetIndex].label}: ${replaceDecDotByComma(cdata['datasets'][0]['data'][tooltipItem['index']])}%`;
       };
     }
@@ -138,8 +139,8 @@ function DepartmetsBarDataset({ tasa, data, tasaName, tasaColor, countriesOrder 
     return barChartOptions;
   }
 
-  
-  if(data[0]){
+
+  if (data[0]) {
     return (
       <Bar data={DepsBarData} options={changeBarCharOptions()} />
     )

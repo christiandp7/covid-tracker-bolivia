@@ -4,10 +4,6 @@ import ChartLoader from '../../Loaders/ChartLoader'
 
 // reactstrap components
 import {
-  Nav,
-  NavItem,
-  NavLink,
-  Button,
   FormGroup,
   Input,
   Card,
@@ -35,7 +31,7 @@ function DepartmentsBar({ data }) {
       rgba: (alpha) => {
         return `rgba(253, 93, 147, ${alpha})`;
       },
-      
+
       hex: '#fd5d93'
     },
     warning: {
@@ -73,25 +69,25 @@ function DepartmentsBar({ data }) {
   const [tasaColor, setTasaColor] = useState(tasaColorObj.danger)
 
   const getTasaName = () => {
-    if(tasa === 'tl') {
+    if (tasa === 'tl') {
       setTasaName('Letalidad');
       //setTasaColor('danger');
       setTasaColor(tasaColorObj.danger)
     }
-    if(tasa === 'tm') {
+    if (tasa === 'tm') {
       setTasaName('Mortalidad');
       //setTasaColor('warning');
       setTasaColor(tasaColorObj.warning)
     }
-    if(tasa === 'tr') {
+    if (tasa === 'tr') {
       setTasaName('Recuperación');
       setTasaColor(tasaColorObj.success)
     }
-    if(tasa === 'tle') {
+    if (tasa === 'tle') {
       setTasaName('Letalidad Efectiva');
       setTasaColor(tasaColorObj.tertiary)
     }
-    if(tasa === 'ti') {
+    if (tasa === 'ti') {
       setTasaName('Incidencia');
       setTasaColor(tasaColorObj.purple)
     }
@@ -107,7 +103,7 @@ function DepartmentsBar({ data }) {
   // Tabs
   const [activeTab, setActiveTab] = useState('1');
   const toggleTabs = tab => {
-    if(activeTab !== tab) setActiveTab(tab);
+    if (activeTab !== tab) setActiveTab(tab);
   }
 
   // Sort
@@ -117,17 +113,17 @@ function DepartmentsBar({ data }) {
     setDepsOrder(sorter);
   }
 
-  if(!data[0]){
-    return ( <ChartLoader /> )
-  }  
+  if (!data[0]) {
+    return (<ChartLoader />)
+  }
 
   return (
     <Card className="card-chart md-chart">
       <CardHeader>
         <Row>
           <Col className="text-left" xs="12">
-          <h5>Valores Totales | Última actualización: { data[0].lastUpdate }
-            <UncontrolledDropdown className="float-right" >
+            <h5>Valores Totales | Última actualización: {data[0].lastUpdate}
+              <UncontrolledDropdown className="float-right" >
                 <DropdownToggle
                   caret
                   className="btn-icon"
@@ -195,21 +191,21 @@ function DepartmentsBar({ data }) {
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
-          </h5>
+            </h5>
           </Col>
         </Row>
         <Row>
           <Col className="text-left" sm="6" xs="12">
             <CardTitle tag="h3">
-              <i className={`tim-icons icon-chart-bar-32 text-${tasaColor.name}`} />T. { tasaName }
+              <i className={`tim-icons icon-chart-bar-32 text-${tasaColor.name}`} />T. {tasaName}
             </CardTitle>
           </Col>
           <Col sm="6" xs="12">
 
             <FormGroup>
-              <Input 
-                type="select" 
-                id="recordsNumerSelect" 
+              <Input
+                type="select"
+                id="recordsNumerSelect"
                 defaultValue={tasa}
                 className="width-auto float-sm-right"
                 onChange={(e) => setTasa(e.target.value)}
@@ -219,16 +215,16 @@ function DepartmentsBar({ data }) {
                 <option value="tr">T. Recuperación</option>
                 <option value="tle">T. Letalidad Efectiva</option>
                 <option value="ti">T. Incidencia</option>
-              </Input> 
+              </Input>
             </FormGroup>
-            
+
           </Col>
         </Row>
       </CardHeader>
       <CardBody>
 
 
-      {/*<Nav tabs>
+        {/*<Nav tabs>
         <NavItem>
           <NavLink
             className={cx({ active: activeTab === '1' })}
@@ -253,17 +249,17 @@ function DepartmentsBar({ data }) {
         </TabPane>
         <TabPane tabId="2">2</TabPane>
       </TabContent>*/}
-        
-          <div className="chart-area">
-            <DepartmentsBarDataset 
-              data={sortDepsData(data, depsOrder)}
-              tasa={tasa}
-              depsOrder={depsOrder}
-              tasaName={tasaName}
-              tasaColor={tasaColor}
-            />
-          </div>
-        
+
+        <div className="chart-area">
+          <DepartmentsBarDataset
+            data={sortDepsData(data, depsOrder)}
+            tasa={tasa}
+            depsOrder={depsOrder}
+            tasaName={tasaName}
+            tasaColor={tasaColor}
+          />
+        </div>
+
       </CardBody>
     </Card>
   )
