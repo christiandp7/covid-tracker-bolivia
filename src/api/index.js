@@ -21,9 +21,8 @@ import {
 
 
 // Bolivia
-const url1 = 'https://apicovid19bo.diazportela.com/departments'
-const url2 = 'https://apicovid19bo.diazportela.com/bolivia'
-//const url3 = 'https://corona.lmao.ninja/v2/countries/Bolivia'
+const url1 = 'https://covid19bo.herokuapp.com/departments'
+const url2 = 'https://covid19bo.herokuapp.com/bolivia'
 
 export const fetchBOGeneralData = async () => {
   try {
